@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="shiroDbRealm" />
+		<property name="cacheManager" ref="shiroEhcacheManager" />
+		<property name="authenticator.authenticationListeners">
+	        <list> 
+	            <ref bean="loginListener"/> 
+	        </list>
+		</property>
+	</bean>
+	
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+	</bean>
+	
+	
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/signin" />
+		<property name="successUrl" value="/" />
+		<property name="filterChainDefinitions">
+			<value>
+				/resources/** = anon
+				/css/** = anon
+				/apk/** = anon
+				/js/** = anon
+				/images/** = anon
+				/static/** = anon
+				/autoquiz/** = anon
+				/index.jsp = anon
+				/api/** = anon
+				/download/** = anon
+				/help/** = anon
+				/sync/language.json = anon
+				/systemschedule/** = anon
+				/jumpurl/** = anon
+				/signup/** = anon
+				/signin/** = anon
+				/logout = logout
+				/admin/** = roles[admin]
+				/userinfo/** = authcBasic, user
+				/quiz/**  = authcBasic, user
+				/contextaware/** = authcBasic, user
+				/item/** = authcBasic, user
+				/c2dm/** = authcBasic, user
+				/sync/** = authcBasic, user
+				/** = authc, authcBasic, user
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

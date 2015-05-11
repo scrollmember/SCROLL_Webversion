@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.mapper.pacall.FolderMapper">
+	
+	<select id="selectAll" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.Folder">
+		select
+            `id`,
+            `name`,
+            `hash`,
+            `csv_file_id` as csvFileId,
+            `createtime`as createTime,
+            `start_date` as startDate,
+            `end_date` as endDate,
+            `user_id` as userId
+		from
+			folder
+		order by
+			lastModified desc
+	</select>
+	
+	<delete id="deleteByKey" parameterType="string">
+		delete from
+			folder
+		where
+			name = #{name}
+	</delete>
+
+	<delete id="deleteById" parameterType="string">
+		delete from
+			pacall_folder
+		where
+			id = #{id}
+	</delete>
+
+	
+	<select id="selectByKey" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.Folder">
+		select
+			name,
+			picnum,
+			lastModified
+		from
+			folder
+		where
+			name = #{name}
+	</select>
+	
+	<select id="selectByUserId" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.Folder">
+		select
+			f.id as id,
+			f.name as name,
+			f.hash as hash,
+			f.csv_file_id as csvFileId,
+			f.last_modified as lastModified,
+			f.createtime as createtime,
+			f.user_id as userId,
+			f.start_date as startDate,
+			f.end_date as endDate,
+			count(p.id) as picnum
+		from pacall_folder f
+			left join pacall_sensepic p
+				on f.id = p.folder_id and f.user_id = #{userid} and p.file_id is not null
+			group by f.start_date
+	</select>
+	
+	<select id="findByHash" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.Folder">
+		select
+			id,
+			name,
+			hash,
+			csv_file_id as csvFileId,
+			last_modified as lastModified,
+			createtime,
+			user_id as userId
+		from
+			pacall_folder
+		where
+			hash = #{hash}
+	</select>
+	
+	<select id="selectById" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.Folder">
+		select
+			id,
+			name,
+			hash,
+			csv_file_id as csvFileId,
+			last_modified as lastModified,
+			createtime,
+			user_id as userId
+		from
+			pacall_folder
+		where
+			id = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="jp.ac.tokushima_u.is.ll.entity.pacall.Folder">
+		insert into pacall_folder(
+			`id`,
+			`name`,
+			`hash`,
+			`csv_file_id`,
+			`last_modified`,
+			`createtime`,
+			`user_id`
+		)values(
+			#{id},
+			#{name},
+			#{hash},
+			#{csvFileId},
+			#{lastModified},
+			#{createtime},
+			#{userId}
+		)
+	</insert>
+	
+	<update id="updateLastModified" parameterType="map">
+		update 
+			pacall_folder
+		set
+			last_modified = #{lastModified}
+		where
+			`id` = #{folderId}
+	</update>
+	
+	<update id="updateStartEndDate" parameterType="map">
+	   update
+	       pacall_folder
+	   set
+	       start_date = #{startDate},
+	       end_date = #{endDate}
+	   where
+	       `id` = #{folderId}
+	</update>
+</mapper>

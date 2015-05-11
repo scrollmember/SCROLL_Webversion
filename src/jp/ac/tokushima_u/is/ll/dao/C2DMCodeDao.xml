@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.C2DMCodeDao">
+
+	<select id="findByAuthorAndImsi" resultType="C2DMCode" parameterType="map">
+		select
+			c.author_id as authorId,
+			c.id,
+			c.imsi,
+			c.register_id as registerId,
+			c.update_time as updateTime
+		from 
+			t_c2dm_code c
+		where
+			c.author_id = #{authorId}
+			and c.imsi = #{imsi}
+	</select>
+	
+	<select id="findByAuthor" resultType="C2DMCode" parameterType="string">
+		select
+			c.author_id as authorId,
+			c.id,
+			c.imsi,
+			c.register_id as registerId,
+			c.update_time as updateTime
+		from 
+			t_c2dm_code c
+		where
+			c.author_id = #{authorId}
+	</select>
+	
+	<update id="update" parameterType="C2DMCode">
+		update
+			t_c2dm_code
+		set
+			author_id = #{authorId},
+			imsi = #{imsi},
+			register_id = #{registerId},
+			update_time = #{updateTime}
+		where
+			id = #{id}
+	</update>
+</mapper>

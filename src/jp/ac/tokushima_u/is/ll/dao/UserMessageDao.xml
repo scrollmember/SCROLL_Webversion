@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.UserMessageDao">
+	<insert id="insert" parameterType="UserMessage">
+		insert into t_user_message(
+			id,
+			content,
+			send_from,
+			send_to,
+			create_time,
+			read_flag,
+			read_time
+		)values(
+			#{id},
+			#{content},
+			#{sendFrom},
+			#{sendTo},
+			#{createTime},
+			#{readFlag},
+			#{readTime}
+		)
+	</insert>
+	
+	<update id="update" parameterType="UserMessage">
+		update t_user_message
+		set
+			content = #{content},
+			send_from = #{sendFrom},
+			send_to = #{sendTo},
+			create_time = #{createTime},
+			read_flag = #{readFlag},
+			read_time = #{readTime}
+		where
+			id = #{id}
+	</update>
+	
+	<select id="countNotReadForReceiver" parameterType="string" resultType="long">
+		select
+			count(id)
+		from
+			t_user_message
+		where
+			send_to = #{userId}
+			and read_flag = false
+	</select>
+	
+	<resultMap type="jp.ac.tokushima_u.is.ll.dto.UserMessageDTO" id="resultUserMessageDTO">
+		<id column="id" property="id"/>
+		<result column="content" property="content"/>
+		<result column="sendFrom" property="sendFrom"/>
+		<result column="sendTo" property="sendTo"/>
+		<result column="createTime" property="createTime"/>
+		<result column="readFlag" property="readFlag"/>
+		<result column="readTime" property="readTime"/>
+		<association property="sendFromUser" javaType="Users">
+			<id column="sendFromUser_id" property="id"/>
+			<result column="sendFromUser_avatar" property="avatar"/>
+			<result column="sendFromUser_nickname" property="nickname"/>
+		</association>
+		<association property="sendToUser" javaType="Users">
+			<id column="sendToUser_id" property="id"/>
+			<result column="sendToUser_avatar" property="avatar"/>
+			<result column="sendToUser_nickname" property="nickname"/>
+		</association>
+	</resultMap>
+	
+	<select id="findListAllForReceiver" parameterType="string" resultMap="resultUserMessageDTO">
+		select
+			m.id,
+			m.content,
+			m.send_from as sendFrom,
+			m.send_to as sendTo,
+			m.create_time as createTime,
+			m.read_flag as readFlag,
+			m.read_time as readTime,
+			from_user.id as sendFromUser_id,
+			from_user.avatar as sendFromUser_avatar,
+			from_user.nickname as sendFromUser_nickname,
+			to_user.id as sendToUser_id,
+			to_user.avatar as sendToUser_avatar,
+			to_user.nickname as sendToUser_nickname
+		from
+			t_user_message m
+				left join t_users from_user
+					on m.send_from = from_user.id
+				left join t_users to_user
+					on m.send_to = to_user.id
+		where
+			m.send_to = #{userId}
+		order by 
+			m.create_time desc
+	</select>
+	
+	<select id="findById" parameterType="string" resultMap="resultUserMessageDTO">
+		select
+			m.id,
+			m.content,
+			m.send_from as sendFrom,
+			m.send_to as sendTo,
+			m.create_time as createTime,
+			m.read_flag as readFlag,
+			m.read_time as readTime,
+			from_user.id as sendFromUser_id,
+			from_user.avatar as sendFromUser_avatar,
+			from_user.nickname as sendFromUser_nickname,
+			to_user.id as sendToUser_id,
+			to_user.avatar as sendToUser_avatar,
+			to_user.nickname as sendToUser_nickname
+		from
+			t_user_message m
+				left join t_users from_user
+					on m.send_from = from_user.id
+				left join t_users to_user
+					on m.send_to = to_user.id
+		where
+			m.id = #{id}
+	</select>
+</mapper>

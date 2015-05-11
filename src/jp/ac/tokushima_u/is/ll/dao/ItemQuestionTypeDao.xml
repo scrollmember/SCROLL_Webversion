@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemQuestionTypeDao">
+	<insert id="insert" parameterType="ItemQuestionType">
+		insert into t_item_question_type(
+			id,
+			item_id,
+			language_id,
+			questiontype_id
+		) values (
+			#{id},
+			#{itemId},
+			#{languageId},
+			#{questiontypeId}
+		)
+	</insert>
+	
+	<select id="findListByItemAndLangs" parameterType="map" resultType="ItemQuestionType">
+		select
+			id,
+			item_id as itemId,
+			language_id as languageId,
+			questiontype_id as questiontypeId
+		from
+			t_item_question_type
+		where
+			item_id = #{itemId}
+			and
+			(
+				language_id is null
+				or language_id in
+				<foreach collection="studyLangs" item="lang" open="(" separator="," close=")">
+					#{lang.id}
+				</foreach>
+			)
+		order by 
+			questiontype_id asc
+	</select>
+	
+	<delete id="deleteAllByItemId" parameterType="string">
+		delete from
+			t_item_question_type
+		where
+			item_id = #{itemId}
+	</delete>
+	
+	<select id="findListByItem" parameterType="string" resultType="ItemQuestionType">
+		select
+			id,
+			item_id as itemId,
+			language_id as languageId,
+			questiontype_id as questiontypeId
+		from
+			t_item_question_type
+		where
+			item_id = #{itemId}
+	</select>
+	
+	<select id="findById" parameterType="string" resultType="ItemQuestionType">
+		select
+			id,
+			item_id as itemId,
+			language_id as languageId,
+			questiontype_id as questiontypeId
+		from
+			t_item_question_type
+		where
+			id = #{id}
+	</select>
+</mapper>

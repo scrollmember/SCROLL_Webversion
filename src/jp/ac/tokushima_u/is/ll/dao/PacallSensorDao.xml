@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.PacallSensorDao">
+	<select id="findListByUserIdAndHash" parameterType="map" resultType="PacallSensor">
+		select
+			id,
+			user_id as userId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			collection_id as collectionId,
+			hash
+		from
+			pacall_sensor
+		where
+			user_id = #{userId}
+			and hash = #{hash}
+		order
+			by create_time asc
+	</select>
+	
+	<select id="findListByCollectionIdAndHash" parameterType="map" resultType="PacallSensor">
+		select
+			id,
+			user_id as userId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			collection_id as collectionId,
+			hash
+		from
+			pacall_sensor
+		where
+			collection_id = #{collectionId}
+			and hash = #{hash}
+		order
+			by create_time asc
+	</select>
+	
+	<insert id="insert" parameterType="PacallSensor">
+		insert into pacall_sensor(
+			id,
+			user_id,
+			collection_id,
+			filename,
+			ext,
+			create_time,
+			hash
+		) values (
+			#{id},
+			#{userId},
+			#{collectionId},
+			#{filename},
+			#{ext},
+			#{createTime},
+			#{hash}
+		)
+	</insert>
+	
+	<select id="findListByUserId" parameterType="string" resultType="PacallSensor">
+		select
+			id,
+			user_id as userId,
+			collection_id as collectionId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			hash
+		from
+			pacall_sensor
+		where
+			user_id = #{userId}
+		order by create_time asc
+	</select>
+	
+	<select id="findListByCollectionId" parameterType="string" resultType="PacallSensor">
+		select
+			id,
+			user_id as userId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			collection_id as collectionId,
+			hash
+		from
+			pacall_sensor
+		where
+			collection_id = #{collectionId}
+		order
+			by create_time asc
+	</select>
+	
+	<select id="findById" parameterType="string" resultType="PacallSensor">
+		select
+			id,
+			user_id as userId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			collection_id as collectionId,
+			hash
+		from
+			pacall_sensor
+		where
+			id = #{id}
+	</select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.InterestDao">
+	<select id="findByName" parameterType="string" resultType="Interest">
+		select
+			id,
+			name
+		from
+			t_interest
+		where
+			name = #{name}
+	</select>
+	
+	<insert id="insert" parameterType="Interest">
+		insert into t_interest(
+			id,
+			name
+		) values (
+			#{id},
+			#{name}
+		)
+	</insert>
+	
+	<delete id="deleteAllRelationWithUser" parameterType="string">
+		delete from r_users_interest
+		where
+			user_id = #{userId}
+	</delete>
+	
+	<insert id="insertUsersInterest" parameterType="map">
+		insert into r_users_interest(
+			user_id,
+			interest_id
+		) values (
+			#{userId},
+			#{interestId}
+		)
+	</insert>
+	
+	<select id="findListByUserId" parameterType="string" resultType="Interest">
+		select
+			i.id,
+			i.name
+		from
+			r_users_interest ui
+				left join t_interest i
+					on i.id = ui.interest_id
+		where
+			ui.user_id = #{userId}
+	</select>
+</mapper>

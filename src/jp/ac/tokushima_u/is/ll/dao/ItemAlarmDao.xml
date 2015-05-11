@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemAlarmDao">
+	<select id="findListForQuiz">
+		select 
+		    ia.alarm_type as alermType,
+		    ia.author_id as authorId,
+		    ia.create_time as createTime,
+		    ia.feedback,
+		    ia.id,
+		    ia.item,
+		    ia.lat,
+		    ia.lng,
+		    ia.speed,
+		    ia.unicode,
+		    ia.update_time as updateTime
+		from
+		    t_itemalarm ia
+		where
+			ia.author_id = #{authorId}
+			<![CDATA[and get_distance(#{lat}, #{lng}, ia.lat, ia.lng) < #{distance}]]>
+			and ia.alarm_type = #{alarmType}
+			<if test="feedback!=null">
+			and ia.feedback = #{feedback}
+			</if>
+	</select>
+</mapper>

@@ -1,0 +1,4 @@
+0 18 * * 3 /usr/bin/curl http://localhost/learninglog/api/weeklynotificationtask?key=910ac981929b01b4af6dd6dc057bc522c0806d30
+0 4 * * 0 /usr/bin/curl http://localhost/learninglog/api/personalizetask?key=f51167023e1b747c122c155ea903613b5d5ca3a1
+0/1 * * * * /usr/bin/curl http://localhost/learninglog/api/c2dmessagetask?key=12e642fb1b02d45358e533b83ca633edb8a604f1
+0 2 * * * /usr/bin/curl http://localhost/learninglog/api/quizrecommendtask?key=74fef6ff9043479efb2315b5103b70c285168a0c

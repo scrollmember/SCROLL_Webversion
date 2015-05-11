@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.SettingDao">
+	<select id="findByUserId" parameterType="string" resultType="Setting">
+		select
+			id,
+			handsetcd,
+			author_id as authorId,
+			adddays,
+			mylog,
+			rightdays,
+			wrongdays
+		from
+			t_setting
+		where
+			author_id = #{userId}
+	</select>
+	
+	<select id="findListByHandsetcd" parameterType="string" resultType="Setting">
+		select
+			id,
+			handsetcd,
+			author_id as authorId,
+			adddays,
+			mylog,
+			rightdays,
+			wrongdays
+		from
+			t_setting
+		where
+			handsetcd = #{handsetcd}
+	</select>
+	
+	<insert id="insert" parameterType="Setting">
+		insert into t_setting(
+			id,
+			handsetcd,
+			author_id,
+			adddays,
+			mylog,
+			rightdays,
+			wrongdays
+		)values(
+			#{id},
+			#{handsetcd},
+			#{authorId},
+			#{adddays},
+			#{mylog},
+			#{rightdays},
+			#{wrongdays}
+		)
+	</insert>
+	
+	<update id="update" parameterType="Setting">
+		update t_setting
+		set
+			handsetcd = #{handsetcd},
+			author_id = #{authorId},
+			adddays = #{adddays},
+			mylog = #{mylog},
+			rightdays = #{rightdays},
+			wrongdays = #{wrongdays}
+		where
+			id = #{id}
+	</update>
+</mapper>

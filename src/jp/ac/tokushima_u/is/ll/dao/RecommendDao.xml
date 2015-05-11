@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.RecommendDao">
+	<select id="findUserByNickname" parameterType="string" resultType="Userinfo" >
+	<![CDATA[
+		select
+			*
+		from
+			s_userinfo
+		where
+			nickname=#{nickname}
+	]]>
+	</select>
+	
+	<select id="findUsersByNatiModel" parameterType="hashmap" resultType="Userinfo" >
+		<![CDATA[
+			select
+				*
+			from
+				s_userinfo
+			where
+				natilanguage=#{natilanguage}
+				and model=#{modelNo}
+			
+		]]>
+	</select>
+	
+	<select id="findContentByUsers" parameterType="hashmap" resultType="hashmap">
+			select 
+				t_item.id,
+				en_title,
+				jp_title,
+				t_item.create_time
+			from 
+				t_item 
+			where 
+				t_item.author_id in (select t_users.id from s_userinfo,t_users where s_userinfo.nickname=t_users.nickname 
+									and natilanguage=#{natilanguage} 
+									and model=#{modelNo}) 
+				and jp_title is not null
+				order by create_time
+	</select>
+	
+</mapper>

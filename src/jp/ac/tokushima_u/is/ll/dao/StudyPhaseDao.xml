@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.StudyPhaseDao">
+	
+	<select id="findByUserId" parameterType="map" resultType="StudyPhase">
+		select
+			sp.id,
+			sp.additemnum,
+			sp.create_time as createTime,
+			sp.end_time as endTime,
+			sp.maxlat,
+			sp.maxlng,
+			sp.minlat,
+			sp.minlng,
+			sp.quiznum,
+			sp.start_time as startTime,
+			sp.viewitemnum,
+			sp.user_id as userId
+		from
+			t_study_phase sp
+		where
+			sp.user_id = #{userId}
+		<if test="sort!=null">
+		order by
+			<foreach collection="sort" item="order" separator=",">
+				sp.${order.property} ${order.direction}
+			</foreach>
+		</if>
+	</select>
+	
+	<update id="update" parameterType="StudyPhase">
+		update t_study_phase
+		set
+			additemnum = #{additemnum},
+			end_time = #{end_time},
+			maxlat = #{maxlat},
+			maxlng = #{maxlng},
+			minlat = #{minlat},
+			minlng = #{minlng},
+			quiznum = #{quiznum},
+			start_time = #{start_time},
+			viewitemnum = #{viewitemnum},
+			user_id = #{user_id}
+		where
+			id = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="StudyPhase" keyProperty="id" useGeneratedKeys="true">
+		insert into t_study_phase(
+			id,
+			additemnum,
+			create_time,
+			end_time,
+			maxlat,
+			maxlng,
+			minlat,
+			minlng,
+			quiznum,
+			start_time,
+			viewitemnum,
+			user_id
+		)values(
+			#{id},
+			#{additemnum},
+			#{createTime},
+			#{endTime},
+			#{maxlat},
+			#{maxlng},
+			#{minlat},
+			#{minlng},
+			#{quiznum},
+			#{startTime},
+			#{viewitemnum},
+			#{userId}
+		)
+	</insert>
+</mapper>

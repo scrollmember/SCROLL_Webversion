@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.UsersDao" >
+
+    <sql id="allColumns" >
+            u.id as id,
+            u.pc_email as pcEmail,
+            u.password as password,
+            u.auth as auth,
+            u.enabled as enabled,
+            u.account_not_locked as accountNotLocked,
+            u.activecode as activecode,
+            u.last_login as lastLogin,
+            u.create_time as createTime,
+            u.update_time as updateTime,
+            u.nickname as nickname,
+            u.first_name as firstName,
+            u.last_name as lastName,
+            u.avatar as avatar,
+            u.default_category as defaultCategory,
+            u.receive_weekly_notification as receiveWeeklyNotification,
+            u.user_level as userLevel,
+            u.experience_point as experiencePoint
+    </sql>
+
+    <sql id="whereFragment" >
+
+        <where>
+
+            <if test="user.nickname!=null" >
+                u.nickname = #{user.nickname}
+            </if>
+
+            <if test="user.pcEmail!=null" >
+                and u.pc_email = #{user.pcEmail}
+            </if>
+
+            <if test="user.firstName!=null" >
+                and u.first_name = #{user.firstName}
+            </if>
+
+            <if test="user.lastName!=null" >
+                and u.last_name = #{user.lastName}
+            </if>
+            and u.account_not_locked = true
+            and u.enabled = true
+        </where>
+    </sql>
+
+    <select
+        id="findAllUserCount"
+        resultType="long" >
+		select
+			count(u.id)
+		from
+			t_users u
+		where
+			u.account_not_locked = true
+			and u.enabled = true
+    </select>
+
+    <insert
+        id="insert"
+        parameterType="Users" >
+		insert into t_users(
+		    id,
+		    pc_email,
+		    password,
+		    auth,
+		    enabled,
+		    account_not_locked,
+		    activecode,
+		    last_login,
+		    create_time,
+		    update_time,
+		    nickname,
+		    first_name,
+		    last_name,
+		    avatar,
+		    default_category,
+		    receive_weekly_notification,
+		    user_level,
+		    experience_point
+		) values (
+		    #{id},
+		    #{pcEmail},
+		    #{password},
+		    #{auth},
+		    #{enabled},
+		    #{accountNotLocked},
+		    #{activecode},
+		    #{lastLogin},
+		    #{createTime},
+		    #{updateTime},
+		    #{nickname},
+		    #{firstName},
+		    #{lastName},
+		    #{avatar},
+		    #{defaultCategory},
+		    #{receiveWeeklyNotification},
+		    #{userLevel},
+		    #{experiencePoint}
+		)
+    </insert>
+
+    <update
+        id="update"
+        parameterType="Users" >
+	   update
+	       t_users
+
+        <set>
+
+            <if test="pcEmail!=null" >
+pc_email=#{pcEmail},
+            </if>
+
+            <if test="password!=null" >
+password=#{password},
+            </if>
+
+            <if test="auth!=null" >
+auth=#{auth},
+            </if>
+
+            <if test="enabled!=null" >
+enabled=#{enabled},
+            </if>
+
+            <if test="accountNotLocked!=null" >
+account_not_locked=#{accountNotLocked},
+            </if>
+
+            <if test="activecode!=null" >
+activecode=#{activecode},
+            </if>
+
+            <if test="lastLogin!=null" >
+last_login=#{lastLogin},
+            </if>
+
+            <if test="updateTime!=null" >
+update_time=#{updateTime},
+            </if>
+
+            <if test="nickname!=null" >
+nickname=#{nickname},
+            </if>
+
+            <if test="firstName!=null" >
+first_name=#{firstName}, 
+            </if>
+
+            <if test="lastName!=null" >
+last_name=#{lastName},
+            </if>
+
+            <if test="avatar!=null" >
+avatar=#{avatar},
+            </if>
+
+            <if test="defaultCategory!=null" >
+default_category=#{defaultCategory},
+            </if>
+
+            <if test="receiveWeeklyNotification!=null" >
+receive_weekly_notification=#{receiveWeeklyNotification},
+            </if>
+
+            <if test="userLevel!=null" >
+user_level=#{userLevel},
+            </if>
+
+            <if test="experiencePoint!=null" >
+experience_point=#{experiencePoint},
+            </if>
+        </set>
+       where
+            id=#{id}
+    </update>
+
+    <select
+        id="count"
+        resultType="long" >
+		select
+			count(*)
+		from
+			t_users
+    </select>
+
+    <select
+        id="findById"
+        parameterType="string"
+        resultType="Usertest" >
+	   select
+
+        <include refid="allColumns" />
+       from
+            t_users u
+       where
+       		u.id = #{id}
+    </select>
+
+    <select
+        id="findAllUsers"
+        resultType="Users" >
+	   select
+
+        <include refid="allColumns" />
+       from
+            t_users u
+       where
+            u.account_not_locked = true
+            and u.enabled = true
+       order by u.pc_email
+    </select>
+
+    <select
+        id="findByEmail"
+        resultType="Users" >
+	   select
+
+        <include refid="allColumns" />
+	   from
+	       t_users u
+       where
+           u.pc_email=#{email}
+    </select>
+
+    <select
+        id="findByActiveCode"
+        parameterType="string"
+        resultType="Users" >
+	   select
+
+        <include refid="allColumns" />
+	   from
+	       t_users u
+       where
+           u.activecode=#{activecode}
+    </select>
+
+    <select
+        id="findPage"
+        parameterType="map"
+        resultType="Users" >
+	   select
+
+        <include refid="allColumns" />
+       from
+            t_users u
+
+        <include refid="whereFragment" />
+
+        <if test="pageRequest.sort!=null" >
+           order by 
+
+            <foreach
+                close=""
+                collection="pageRequest.sort"
+                index="index"
+                item="order"
+                open=""
+                separator="," >
+               u.${order.property} ${order.direction}
+            </foreach>
+        </if>
+
+        <if test="pageRequest!=null" >
+
+            <if test="pageRequest.pageSize!=null" >
+                limit #{pageRequest.pageSize}
+            </if>
+
+            <if test="pageRequest.offset!=null" >
+                offset #{pageRequest.offset}
+            </if>
+        </if>
+    </select>
+
+    <select id="countPage" >
+	   select count(*)
+	   from
+	       t_users u
+
+        <include refid="whereFragment" />
+    </select>
+
+    <select
+        id="searchList"
+        parameterType="Users"
+        resultType="Users" >
+	   select
+
+        <include refid="allColumns" />
+	   from
+	       t_users u
+
+        <where>
+
+            <if test="pcEmail!=null" >
+and u.pc_email like #{pcEmail}
+            </if>
+        </where>
+    </select>
+
+    <select
+        id="findUsersHaveItemsFrom"
+        parameterType="date"
+        resultType="Users" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_users u
+				right join t_item i
+					on u.id = i.author_id
+		where
+			i.create_time > #{startDate}
+		group by
+			u.id
+		having
+			count(i.id) > 0
+    </select>
+
+    <select
+        id="findByNickname"
+        resultType="Users" >
+	   select id,nickname from t_users where user_level >=2
+    </select>
+
+    <insert
+        id="set"
+        parameterType="string" >
+	    insert into t_ka(id,authorid,layout,viewdistance,kaquality) values(#{id},#{author},#{layout},#{viewdistance},#{kaquality})
+    </insert>
+
+    <select
+        id="check"
+        parameterType="string"
+        resultType="string" >
+	    select authorid from t_ka where authorid=#{id}
+    </select>
+
+    <update
+        id="kaupdate"
+        parameterType="string" >
+	   update
+	       t_ka
+
+        <set>
+
+            <if test="layout!=null" >
+layout=#{layout},
+            </if>
+
+            <if test="viewdistance!=null" >
+viewdistance=#{viewdistance},
+            </if>
+
+            <if test="kaquality!=null" >
+kaquality=#{kaquality}
+            </if>
+        </set>
+       where
+            authorid=#{author}
+    </update>
+
+    <select
+        id="findka"
+        parameterType="string"
+        resultType="Kasetting" >
+	    select * from t_ka where authorid=#{id}
+    </select>
+
+    <insert
+        id="creategroup"
+        parameterType="string" >
+	    insert into t_usergroup(id,Author,groupname,privacy) values(#{id},#{author},#{groupname},#{privacy})
+    </insert>
+
+    <select
+        id="findgroupmember"
+        resultType="Groupmember" >
+	   select * from t_usergroup
+    </select>
+
+    <insert
+        id="addmember"
+        parameterType="string" >
+	    insert into t_usergroup_other(id,groupname,author,other) values(#{id},#{groupname},#{groupid},#{yourid})
+    </insert>
+
+    <select
+        id="getjoingroup"
+        resultType="Groupmember" >
+	    select * from t_usergroup as t1, t_usergroup_other as t2 where t1.id=t2.author and t2.other=#{id}  group by t1.groupname
+    </select>
+
+    <select
+        id="getallgroup"
+        resultType="Groupmember" >
+	    select distinct other from t_usergroup_other where author in(select t1.id from t_usergroup as t1, t_usergroup_other as t2 where t1.id=t2.author and t2.other=#{id}  group by t1.groupname)
+    </select>
+
+    <delete
+        id="memberdelete"
+        parameterType="string" >
+		delete from t_usergroup_other where author=#{author} and other=#{other}
+    </delete>
+
+    <select
+        id="getauthor"
+        parameterType="string"
+        resultType="Author" >
+	    select * from t_users where id in(select other as id from t_usergroup_other where author=#{author})
+    </select>
+
+    <select
+        id="getallauthor"
+        resultType="Author" >
+	    select * from t_users where experience_point>=10
+    </select>
+
+    <select
+        id="getknowledgeranking"
+        resultType="KnowledgeRanking" >
+	   select a.author_id,a.n,sum(SIGN(b.n-a.n))+1 as ranking
+from
+(select t1.author_id,count(t1.author_id) as n 
+from (select * from t_item where disabled="0" 
+and author_id in(select id from t_users where experience_point>=20) 
+Order by author_id asc) as t1 group by t1.author_id HAVING count(t1.id) 
+order by n DESC) as a,(select t1.author_id,count(t1.author_id) as n 
+from (select * from t_item where disabled="0" 
+and author_id in(select id from t_users where experience_point>=20) 
+Order by author_id asc) as t1 group by t1.author_id HAVING count(t1.id) 
+order by n DESC) as b
+
+<![CDATA[
+where a.n <= b.n
+	]]>
+GROUP BY a.author_id
+ORDER BY ranking ASC 
+    </select>
+
+    <select
+        id="findbymayplace"
+        resultType="PlaceAnalysis" >
+	    select i1.id,i1.create_time,i1.item_lat,i1.item_lng,i1.author_id,p1.place as placeinfo,
+	    p2.attribute from t_item as i1, t_place as p1, t_place_attribute as p2 where i1.author_id=#{author} and disabled="0" and 
+	    p1.itemid=i1.id and p2.placeid=p1.id order by i1.create_time,i1.id,placeinfo asc 
+    </select>
+
+    <select
+        id="checkuser"
+        parameterType="string"
+        resultType="Profile" >
+	    select * from t_user_info where userid=#{check}
+    </select>
+
+    <insert
+        id="insertability"
+        parameterType="Profile" >
+		insert into t_user_info(
+		    id,
+		    age,
+		    gender,
+		    nationality,
+		    stay,
+		    j_level,
+		    userid
+		) values (
+		    #{id},
+		    #{age},
+		    #{gender},
+		    #{nationality},
+		    #{stay},
+		    #{j_level},
+		    #{userid}
+		  
+		)
+    </insert>
+
+    <update
+        id="updateability"
+        parameterType="Profile" >
+	   update
+	       t_user_info
+
+        <set>
+
+            <if test="age!=null" >
+age=#{age},
+            </if>
+
+            <if test="gender!=null" >
+gender=#{gender},
+            </if>
+
+            <if test="nationality!=null" >
+nationality=#{nationality},
+            </if>
+
+            <if test="stay!=null" >
+stay=#{stay},
+            </if>
+
+            <if test="j_level!=null" >
+j_level=#{j_level},
+            </if>
+        </set>
+       where
+            userid=#{userid}
+    </update>
+
+    <select
+        id="findability"
+        parameterType="String"
+        resultType="Profile" >
+	    select * from t_user_info where userid=#{userid}
+    </select>
+
+    <select
+        id="findtdafirstlayer"
+        resultType="TDAfirstlayer" >
+	    select t2.userid as id,t1.nickname,t2.age,t2.gender,t2.nationality,t2.stay,t2.j_level from t_users as t1, t_user_info as t2 where t1.id=t2.userid GROUP BY nickname
+    </select>
+
+</mapper>

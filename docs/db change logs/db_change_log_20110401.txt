@@ -1,0 +1,7 @@
+﻿--@type Database Change Log
+--@author Dameng
+--@Date 2011/4/1
+
+Table: t_item
+delete column enable;    
+new column:disabled smallint default_value:0;

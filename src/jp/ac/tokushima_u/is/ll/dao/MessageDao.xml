@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.MessageDao">
+
+	<select id="countAll" resultType="long">
+		select
+			count(id)
+		from
+			t_message
+	</select>
+	
+	
+	
+	<select id="findListByExample" parameterType="Message" resultType="Message">
+		select
+			id,
+			content,
+			typ
+		from
+			t_message
+		<where>
+			<if test="id!=null">
+				and id = #{id}
+			</if>
+			<if test="content!=null">
+				and content = #{content}
+			</if>
+			<if test="typ!=null">
+				and typ = #{typ}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="Message">
+		insert into t_message(
+			id,
+			content,
+			typ
+		)values(
+			id,
+			content,
+			typ
+		)
+	</insert>
+	
+	<select id="searchmylist" resultType="MymessageList">
+	    select t1.*,t2.nickname from t_user_message as t1, t_users as t2 where send_from=#{id} and t1.send_to=t2.id
+	</select>
+	
+</mapper>

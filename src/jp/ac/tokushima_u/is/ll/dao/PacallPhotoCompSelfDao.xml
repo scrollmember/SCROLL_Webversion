@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.PacallPhotoCompSelfDao">
+	<delete id="deleteAllBySelfId" parameterType="string">
+		delete
+		from
+			pacall_photo_comp_self
+		where
+			self_id = #{id}
+	</delete>
+	
+	<insert id="insert" parameterType="PacallPhotoCompSelf">
+		insert into pacall_photo_comp_self(
+			id,
+			self_id,
+			other_id,
+			score
+		)values(
+			#{id},
+			#{selfId},
+			#{otherId},
+			#{score}
+		)
+	</insert>
+	
+	<select id="findListALLInCollection" parameterType="string" resultType="PacallPhotoCompSelf">
+		select
+			c.id as id,
+			c.self_id as selfId,
+			c.other_id as otherId,
+			c.score as score
+		from pacall_photo p
+			inner join pacall_photo_comp_self c
+				 on p.id = c.self_id
+		where
+			p.collection_id = #{collectionId}
+		order
+			by p.photodate, c.self_id, c.score
+	</select>
+</mapper>

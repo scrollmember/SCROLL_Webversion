@@ -1,0 +1,9 @@
+﻿@type Database Change Log
+@author Dameng
+@Date 2011/4/21
+
+Table: t_sendtime
+add column create_date;    
+update table t_sendtime:
+	update t_sendtime
+		set create_date = '2011-04-21'

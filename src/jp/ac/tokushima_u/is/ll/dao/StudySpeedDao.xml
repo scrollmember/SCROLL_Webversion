@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.StudySpeedDao">
+	<select id="findListByAuthor" parameterType="string" resultType="StudySpeed">
+		select
+			speed.author_id as authorId,
+			speed.create_date as createDate,
+			speed.disabled,
+			speed.id,
+			speed.maxspeed,
+			speed.mixspeed
+		from
+			t_studyspeed speed
+		where
+			speed.author_id = #{authorId}
+	</select>
+	
+	<select id="findListBySpeed" parameterType="map" resultType="StudySpeed">
+	<![CDATA[
+		select
+			speed.author_id as authorId,
+			speed.create_date as createDate,
+			speed.disabled,
+			speed.id,
+			speed.maxspeed,
+			speed.mixspeed
+		from
+			t_studyspeed speed
+		where
+			speed.author_id = #{authorId}
+			and speed.maxspeed > #{speed}
+			and speed.minspeed < #{speed}
+			and speed.disabled = 0
+	]]>
+	</select>
+	
+	<select id="findListByExample" parameterType="StudySpeed">
+		select
+			speed.author_id as authorId,
+			speed.create_date as createDate,
+			speed.disabled,
+			speed.id,
+			speed.maxspeed,
+			speed.mixspeed
+		from
+			t_studyspeed speed
+		<where>
+			<if test="authorId!=null">and speed.author_id = #{authorId}</if>
+			<if test="createDate!=null">and speed.create_date = #{createDate}</if>
+			<if test="disabled!=null">and speed.disabled = #{disabled}</if>
+			<if test="id!=null">and id = #{id}</if>
+			<if test="maxspeed!=null">and id = #{maxspeed}</if>
+			<if test="mixspeed!=null">and id = #{minspeed}</if>
+		</where>
+	</select>
+	
+	<update id="updateSetDisabledByAuthorId" parameterType="StudySpeed">
+		update
+			t_studyspeed
+		set
+			disabled = #{disabled}
+		where
+			author_id = #{authorId}
+	</update>
+	
+	<insert id="insert" parameterType="StudySpeed">
+		insert into t_studyspeed(
+			author_id,
+			create_date,
+			disabled,
+			id,
+			maxspeed,
+			mixspeed
+		)values(
+			#{authorId},
+			#{createDate},
+			#{disabled},
+			#{id},
+			#{maxspeed},
+			#{mixspeed}
+		)
+	</insert>
+</mapper>

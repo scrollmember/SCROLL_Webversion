@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.UsersStudyLangsDao">
+
+    <insert id="insert" parameterType="UsersStudyLangs">
+    	insert into t_users_study_langs(
+    		t_users,
+    		study_langs, 
+    		lang_order
+    	) values (
+    		#{userId},
+    		#{languageId},
+    		#{order}
+    	)
+    </insert>
+    
+    <delete id="deleteAllByUserId" parameterType="string">
+    	delete from
+    		t_users_study_langs
+   		where
+   			t_users = #{userId}
+    </delete>
+    
+    <select id="findListByUserId" parameterType="string" resultType="UsersStudyLangs">
+    	select
+    		t_users as tUsers,
+    		studyLangs as studyLangs, 
+    		lang_order as langOrder
+    	from
+    		t_users_study_langs
+    	where
+    		t_users = #{userId}
+    </select>
+</mapper>

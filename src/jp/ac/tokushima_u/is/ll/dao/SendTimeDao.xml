@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.SendTimeDao">
+	<select id="findListBetweenTime" parameterType="map" resultType="SendTime" >
+	<![CDATA[
+		select
+			st.author_id as authorId,
+			st.create_date as createDate,
+			st.sendtime as sendtime,
+			st.typ as typ
+		from
+			t_sendtime st
+		where
+			st.typ = #{typ}
+			and st.author_id = #{authorId}
+			and st.sendtime >= #{from}
+			and st.sendtime < #{now}
+	]]>
+	</select>
+	
+	<select id="findOneByAuthorAndTyp" parameterType="map" resultType="SendTime">
+		select
+			st.author_id as authorId,
+			st.create_date as createDate,
+			st.sendtime as sendtime,
+			st.typ as typ
+		from
+			t_sendtime st
+		where
+			st.typ = #{typ}
+			and st.author_id = #{authorId}
+		limit 1
+	</select>
+	
+	<insert id="insert" parameterType="SendTime" useGeneratedKeys="true" keyProperty="id">
+		insert into t_sendtime(
+			sendtime,
+			typ,
+			author_id,
+			create_date
+		)values(
+			#{sendtime},
+			#{typ},
+			#{authorId},
+			#{createDate}
+		)
+	</insert>
+	
+	<delete id="deleteAllByAuthorId" parameterType="string">
+		delete
+		from
+			t_sendtime
+		where
+			author_id = #{authorId}
+	</delete>
+	
+	<select id="findListByAuthorAndCreatedAfter" parameterType="map" resultType="SendTime">
+		select
+			st.author_id as authorId,
+			st.create_date as createDate,
+			st.sendtime as sendtime,
+			st.typ as typ
+		from
+			t_sendtime st
+		where
+			st.author_id = #{authorId}
+			<if test="from!=null"><![CDATA[ and st.create_date > #{from}]]></if>  
+		limit 1
+	</select>
+</mapper>

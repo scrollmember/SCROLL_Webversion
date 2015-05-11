@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemStateDao">
+
+	<select id="findListByUserId" parameterType="string" resultType="ItemState">
+		select 
+			id,
+			create_date as createDate,
+			exper_state as experState,
+			quiz_state as quizState,
+			remember_state as rememberState,
+			update_date as updateDate,
+			item_id as itemId,
+			author_id as authorId
+		from
+			t_itemstate
+		where
+			author_id = #{userId}
+	</select>
+	
+	<select id="findListByUserIdAndItemId" parameterType="map" resultType="ItemState">
+		select 
+			id,
+			create_date as createDate,
+			exper_state as experState,
+			quiz_state as quizState,
+			remember_state as rememberState,
+			update_date as updateDate,
+			item_id as itemId,
+			author_id as authorId
+		from
+			t_itemstate
+		where
+			author_id = #{userId}
+			and item_id = #{itemId}
+	</select>
+	
+	<insert id="insert" parameterType="ItemState">
+		insert into t_itemstate(
+			id,
+			create_date,
+			exper_state,
+			quiz_state,
+			remember_state,
+			update_date,
+			item_id,
+			author_id
+		)values(
+			#{id},
+			#{createDate},
+			#{experState},
+			#{quizState},
+			#{rememberState},
+			#{updateDate},
+			#{itemId},
+			#{authorId}
+		)
+	</insert>
+	
+	<update id="update" parameterType="ItemState">
+		update t_itemstate
+		set
+			exper_state = #{experState},
+			quiz_state = #{quizState},
+			remember_state = #{rememberState},
+			update_date = #{updateDate},
+			item_id = #{itemId},
+			author_id = #{authorId}
+		where
+			id = #{id}
+	</update>
+	
+	<select id="findListByExample" parameterType="ItemState" resultType="ItemState">
+		select 
+			id,
+			create_date as createDate,
+			exper_state as experState,
+			quiz_state as quizState,
+			remember_state as rememberState,
+			update_date as updateDate,
+			item_id as itemId,
+			author_id as authorId
+		from
+			t_itemstate
+		<where>
+			<if test="id!=null"> and id = #{id}</if>
+			<if test="createDate!=null"> and create_date = #{createDate}</if>
+			<if test="experState!=null"> and exper_state = #{experState}</if>
+			<if test="quizState!=null"> and quiz_state = #{quizState}</if>
+			<if test="rememberState!=null"> and remember_state = #{rememberState}</if>
+			<if test="updateDate!=null"> and update_date = #{updateDate}</if>
+			<if test="itemId!=null"> and item_id = #{itemId}</if>
+			<if test="authorId!=null"> and author_id = #{authorId}</if>
+		</where>
+		
+	</select>
+	
+	<select id="findListUserItemHistory" parameterType="string" resultType="ItemState">
+		select 
+			item_id as itemId, 
+			q.author_id as authorId, 
+			case when q.author_id=i.author_id then 1 else 0 end as experState,
+			i.author_id as itemauthor, 
+			group_concat(
+				conv(oct(answerstate),8,10)
+				order by update_date desc
+			) as state, 
+			max(q.update_date) as update_date
+	    from t_myquiz q,t_item i
+	    where
+	    	q.answerstate != -1 
+	    	and q.answerstate != -1 
+	    	and q.item_id = i.id  
+	    	and q.item_id is not null 
+	    group by q.item_id order by q.item_id
+	    <if test="authorId!=null and authorId!=''">
+	    	and q.author_id = #{authorId}
+	    </if>
+	    
+	</select>
+</mapper>

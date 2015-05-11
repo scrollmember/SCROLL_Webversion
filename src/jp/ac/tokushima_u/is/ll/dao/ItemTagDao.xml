@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemTagDao">
+	<select id="findByTag" parameterType="string" resultType="ItemTag">
+		select
+			id,
+			tag,
+			create_time as createTime,
+			update_time as updateTime
+		from
+			t_item_tag
+		where
+			tag = #{tag}
+	</select>
+	
+	<select id="searchByTag" parameterType="string" resultType="ItemTag">
+		select
+			id,
+			tag,
+			create_time as createTime,
+			update_time as updateTime
+		from
+			t_item_tag
+		where
+			tag like #{tag}
+	</select>
+	
+
+	<insert id="insert" parameterType="ItemTag">
+		insert into t_item_tag(
+			id,
+			tag,
+			create_time,
+			update_time
+		) values (
+			#{id},
+			#{tag},
+			#{createTime},
+			#{updateTime}
+		)
+	</insert>
+	
+	<insert id="insertRelationWithItem" parameterType="map">
+		insert into t_item_item_tags(
+			items,
+			item_tags
+		) values (
+			#{item.id},
+			#{tag.id}
+		)
+	</insert>
+	
+	<select id="findByItemId" parameterType="string" resultType="ItemTag">
+		select
+			distinct tag.id,
+			tag.tag,
+			tag.create_time as createTime,
+			tag.update_time as updateTime
+		from
+			t_item_item_tags it
+				left join t_item_tag tag
+					on it.item_tags = tag.id
+		where
+			it.items = #{itemId}
+		order by tag.tag
+	</select>
+	
+	<select id="findMapForTagAndContainsNumber" resultType="map">
+		select 
+			tag.tag as tag,
+			count(tag.tag) as number
+		from t_item_item_tags it
+			inner join t_item i
+				on it.items = i.id
+			inner join t_item_tag tag
+				on it.item_tags = tag.id
+		group by tag.tag
+	</select>
+	
+	<select id="findnetworktag" parameterType="String" resultType="ItemTags">
+	    
+	    select * from t_item_tag as A,(select item_tags as tag from t_item_item_tags where items=#{itemid}) as B where A.id=B.tag
+	    
+	</select>
+	
+	<select id="countAll" resultType="long">
+		select 
+			count(distinct tag.tag) 
+		from 
+			t_item_item_tags it
+				inner join t_item as item
+					on item.id = it.items
+				inner join t_item_tag tag
+					on tag.id = it.item_tags
+	</select>
+</mapper>

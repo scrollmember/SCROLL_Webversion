@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.TaskcollaborativeDao" >
+
+    <sql id="allColumns" >
+    t.id,
+    t.create_time,
+    t.lat,
+    t.lng,
+    t.place,
+    t.title,
+    t.update_time,
+    t.zoom,
+    t.author_id as authorId,
+    t.language_id as languageId,
+    t.is_published as isPublished,
+    t.level,
+    t.location_based as locationBased,
+    t.number as number,
+    t.time_limit as timelimit
+    </sql>
+
+     <delete
+        id="delete"
+        parameterType="string"
+        >
+        delete from t_taskcollaborative where id=#{taskid}
+    </delete>
+    
+      
+    <delete 
+        id="detelescript"
+        parameterType="string"
+        >
+        delete from t_task_collaborativescript where task_id=#{taskid}
+    </delete>
+    
+    <delete id="deleteitem"
+        parameterType="string"
+        >
+        delete from t_task_item where task_id=#{taskid} 
+    </delete>
+     <select
+        id="findTaskcollaborativeById"
+        parameterType="string"
+        resultType="Taskcollaborative" >
+       	select
+       	
+        <include refid="allColumns" />
+		from
+			t_taskcollaborative t
+		where
+			t.id = #{id}
+
+
+    </select>
+    
+      <select
+        id="getalltask"
+        resultType="Taskcollaborative" >
+       select * from t_taskcollaborative order by update_time DESC
+
+    </select>
+    
+    <insert
+        id="insert"
+        parameterType="Taskcollaborative" >
+        INSERT INTO t_taskcollaborative
+		(id ,
+		 create_time ,
+		 lat ,
+		 lng ,
+		 place ,
+		 title ,
+		 update_time ,
+		 zoom ,
+		 author_id ,
+		 language_id ,
+		 is_published ,
+		 level ,
+		 location_based,
+		 number,
+		 time_limit
+		  )
+		VALUES
+		(
+		#{id},
+		#{create_time},
+		#{lat},
+		#{lng},
+		#{place},
+		#{title},
+		#{update_time},
+		#{zoom},
+		#{author_id},
+		#{language_id},
+		#{is_Published},
+		#{level},
+		#{locationBased},
+		#{number},
+		#{time_limit}
+		)
+
+
+    </insert>
+
+    
+        <select
+        id="getsearchtask"
+        parameterType="string"
+        resultType="Taskcollaborative"
+        >
+         	select
+        <include refid="allColumns" />
+		from t_taskcollaborative t
+		<where>
+	<choose>
+	    <when test="title !='' and place !='' and level !=''">
+	        t.title like '%${title}%' and t.place like '%${place}%' and  t.level like '%${level}%'
+	    </when>
+	    <when test="title !='' and place !='' and level ==''">
+	        t.title like '%${title}%' and t.place like '%${place}%'
+	    </when>
+	    
+	     <when test="title !='' and place =='' and level !=''">
+	        t.title like '%${title}%' and t.level like '%${level}%'
+	    </when>
+	     <when test="title !='' and place =='' and level ==''">
+	        t.title like '%${title}%' 
+	    </when>
+	    
+	     
+	      <when test="title =='' and place !='' and level !=''">
+	        t.place like '%${place}%' and  t.level like '%${level}%'
+	    </when>
+	    <when test="title =='' and place !='' and level ==''">
+	        t.place like '%${place}%'
+	    </when>
+	    
+	     <when test="title =='' and place =='' and level !=''">
+	        t.level like '%${level}%'
+	    </when>
+	    
+	     
+	    
+	</choose>
+		    
+       </where>
+        
+        
+    </select>
+    
+           <select
+        id="findTaskById"
+        parameterType="string"
+        resultType="Taskcollaborative" >
+       	select
+
+
+
+        <include refid="allColumns" />
+		from
+			t_taskcollaborative t
+		where
+			t.id = #{id}
+
+
+    </select>
+    
+          
+    
+</mapper>

@@ -1,0 +1,39 @@
+.confirmOverlay{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background: rgba ( 33, 33, 33, 0.6 );
+    background: url('../images/ie.png');
+    z-index: 100000;
+}
+
+#confirmBox{
+    width:  520px;
+    margin: -90px 0 0 -260px;
+    border: 180px;
+    padding: 3px;
+    position:fixed;
+    left:50%;
+    top:50%;
+}
+
+#confirmButtons a {
+    margin: 3px;
+    width: 21%;
+    padding: 2px 5px;
+}
+
+#confirmBox p{
+    margin: 10px;
+}
+
+#confirmBox h6 {
+    background-color: cornflowerblue;
+    margin: 3px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding-left:   5px;
+    color:  white;
+}

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.mapper.pacall.SensepicMapper">
+	<select id="selectCountByFolder" parameterType="string" resultType="long">
+		select
+			count(*)
+		from 
+			pacall_sensepic p
+				inner join pacall_folder f
+				on f.id = #{folderId} and f.id = p.folder_id 
+		where
+		    p.file_id is not null
+	</select>
+	
+	<insert id="insert" parameterType="jp.ac.tokushima_u.is.ll.entity.pacall.SensePic">
+		insert into pacall_sensepic(
+			`id`,
+			`folder_id`,
+			`cam`,
+			`index`,
+			`reason`,
+			`date`,
+			`clr`,
+			`tmp`,
+			`accx`,
+			`accy`,
+			`accz`,
+			`magx`,
+			`magy`,
+			`magz`,
+			`samepicid`
+		)values(
+			#{id},
+			#{folderId},
+			#{cam},
+			#{index},
+			#{reason},
+			#{date},
+			#{clr},
+			#{tmp},
+			#{accX},
+			#{accY},
+			#{accZ},
+			#{magX},
+			#{magY},
+			#{magZ},
+			#{samePicId}
+		);
+	</insert>
+	<select id="selectByRequest" parameterType="jp.ac.tokushima_u.is.ll.common.page.PageRequest" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.SensePic">
+		select
+			p.`id` as id,
+			p.`folder_id` as folderId,
+			p.`cam` as cam,
+			p.`index` as `index`,
+			p.`reason` as reason,
+			p.`date` as date,
+			p.`clr` as clr,
+			p.`tmp` as tmp,
+			p.`accx` as accX,
+			p.`accy` as accY,
+			p.`accz` as accZ,
+			p.`magx` as magX,
+			p.`magy` as magY,
+			p.`magz` as magZ,
+			p.`samepicid` as samePicId,
+			p.`file_id` as fileId
+		from
+			pacall_pic_ptype ppt 
+			inner join pacall_ptype t 
+				on <if test="attribute.ptype!=null">t.name=#{attribute.ptype} and</if> ppt.ptype_id = t.id
+			inner join pacall_sensepic p
+				on p.id=ppt.sensepic_id
+		where
+			p.folder_id=#{attribute.folderId}
+			and p.file_id is not null
+		order by p.date
+		limit #{pageSize} offset #{firstResult}
+	</select>
+	
+	<select id="countTotalByRequest" parameterType="jp.ac.tokushima_u.is.ll.common.page.PageRequest" resultType="Long">
+		select
+			count(*)
+		from
+			pacall_pic_ptype ppt
+			inner join pacall_ptype t 
+				on <if test="attribute.ptype!=null">t.name=#{attribute.ptype} and</if> ppt.ptype_id = t.id
+			inner join pacall_sensepic p
+				on p.id=ppt.sensepic_id
+		where
+			p.folder_id=#{attribute.folderId}
+            and p.file_id is not null
+	</select>
+
+	<select id="countGroupByType" parameterType="string" resultType="hashmap">
+		select 
+			t.name as name, 
+			count(*) as number
+		from pacall_pic_ptype st 
+			inner join pacall_sensepic p 
+				on st.sensepic_id=p.id 
+			inner join pacall_ptype t 
+				on t.id=st.ptype_id 
+		where 
+			p.folder_id = #{folderId}
+			and p.file_id is not null
+		group by t.id
+	</select>
+	
+	<select id="selectById" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.SensePic">
+		select
+			p.`id` as id,
+			p.`folder_id` as folderId,
+			p.`cam` as cam,
+			p.`index` as `index`,
+			p.`reason` as reason,
+			p.`date` as date,
+			p.`clr` as clr,
+			p.`tmp` as tmp,
+			p.`accx` as accX,
+			p.`accy` as accY,
+			p.`accz` as accZ,
+			p.`magx` as magX,
+			p.`magy` as magY,
+			p.`magz` as magZ,
+			p.`samepicid` as samePicId,
+			p.`file_id` as fileId
+		from
+			pacall_sensepic p
+		where
+			p.`id` = #{id}
+	</select>
+
+    <select id="selectByName" parameterType="map" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.SensePic">
+        select
+            p.`id` as id,
+            p.`folder_id` as folderId,
+            p.`cam` as cam,
+            p.`index` as `index`,
+            p.`reason` as reason,
+            p.`date` as date,
+            p.`clr` as clr,
+            p.`tmp` as tmp,
+            p.`accx` as accX,
+            p.`accy` as accY,
+            p.`accz` as accZ,
+            p.`magx` as magX,
+            p.`magy` as magY,
+            p.`magz` as magZ,
+            p.`samepicid` as samePicId,
+            p.`file_id` as fileId
+        from
+            pacall_sensepic p
+        where
+            p.`cam` = #{filename}
+            and p.`folder_id` = #{folderId}
+    </select>
+    
+    <update id="updateFileId" parameterType="map">
+        update
+            pacall_sensepic p
+        set
+            p.file_id = #{fileId}
+        where
+            p.id = #{sensePicId}
+    </update>
+</mapper>

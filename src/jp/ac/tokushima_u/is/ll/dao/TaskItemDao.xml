@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.TaskItemDao" >
+
+    <insert
+        id="insert"
+        parameterType="TaskItem" >
+        INSERT INTO t_task_item
+		(id ,
+		item_id,
+		task_id )
+		VALUES
+		(
+		#{id},
+		#{item_id},
+		#{task_id})
+    </insert>
+
+    
+    <insert
+        id="collaborativeinsert"
+        parameterType="TaskItem"
+        >
+         INSERT INTO t_task_collaborativeitem
+		(id ,
+		item_id,
+		task_id )
+		VALUES
+		(
+		#{id},
+		#{item_id},
+		#{task_id})
+        
+    </insert>
+    
+    <select
+        id="findItemid"
+        parameterType="string"
+        resultType="TaskItem" >
+       	select
+        *
+		from
+			t_task_item t
+		where
+			t.task_id = #{taskId} 
+    </select>
+
+    <delete id="delete" parameterType="string">
+		delete from t_task_item 
+		where
+			item_id = #{itemIds}
+	</delete>
+	
+    <delete
+        id="deletecollaborative"
+        parameterType="string">
+        delete from t_task_collaborativeitem 
+		where
+			item_id = #{itemIds}
+        
+    </delete>
+</mapper>

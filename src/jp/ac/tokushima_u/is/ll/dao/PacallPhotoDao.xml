@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.PacallPhotoDao">
+	<sql id="allColumns">
+		p.id,
+		p.user_id as userId,
+		p.collection_id as collectionId,
+		p.filename as filename,
+		p.ext as ext,
+		p.create_time as createTime,
+		p.hash,
+		p.phototype,
+		p.reason,
+		p.photodate,
+		p.clr,
+		p.tmp,
+		p.acc_x as accX,
+		p.acc_y as accY,
+		p.acc_z as accZ,
+		p.mag_x as magX,
+		p.mag_y as magY,
+		p.mag_z as magZ,
+		p.lat,
+		p.lng,
+		p.brightness,
+		p.blurriness,
+		p.parent_id,
+		p.facenum,
+		p.facepos,
+		p.textcontent,
+		p.textpos,
+		p.featurenum,
+		p.featurepos
+	</sql>
+	
+	<select id="findById" parameterType="string" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.id = #{id}
+	</select>
+	
+	<select id="findListByUserIdAndHash" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.user_id = #{userId}
+			and p.hash = #{hash}
+		order
+			by p.photodate asc
+	</select>
+	
+	<select id="findListByCollectionIdAndHash" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.hash = #{hash}
+		order
+			by p.photodate asc
+	</select>
+	
+	<select id="findListByCollectionIdAndFilename" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.filename = #{filename}
+		limit 1
+	</select>
+	
+	<insert id="insert" parameterType="PacallPhoto">
+		insert into pacall_photo(
+			id,
+			user_id,
+			collection_id,
+			filename,
+			ext,
+			create_time,
+			hash,
+			phototype,
+			reason,
+			photodate,
+			clr,
+			tmp,
+			acc_x,
+			acc_y,
+			acc_z,
+			mag_x,
+			mag_y,
+			mag_z,
+			lat,
+			lng
+		) values (
+			#{id},
+			#{userId},
+			#{collectionId},
+			#{filename},
+			#{ext},
+			#{createTime},
+			#{hash},
+			#{phototype},
+			#{reason},
+			#{photodate},
+			#{clr},
+			#{tmp},
+			#{accX},
+			#{accY},
+			#{accZ},
+			#{magX},
+			#{magY},
+			#{magZ},
+			#{lat},
+			#{lng}
+		)
+	</insert>
+	
+	<select id="findMapListForCountPerDay" parameterType="string" resultType="map">
+		select
+			date(p.photodate) as pdate,
+			count(p.id) as total
+		from
+			pacall_photo p
+		where
+			p.user_id = #{userId}
+		group by 
+			pdate
+		order by
+			pdate desc
+	</select>
+	
+	<select id="findList" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.user_id = #{userId}
+			and date(p.photodate) = date(#{day})
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="countList" parameterType="map" resultType="long">
+		select
+			count(p.id)
+		from
+			pacall_photo p
+		where
+			p.user_id = #{userId}
+			and date(p.photodate) = date(#{day})
+	</select>
+	
+	<update id="updatePhotoBasicInfo" parameterType="map">
+		update pacall_photo
+		set
+			photodate = #{photoDate},
+			reason = #{reason}
+		where
+			collection_id = #{collectionId}
+			and filename = #{filename}
+	</update>
+	
+	<select id="findListSensorPhotoByUserId" parameterType="string" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.user_id = #{userId}
+			and p.phototype = 1
+			and p.reason is null
+		order by
+			p.photodate asc
+	</select>
+	
+	<update id="update" parameterType="PacallPhoto">
+		update pacall_photo
+		<set>
+			<if test="reason!=null">reason=#{reason},</if>
+			<if test="photodate!=null">photodate=#{photodate},</if>
+			<if test="clr!=null">clr=#{clr},</if>
+			<if test="tmp!=null">tmp=#{tmp},</if>
+			<if test="accX!=null">acc_x=#{accX},</if>
+			<if test="accY!=null">acc_y=#{accY},</if>
+			<if test="accZ!=null">acc_z=#{accZ},</if>
+			<if test="magX!=null">mag_x=#{magX},</if>
+			<if test="magY!=null">mag_y=#{magY},</if>
+			<if test="magZ!=null">mag_z=#{magZ},</if>
+			<if test="lat!=null">lat=#{lat},</if>
+			<if test="lng!=null">lng=#{lng},</if>
+		</set>
+		where
+			id = #{id}
+	</update>
+	
+	<select id="findAllByUserId" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.user_id = #{userId}
+			<if test="date!=null">
+				and date(p.photodate)=date(#{date})
+			</if>
+		order by
+			p.photodate asc
+	</select>
+	
+	<select id="findListByTag" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo_tag pt
+				left join pacall_tag t
+					on pt.tag_id = t.id
+				left join pacall_photo p
+					on pt.photo_id = p.id
+		where
+			p.user_id = #{userId}
+			and date(p.photodate)=date(#{date})
+			and t.tag = #{tag}
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="countListByTag" parameterType="map" resultType="long">
+		select
+			count(pt.photo_id)
+		from
+			pacall_photo_tag pt
+				left join pacall_tag t
+					on pt.tag_id = t.id
+				left join pacall_photo p
+					on pt.photo_id = p.id
+		where
+			p.user_id = #{userId}
+			and date(p.photodate)=date(#{date})
+			and t.tag = #{tag}
+	</select>
+	
+	<select id="findListForRecommended" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p, pacall_photo_tag pt, pacall_tag t
+		where
+			(
+				p.phototype = 0
+				or(
+					pt.photo_id = p.id
+					and pt.tag_id = t.id
+					and t.tag in('feature', 'manual', 'text', 'face')
+				)
+			)
+			and p.user_id = #{userId}
+			and date(p.photodate)=date(#{date})
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="countListForRecommended" parameterType="map" resultType="long">
+		select
+			count(*)
+		from
+			pacall_photo p, pacall_photo_tag pt, pacall_tag t
+		where
+			(
+				p.phototype = 0
+				or(
+					pt.photo_id = p.id
+					and pt.tag_id = t.id
+					and t.tag in('feature', 'manual', 'text', 'face')
+				)
+			)
+			and p.user_id = #{userId}
+			and date(p.photodate)=date(#{date})
+	</select>
+	
+	<select id="findListForNormal" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+				left join pacall_photo_tag pt
+					left join pacall_tag t
+						on pt.tag_id = t.id
+					on p.id = pt.photo_id
+		where
+			(t.tag is null or
+			t.tag not in('dark', 'defocused', 'duplicated'))
+			and p.user_id = #{userId}
+			and date(p.photodate)=date(#{date})
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="countListForNormal" parameterType="map" resultType="long">
+		select
+			count(*)
+		from
+			pacall_photo p
+				left join pacall_photo_tag pt
+					left join pacall_tag t
+						on pt.tag_id = t.id
+					on p.id = pt.photo_id
+		where
+			(t.tag is null or
+			t.tag not in('dark', 'defocused', 'duplicated'))
+			and p.user_id = #{userId}
+			and date(p.photodate)=date(#{date})
+	</select>
+	
+	<select id="findListAllPhotosInDay" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.user_id = #{userId}
+			and date(p.photodate)=date(#{date})
+		order by
+			p.photodate asc
+	</select>
+	
+	<select id="findAllByUserIdAndNoGps" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.user_id = #{userId}
+			and p.lat is null
+			and p.lng is null 
+			<if test="date!=null">
+			and date(p.photodate)=date(#{date})
+			</if>
+		order by
+			p.photodate asc
+	</select>
+	
+	<select id="findAllByCollectionIdNoGps" parameterType="string" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.lat is null
+			and p.lng is null
+		order by
+			p.photodate asc
+	</select>
+	
+	<select id="findDuplicatedListByPhotoId" parameterType="string" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.parent_id = #{photoId}
+	</select>
+	
+	<select id="findListForRecommendedInCollection" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+				left join (
+					select
+						count(s.id) as s_count,
+						s.photo_id
+					from
+						pacall_similar s
+					group by s.photo_id
+				) as ps
+					on ps.photo_id = p.id
+		where
+			p.collection_id = #{collectionId}
+			and p.parent_id is null
+			and (
+				p.reason in ('M', 'MAN')
+				or ps.s_count>0
+				or (p.textcontent is not null and p.textcontent!='')
+				or 
+					(
+					p.parent_id is null
+					and p.brightness > 30
+					and (p.featurenum > 0 or p.facenum >0)
+					)
+				)
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="countListForRecommendedInCollection" parameterType="string" resultType="long">
+		select
+			count(*)
+		from
+			pacall_photo p
+				left join (
+					select
+						count(s.id) as s_count,
+						s.photo_id
+					from
+						pacall_similar s
+					group by s.photo_id
+				) as ps
+					on ps.photo_id = p.id
+		where
+			p.collection_id = #{collectionId}
+			and p.parent_id is null
+			and (
+				p.reason in ('M', 'MAN')
+				or ps.s_count>0
+				or (p.textcontent is not null and p.textcontent!='')
+				or 
+					(
+					p.parent_id is null
+					and p.brightness > 30
+					and (p.featurenum > 0 or p.facenum >0)
+					)
+				)
+	</select>
+	
+	<select id="findListForNormalInCollection" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.parent_id is null
+			and p.brightness > 30
+			and p.reason not in ('M', 'MAN')
+			and (p.featurenum is null or p.featurenum = 0)
+			and (p.facenum is null or p.facenum = 0)
+			and (p.textcontent is null or p.textcontent = '')
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+		
+	<select id="countListForNormalInCollection" parameterType="string" resultType="long">
+		select
+			count(*)
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.parent_id is null
+			and p.brightness > 30
+			and p.reason not in ('M', 'MAN')
+			and (p.featurenum is null or p.featurenum = 0)
+			and (p.facenum is null or p.facenum = 0)
+			and (p.textcontent is null or p.textcontent = '')
+	</select>
+	
+	<select id="findListForManualInCollection" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.reason in ('M', 'MAN')
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+		
+	<select id="countListForManualInCollection" parameterType="string" resultType="long">
+		select
+			count(*)
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.reason in ('M', 'MAN')
+	</select>
+	
+	<select id="findListForFaceInCollection" parameterType="map" resultType="PacallPhoto">
+	
+		select
+			<include refid="allColumns"/>
+	<![CDATA[
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.brightness > 30
+			and p.parent_id is null
+			and p.facenum > 0
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	]]>
+	</select>
+	
+	<select id="countListForFaceInCollection" parameterType="string" resultType="long">
+	<![CDATA[
+		select
+			count(*)
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.brightness > 30
+			and p.parent_id is null
+			and p.facenum > 0
+	]]>
+	</select>
+	
+	<select id="findListForTextInCollection" parameterType="map" resultType="PacallPhoto">
+	
+		select
+			<include refid="allColumns"/>
+	<![CDATA[
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.brightness > 30
+			and p.parent_id is null
+			and p.textcontent is not null and p.textcontent!=''
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	]]>
+	</select>
+	
+	<select id="countListForTextInCollection" parameterType="string" resultType="long">
+	<![CDATA[
+		select
+			count(*)
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.brightness > 30
+			and p.parent_id is null
+			and p.textcontent is not null and p.textcontent!=''
+	]]>
+	</select>
+	
+	<select id="findListForFeatureInCollection" parameterType="map" resultType="PacallPhoto">
+	
+		select
+			<include refid="allColumns"/>
+	<![CDATA[
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.brightness > 30
+			and p.parent_id is null
+			and p.featurenum is not null and p.featurenum>0
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	]]>
+	</select>
+	
+	<select id="countListForFeatureInCollection" parameterType="string" resultType="long">
+	<![CDATA[
+		select
+			count(*)
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.brightness > 30
+			and p.parent_id is null
+			and p.featurenum is not null and p.featurenum>0
+	]]>
+	</select>
+	
+	<select id="findListForDuplicatedInCollection" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.parent_id is not null
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="countListForDuplicatedInCollection" parameterType="string" resultType="long">
+		select
+			count(*)
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.parent_id is not null
+	</select>
+	
+	<select id="findListForDarkInCollection" parameterType="map" resultType="PacallPhoto">
+	
+		select
+			<include refid="allColumns"/>
+	<![CDATA[
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.brightness < 30
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	]]>
+	</select>
+	
+	<select id="countListForDarkInCollection" parameterType="string" resultType="long">
+	<![CDATA[
+		select
+			count(*)
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+			and p.brightness < 30
+	]]>
+	</select>
+	
+	<select id="findListForUllolikeInCollection" parameterType="map" resultType="PacallPhoto">
+	
+		select
+			<include refid="allColumns"/>
+	<![CDATA[
+		from
+			pacall_photo p
+				left join (
+					select
+						count(s.id) as s_count,
+						s.photo_id
+					from
+						pacall_similar s
+					group by s.photo_id
+				) as ps
+					on ps.photo_id = p.id
+		where
+			p.collection_id = #{collectionId}
+			and p.parent_id is null
+			and ps.s_count>0
+		order by
+			p.photodate asc
+			
+		limit #{page.pageSize} offset #{page.offset}
+	]]>
+	</select>
+	
+	<select id="countListForUllolikeInCollection" parameterType="string" resultType="long">
+	<![CDATA[
+		select
+			count(*)
+		from
+			pacall_photo p
+				left join (
+					select
+						count(s.id) as s_count,
+						s.photo_id
+					from
+						pacall_similar s
+					group by s.photo_id
+				) as ps
+					on ps.photo_id = p.id
+		where
+			p.collection_id = #{collectionId}
+			and p.parent_id is null
+			and ps.s_count>0
+	]]>
+	</select>
+	
+	<select id="findListInCollection" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+		order by
+			p.photodate asc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="countListInCollection" parameterType="string" resultType="long">
+		select
+			count(p.id)
+		from
+			pacall_photo p
+		where
+			p.collection_id = #{collectionId}
+	</select>
+	
+	<update id="updateExtraInfo" parameterType="PacallPhoto">
+		update pacall_photo
+		<set>
+			brightness=#{brightness},
+			blurriness=#{blurriness},
+			parent_id=#{parentId},
+			facenum=#{facenum},
+			facepos=#{facepos},
+			textcontent=#{textcontent},
+			textpos=#{textpos},
+			featurenum=#{featurenum},
+			featurepos=#{featurepos},
+		</set>
+		where
+			id = #{id}
+	</update>
+	
+	<select id="findListByParentId" parameterType="map" resultType="PacallPhoto">
+		select
+			<include refid="allColumns"/>
+		from
+			pacall_photo p
+		where
+			p.parent_id = #{id} 
+		order by
+			p.photodate asc
+	</select>
+</mapper>

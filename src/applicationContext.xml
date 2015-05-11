@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+       http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.5.0.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
+
+    <description>Spring general configuration</description>
+    <context:property-placeholder location="classpath:env/application.learninglog.properties"/>
+
+    <!-- annotation auto scan -->
+    <context:component-scan base-package="jp.ac.tokushima_u.is.ll">
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <import resource="applicationContext-shiro.xml" />
+    <import resource="applicationContext-data.xml" />
+
+    <!-- Mail Sender -->
+    <bean name="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}" />
+        <property name="port" value="${mail.port}" />
+        <property name="username" value="${mail.username}" />
+        <property name="password" value="${mail.password}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+                <prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+                <prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
+                <prop key="mail.smtp.socketFactory.class">${mail.smtp.socketFactory.class}</prop>
+                <prop key="mail.smtp.socketFactory.fallback">${mail.smtp.socketFactory.fallback}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Notification Sender -->
+    <bean name="notificationSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}" />
+        <property name="port" value="${mail.port}" />
+        <property name="username" value="${mail.notification_username}" />
+        <property name="password" value="${mail.notification_password}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+                <prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+                <prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
+                <prop key="mail.smtp.socketFactory.class">${mail.smtp.socketFactory.class}</prop>
+                <prop key="mail.smtp.socketFactory.fallback">${mail.smtp.socketFactory.fallback}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/mailtemplate" />
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">1800</prop>
+                <prop key="default_encoding">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+	
+    <!--
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="10" />
+        <property name="maxPoolSize" value="30" />
+    </bean>
+
+	<task:scheduler id="llScheduler" pool-size="5"/>
+	<task:scheduled-tasks scheduler="llScheduler">
+		<task:scheduled ref="weeklyNotificationService" method="sendNotification" cron="0 0 18 * * WED"/>
+	</task:scheduled-tasks>
+	
+	<task:scheduled-tasks scheduler="PersonalizeScheduler">
+	<task:scheduled ref="personalizeService" method="personlize" cron="0 0 4 * * SUN"/>
+	</task:scheduled-tasks>
+	<task:scheduled-tasks scheduler="C2DMessageScheduler">
+		<task:scheduled ref="c2dmessageService" method="doSend" cron="0 0/1 * * * ?"/>
+	</task:scheduled-tasks>
+	<task:scheduled-tasks scheduler="QuizRecommendScheduler">
+		<task:scheduled ref="itemqueueService" method="searchRecommendItems" cron="0 0 2 * * ?"/>
+	</task:scheduled-tasks>
+	<task:scheduler id="PersonalizeScheduler" pool-size="10"/>
+	<task:scheduler id="C2DMessageScheduler" pool-size="5"/>
+	<task:scheduler id="toStudyKnowledgeScheduler" pool-size="5"/>
+	<task:scheduler id="QuizRecommendScheduler" pool-size="5"/>
+	-->
+	
+	<amq:connectionFactory id="amqConnectionFactory" 
+		brokerURL="${jms.brokerURL}" 
+		userName="learninlog" 
+		password="Llysc1s1kr" />
+
+    <bean id="connectionFactory"
+            class="org.springframework.jms.connection.CachingConnectionFactory">
+            <constructor-arg ref="amqConnectionFactory" />
+            <property name="exceptionListener" ref="jmsExceptionListener" />
+            <property name="sessionCacheSize" value="100" />
+    </bean>
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<constructor-arg ref="connectionFactory" />
+	</bean>
+	
+	<jms:listener-container concurrency="10">
+		<jms:listener destination="${jms.queue.name.sendMail}" ref="jmsMailListener" />
+	</jms:listener-container>
+</beans>

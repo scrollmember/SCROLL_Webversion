@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+div.knowledgaelayout{
+	font-weight:bold;
+	font-size: 20px;
+	margin-left: 20px
+}
+
+div.radioka{
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: 20px
+}
+
+table,tr,th{
+	margin-left: 20px;
+	margin-top: 20px
+}

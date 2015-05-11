@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.StudyActivityDao">
+	
+	<select id="findListByAuthorId" parameterType="string" resultType="StudyActivity">
+		select
+			id,
+			activity_type as activityType,
+			createtime,
+			latitude,
+			longitude,
+			speed,
+			author_id as authorId
+		from
+			t_studyactivity
+		where
+			author_id = #{authorId}
+		order by
+			createtime desc
+	</select>
+	
+	<insert id="insert" parameterType="StudyActivity">
+		insert into t_studyactivity(
+			id,
+			activity_type,
+			createtime,
+			latitude,
+			longitude,
+			speed,
+			author_id
+		)values(
+			#{id},
+			#{activityType},
+			#{createtime},
+			#{latitude},
+			#{longitude},
+			#{speed},
+			#{authorId}
+		)
+	</insert>
+	
+	<select id="findListByAuthorAndCreatedAfter" parameterType="map" resultType="StudyActivity">
+		select
+			id,
+			activity_type  as activityType,
+			createtime,
+			latitude,
+			longitude,
+			speed,
+			author_id as authorId
+		from
+			t_studyactivity
+		where
+			author_id = #{authorId}
+			<if test="from!=null"><![CDATA[ and createtime>#{from}]]></if>
+		<if test="sort!=null">
+		order by
+			<foreach collection="sort" item="order" separator=",">
+				${order.property} ${order.direction}
+			</foreach>
+		</if>
+	</select>
+</mapper>

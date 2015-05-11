@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.LanguageDao">
+
+	<cache />
+
+    <select id="findAll" resultType="Language">
+		select
+			l.id,
+			l.code, 
+			l.name
+		from
+			d_language l
+    </select>
+    
+    <select id="findByCode" parameterType="string" resultType="Language">
+    	select
+			l.id,
+			l.code, 
+			l.name
+		from
+			d_language l
+		where
+			l.code = #{code}
+    </select>
+    
+    <select id="findById" parameterType="string" resultType="Language">
+    	select
+			l.id,
+			l.code, 
+			l.name
+		from
+			d_language l
+		where
+			l.id = #{id}
+	</select>
+	
+	<select id="findListUsersStudyLangs" parameterType="string" resultType="Language">
+		select
+			l.id,
+			l.code, 
+			l.name
+		from
+			t_users_study_langs usl
+				left join d_language l
+					on usl.study_langs = l.id
+		where
+			usl.t_users = #{userId}
+		order by
+			usl.lang_order asc
+	</select>
+	
+	<select id="findListUsersMyLangs" parameterType="string" resultType="Language">
+		select
+			l.id,
+			l.code, 
+			l.name
+		from
+			t_users_my_langs usl
+				left join d_language l
+					on usl.my_langs = l.id
+		where
+			usl.t_users = #{userId}
+		order by
+			usl.lang_order asc
+	</select>
+	
+    <insert id="insert" parameterType="Language">
+    	insert into d_language(
+    		id,
+    		code, 
+    		name
+    	) values (
+    		#{id},
+    		#{code},
+    		#{name}
+    	)
+    </insert>
+    
+    <update id="update" parameterType="Language">
+    	update d_language
+    	set
+    		code=#{code},
+    		name=#{name}
+    	where
+    		id=#{id}
+    </update>
+    
+    <delete id="delete" parameterType="string">
+    	delete from
+    		d_language
+   		where
+   			id=#{id}
+    </delete>
+</mapper>

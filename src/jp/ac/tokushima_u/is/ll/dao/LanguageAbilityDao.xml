@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.LanguageAbilityDao">
+	
+	<select id="findListByAuthorId" parameterType="string" resultType="LanguageAbility">
+		select
+			la.ability,
+			la.author_id as authorId,
+			la.create_time as createTime,
+			la.disabled,
+			la.id,
+			la.language_id as languageId,
+			la.righttimes,
+			la.totaltimes
+		from
+			t_language_ability
+		where
+			la.disabled = 0
+			and la.author_id = #{authorId}
+	</select>
+	
+	<update id="update" parameterType="LanguageAbility">
+		update 
+			t_language_ability
+		set
+			ability = #{ability},
+			author_id = #{authorId},
+			disabled = #{disabled},
+			language_id = #{languageId},
+			righttimes = #{righttimes},
+			totaltimes = #{totaltimes}
+		where
+			id = #{id}
+	</update>
+	
+	<select id="findMapForLanMap" parameterType="string" resultType="map">
+		select 
+			count(*), 
+			language_id as languageId
+		from 
+			t_myquiz q 
+				left join t_item i
+					on 	q.item_id = i.id
+		where 
+			q.author_id = #{userId}
+			and q.author_id != i.author_id 
+			and q.answerstate != -1
+			and q.answerstate != 2 
+			and q.language_id is not null
+		group by 
+			language_id
+		order by 
+			language_id
+	</select>
+	
+	<select id="findMapListForStateMap" parameterType="string" resultType="map">
+			select
+				count(*) as count, 
+				answerstate, 
+				language_id as languageId
+			from 
+				t_myquiz q 
+					left join t_item i 
+						on 	q.item_id = i.id
+			where
+				q.author_id = #{userId}
+				and q.author_id != i.author_id 
+				and q.answerstate != -1
+				and q.answerstate != 2 
+				and q.language_id is not null
+			group by 
+				answerstate, 
+				language_id 
+			order by 
+				language_id
+	</select>
+	
+	<insert id="insert" parameterType="LanguageAbility">
+		insert into t_language_ability(
+			ability,
+			author_id,
+			create_time,
+			disabled,
+			id,
+			language_id,
+			righttimes,
+			totaltimes
+		) values (
+			#{ability},
+			#{authorId},
+			#{createTime},
+			#{disabled},
+			#{id},
+			#{languageId},
+			#{righttimes},
+			#{totaltimes}
+		)
+	</insert>
+</mapper>

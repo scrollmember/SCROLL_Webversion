@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemQueueDao">
+
+	<select id="findListByUserAndItem" parameterType="map" resultType="ItemQueue">
+	select
+		iq.id, 
+		iq.author_id as authorId, 
+		iq.item_id as itemId, 
+		iq.weight, 
+		iq.queuetype, 
+		iq.disabled, 
+		iq.create_time as createTime, 
+		iq.update_time as updateTime, 
+		iq.start_time as startTime
+	from
+		t_itemqueue iq
+	where
+		iq.author_id = #{userId}
+		and iq.item_id = #{itemId}
+		and iq.disabled = 0
+	order by
+		iq.start_time desc
+	</select>
+	
+	<update id="update" parameterType="ItemQueue">
+		update
+			t_itemqueue
+		set
+			author_id = #{authorId},
+			item_id = #{itemId},
+			weight = #{weight},
+			queuetype = #{queuetype},
+			disabled = #{disabled},
+			update_time = #{updateTime},
+			start_time = #{startTime}
+		where
+			id = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="ItemQueue">
+		insert into t_itemqueue(
+			id, 
+			author_id, 
+			item_id, 
+			weight, 
+			queuetype, 
+			disabled, 
+			create_time, 
+			update_time, 
+			start_time
+		) values (
+			#{id}, 
+			#{authorId}, 
+			#{itemId}, 
+			#{weight}, 
+			#{queuetype}, 
+			#{disabled}, 
+			#{createTime}, 
+			#{updateTime}, 
+			#{startTime}
+		)
+	</insert>
+	
+	<select id="findListForSyncQuizzes" parameterType="map" resultType="ItemQueue">
+		select
+			iq.id, 
+			iq.author_id as authorId, 
+			iq.item_id as itemId, 
+			iq.weight, 
+			iq.queuetype, 
+			iq.disabled, 
+			iq.create_time as createTime, 
+			iq.update_time as updateTime, 
+			iq.start_time as startTime
+		 from
+		 	t_itemqueue iq, 
+		 	(
+				select
+					max(create_time) as create_time, 
+					item_id
+				from t_itemqueue
+				where
+					<![CDATA[start_time<=#{startTimeCond}]]>
+					and author_id=#{userId}
+					<if test="updateTimeCond!=null">
+						and update_time>#{updateTimeCond}
+					</if>
+					and disabled = 0
+				group by 
+					item_id 
+				order by 
+					create_time desc
+			)x 
+		where 
+			iq.item_id = x.item_id 
+			and iq.create_time = x.create_time
+		order by 
+			iq.weight asc, iq.start_time desc 
+	</select>
+	
+	<update id="deleteAllByItem" parameterType="string">
+		update
+			t_itemqueue
+		set
+			disabled = 1
+		where
+			item_id = #{itemId}
+	</update>
+</mapper>

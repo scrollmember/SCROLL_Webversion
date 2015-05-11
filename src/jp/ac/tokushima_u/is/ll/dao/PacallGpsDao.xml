@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.PacallGpsDao">
+	<select id="findListByUserIdAndHash" parameterType="map" resultType="PacallGps">
+		select
+			id,
+			user_id as userId,
+			collection_id as collectionId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			hash
+		from
+			pacall_gps
+		where
+			user_id = #{userId}
+			and hash = #{hash}
+		order
+			by create_time asc
+	</select>
+	
+	<select id="findListByCollectionIdAndHash" parameterType="map" resultType="PacallGps">
+		select
+			id,
+			user_id as userId,
+			collection_id as collectionId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			hash
+		from
+			pacall_gps
+		where
+			collection_id = #{collectionId}
+			and hash = #{hash}
+		order
+			by create_time asc
+	</select>
+	
+	<insert id="insert" parameterType="PacallGps">
+		insert into pacall_gps(
+			id,
+			user_id,
+			collection_id,
+			filename,
+			ext,
+			create_time,
+			hash
+		) values (
+			#{id},
+			#{userId},
+			#{collectionId},
+			#{filename},
+			#{ext}
+			#{createTime},
+			#{hash}
+		)
+	</insert>
+	
+	<select id="findListByUserId" parameterType="string" resultType="PacallGps">
+		select
+			id,
+			user_id as userId,
+			collection_id as collectionId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			hash
+		from
+			pacall_gps
+		where
+			user_id = #{userId}
+		order
+			by create_time asc
+	</select>
+	
+	<select id="findListByCollectionId" parameterType="string" resultType="PacallGps">
+		select
+			id,
+			user_id as userId,
+			collection_id as collectionId,
+			filename as filename,
+			ext as ext,
+			create_time as createTime,
+			hash
+		from
+			pacall_gps
+		where
+			collection_id = #{collectionId}
+		order
+			by create_time asc
+	</select>
+</mapper>

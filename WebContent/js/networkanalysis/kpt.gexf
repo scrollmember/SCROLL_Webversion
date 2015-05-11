@@ -1,0 +1,2312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.1draft" version="1.1" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.1draft http://www.gexf.net/1.1draft/gexf.xsd">
+  <meta lastmodifieddate="2015-04-04">
+    <creator>Gephi 0.8</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="directed" timeformat="double" mode="dynamic">
+    <attributes class="node" mode="static">
+      <attribute id="Authorid" title="Authorid" type="string"></attribute>
+      <attribute id="Targetitem" title="Targetitem" type="string"></attribute>
+      <attribute id="Targetitemid" title="Targetitemid" type="string"></attribute>
+      <attribute id="Nextitem" title="Nextitem" type="string"></attribute>
+      <attribute id="Nextitemid" title="Nextitemid" type="string"></attribute>
+      <attribute id="TAname" title="TAname" type="string"></attribute>
+      <attribute id="NAname" title="NAname" type="string"></attribute>
+      <attribute id="KnowledgeRanking" title="KnowledgeRanking" type="string"></attribute>
+      <attribute id="Knowledgenumber" title="Knowledgenumber" type="string"></attribute>
+      <attribute id="nickname" title="nickname" type="string"></attribute>
+      <attribute id="userlevel" title="userlevel" type="string"></attribute>
+      <attribute id="checknumber" title="checknumber" type="string"></attribute>
+      <attribute id="createtime" title="createtime" type="string"></attribute>
+      <attribute id="item_lat" title="item_lat" type="string"></attribute>
+      <attribute id="item_lng" title="item_lng" type="string"></attribute>
+      <attribute id="author_id" title="author_id" type="string"></attribute>
+      <attribute id="place" title="place" type="string"></attribute>
+      <attribute id="placeId" title="placeId" type="string"></attribute>
+      <attribute id="place_attribute" title="place_attribute" type="string"></attribute>
+      <attribute id="checklearner1" title="checklearner1" type="string"></attribute>
+      <attribute id="checkword1" title="checkword1" type="string"></attribute>
+      <attribute id="checkplace1" title="checkplace1" type="string"></attribute>
+      <attribute id="checktime1" title="checktime1" type="string"></attribute>
+      <attribute id="checkknowledge2" title="checkknowledge2" type="string"></attribute>
+      <attribute id="eccentricity" title="Eccentricity" type="double">
+        <default>0.0</default>
+      </attribute>
+      <attribute id="closnesscentrality" title="Closeness Centrality" type="double">
+        <default>0.0</default>
+      </attribute>
+      <attribute id="betweenesscentrality" title="Betweenness Centrality" type="double">
+        <default>0.0</default>
+      </attribute>
+      <attribute id="degree" title="Degree" type="string">
+        <default>0</default>
+      </attribute>
+      <attribute id="degreein" title="Degreein" type="string">
+        <default>0</default>
+      </attribute>
+      <attribute id="degreeout" title="Degreeout" type="string">
+        <default>0</default>
+      </attribute>
+    </attributes>
+    <nodes>
+      <node id="0" label="Mouri Kousuke">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181461e070501461f50d37b0031"></attvalue>
+          <attvalue for="Nextitem" value="Tofu"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181461e070501461f59078e003f"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/05/22 00:05"></attvalue>
+          <attvalue for="checklearner1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="4.0"></attvalue>
+          <attvalue for="closnesscentrality" value="3.183098591549296"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="-300.0" y="600.0"></viz:position>
+        <viz:color r="0" g="255" b="0"></viz:color>
+      </node>
+      <node id="1" label="Mouri Kousuke">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181468f3e9b01468f44d81d0007"></attvalue>
+          <attvalue for="Nextitem" value="coffee"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181468f3e9b01468f46576b0012"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/06/12 17:49"></attvalue>
+          <attvalue for="checklearner1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="4.0"></attvalue>
+          <attvalue for="closnesscentrality" value="3.183098591549296"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="-300.0" y="700.0"></viz:position>
+        <viz:color r="0" g="255" b="0"></viz:color>
+      </node>
+      <node id="2" label="n.uosaki">
+        <attvalues>
+          <attvalue for="Authorid" value="ff808181257c178801257c20bf580005"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818146ce2fe20146d1ef4e31390f"></attvalue>
+          <attvalue for="Nextitem" value="router"></attvalue>
+          <attvalue for="Nextitemid" value="ff80818146ce2fe20146d2772cfd395d"></attvalue>
+          <attvalue for="KnowledgeRanking" value="6"></attvalue>
+          <attvalue for="Knowledgenumber" value="247"></attvalue>
+          <attvalue for="nickname" value="n.uosaki"></attvalue>
+          <attvalue for="userlevel" value="111"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/06/25 16:30"></attvalue>
+          <attvalue for="checklearner1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="4.0"></attvalue>
+          <attvalue for="closnesscentrality" value="3.183098591549296"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="18.0"></viz:size>
+        <viz:position x="-300.0" y="800.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="3" label="dameng">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258acaadc10001"></attvalue>
+          <attvalue for="Targetitem" value="Natto"></attvalue>
+          <attvalue for="Nextitem" value="Kimchi"></attvalue>
+          <attvalue for="nickname" value="dameng"></attvalue>
+          <attvalue for="userlevel" value="121"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2012/02/16 11:49"></attvalue>
+          <attvalue for="checklearner1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="4.0"></attvalue>
+          <attvalue for="closnesscentrality" value="3.183098591549296"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="18.0"></viz:size>
+        <viz:position x="-300.0" y="900.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="4" label="Cherry ">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818141c097e20141dad96cb53764"></attvalue>
+          <attvalue for="Targetitem" value="Natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818148d435b50148e8a12c5404cd"></attvalue>
+          <attvalue for="Nextitem" value="Edamame"></attvalue>
+          <attvalue for="Nextitemid" value="ff80818148d435b50148eaf1529005a4"></attvalue>
+          <attvalue for="KnowledgeRanking" value="12"></attvalue>
+          <attvalue for="Knowledgenumber" value="125"></attvalue>
+          <attvalue for="nickname" value="Cherry "></attvalue>
+          <attvalue for="userlevel" value="34"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/10/07 12:22"></attvalue>
+          <attvalue for="checklearner1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="4.0"></attvalue>
+          <attvalue for="closnesscentrality" value="3.183098591549296"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="18.0"></viz:size>
+        <viz:position x="-300.0" y="1000.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="5" label="Natto">
+        <attvalues>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.2142857142857144"></attvalue>
+          <attvalue for="betweenesscentrality" value="350.0"></attvalue>
+          <attvalue for="degree" value="19"></attvalue>
+          <attvalue for="degreein" value="5"></attvalue>
+          <attvalue for="degreeout" value="14"></attvalue>
+        </attvalues>
+        <viz:size value="130.0"></viz:size>
+        <viz:position x="0.0" y="500.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="3500" label="2014/05/22 00:05">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="12.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="35.0"></viz:size>
+        <viz:position x="300.0" y="600.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3501" label="Spring">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="600.0" y="500.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3502" label="Night">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="900.0" y="1200.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3503" label="2014/06/12 17:49">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="12.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="35.0"></viz:size>
+        <viz:position x="300.0" y="700.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3504" label="Summer">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="600.0" y="700.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3505" label="Day">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="900.0" y="1100.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3506" label="2014/06/25 16:30">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="12.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="35.0"></viz:size>
+        <viz:position x="300.0" y="800.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3507" label="Summer">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="600.0" y="700.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3508" label="Day">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="900.0" y="1100.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3509" label="2012/02/16 11:49">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="12.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="35.0"></viz:size>
+        <viz:position x="300.0" y="900.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3510" label="Winter">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="600.0" y="900.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3511" label="Day">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="900.0" y="1100.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3512" label="2014/10/07 12:22">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="12.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="35.0"></viz:size>
+        <viz:position x="300.0" y="1000.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3513" label="Fall">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="600.0" y="800.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3514" label="Day">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="900.0" y="1100.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="1000" label="岸川うなぎ">
+        <attvalues>
+          <attvalue for="checknumber" value="place"></attvalue>
+          <attvalue for="checkplace1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.6666666666666667"></attvalue>
+          <attvalue for="betweenesscentrality" value="27.0"></attvalue>
+          <attvalue for="degree" value="5"></attvalue>
+          <attvalue for="degreein" value="4"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="300.0" y="400.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="1500" label="restaurant">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.25"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="400.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1501" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.25"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="300.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1502" label="food">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.25"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="200.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2000" label="かいせい">
+        <attvalues>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="20.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="900.0" y="400.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="2500" label="store">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="400.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2501" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="300.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1001" label="福岡市役所">
+        <attvalues>
+          <attvalue for="checknumber" value="place"></attvalue>
+          <attvalue for="checkplace1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.8333333333333333"></attvalue>
+          <attvalue for="betweenesscentrality" value="66.0"></attvalue>
+          <attvalue for="degree" value="7"></attvalue>
+          <attvalue for="degreein" value="6"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="300.0" y="300.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="1503" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.5714285714285716"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="100.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1504" label="locality">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.5714285714285716"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="0.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1505" label="local_government_office">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.5714285714285716"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="-100.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1506" label="city_hall">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.5714285714285716"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="-200.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1507" label="political">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.5714285714285716"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="-300.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2001" label="ガレージＯＺ">
+        <attvalues>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="60.0"></attvalue>
+          <attvalue for="degree" value="6"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="5"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="900.0" y="300.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="2502" label="political">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="200.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2503" label="city_hall">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="100.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2504" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="0.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2505" label="locality">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-100.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2506" label="local_government_office">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-200.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1002" label="上新庄駅">
+        <attvalues>
+          <attvalue for="checknumber" value="place"></attvalue>
+          <attvalue for="checkplace1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.8"></attvalue>
+          <attvalue for="betweenesscentrality" value="135.0"></attvalue>
+          <attvalue for="degree" value="7"></attvalue>
+          <attvalue for="degreein" value="4"></attvalue>
+          <attvalue for="degreeout" value="3"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="300.0" y="200.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="1508" label="transit_station">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.6875"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="-400.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1509" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.6875"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="-500.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1510" label="train_station">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.6875"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="-600.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2002" label="吹田駅（阪急）">
+        <attvalues>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="20.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="900.0" y="200.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="2507" label="university">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-300.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2508" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-400.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2003" label="豊中市役所">
+        <attvalues>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="50.0"></attvalue>
+          <attvalue for="degree" value="6"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="5"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="900.0" y="100.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="2509" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-500.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2510" label="local_government_office">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-600.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2511" label="city_hall">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-700.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2512" label="locality">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-800.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2513" label="political">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-900.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2004" label="箕面市役所">
+        <attvalues>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="50.0"></attvalue>
+          <attvalue for="degree" value="6"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="5"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="900.0" y="0.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="2514" label="city_hall">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1000.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2515" label="locality">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1100.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2516" label="local_government_office">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1200.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2517" label="political">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1300.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2518" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1400.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1003" label="九州大学 伊都キャンパス">
+        <attvalues>
+          <attvalue for="checknumber" value="place"></attvalue>
+          <attvalue for="checkplace1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.7692307692307692"></attvalue>
+          <attvalue for="betweenesscentrality" value="104.0"></attvalue>
+          <attvalue for="degree" value="6"></attvalue>
+          <attvalue for="degreein" value="3"></attvalue>
+          <attvalue for="degreeout" value="3"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="300.0" y="100.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="1511" label="university">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.642857142857143"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="-700.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="1512" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.642857142857143"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="600.0" y="-800.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2005" label="リッチモンドホテル福岡天神">
+        <attvalues>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="18.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="900.0" y="-100.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="2519" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1500.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2520" label="lawyer">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1600.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2006" label="福岡市立小学校 西区玄洋小学校">
+        <attvalues>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="45.0"></attvalue>
+          <attvalue for="degree" value="6"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="5"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="900.0" y="-200.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="2521" label="city_hall">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1700.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2522" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1800.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2523" label="political">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-1900.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2524" label="local_government_office">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-2000.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2525" label="locality">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-2100.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2007" label="ローソン 九州大学工学部">
+        <attvalues>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="27.0"></attvalue>
+          <attvalue for="degree" value="4"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="3"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="900.0" y="-300.0"></viz:position>
+        <viz:color r="255" g="255" b="255"></viz:color>
+      </node>
+      <node id="2526" label="transit_station">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-2200.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2527" label="train_station">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-2300.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="2528" label="establishment">
+        <attvalues>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="1200.0" y="-2400.0"></viz:position>
+        <viz:color r="255" g="255" b="204"></viz:color>
+      </node>
+      <node id="6" label="Tofu">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181461e070501461f50d37b0031"></attvalue>
+          <attvalue for="Nextitem" value="Tofu"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181461e070501461f59078e003f"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/05/22 00:05"></attvalue>
+          <attvalue for="place" value="岸川うなぎ"></attvalue>
+          <attvalue for="checkknowledge2" value="checkknowledge2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="28.0"></attvalue>
+          <attvalue for="degree" value="6"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="4"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-300.0" y="400.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="7" label="coffee">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181468f3e9b01468f44d81d0007"></attvalue>
+          <attvalue for="Nextitem" value="coffee"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181468f3e9b01468f46576b0012"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/06/12 17:49"></attvalue>
+          <attvalue for="place" value="福岡市役所"></attvalue>
+          <attvalue for="checkknowledge2" value="checkknowledge2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="14.0"></attvalue>
+          <attvalue for="degree" value="4"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-300.0" y="300.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="8" label="router">
+        <attvalues>
+          <attvalue for="Authorid" value="ff808181257c178801257c20bf580005"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818146ce2fe20146d1ef4e31390f"></attvalue>
+          <attvalue for="Nextitem" value="router"></attvalue>
+          <attvalue for="Nextitemid" value="ff80818146ce2fe20146d2772cfd395d"></attvalue>
+          <attvalue for="KnowledgeRanking" value="6"></attvalue>
+          <attvalue for="Knowledgenumber" value="247"></attvalue>
+          <attvalue for="nickname" value="n.uosaki"></attvalue>
+          <attvalue for="userlevel" value="111"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/06/25 16:30"></attvalue>
+          <attvalue for="place" value="上新庄駅"></attvalue>
+          <attvalue for="checkknowledge2" value="checkknowledge2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="14.0"></attvalue>
+          <attvalue for="degree" value="4"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-300.0" y="200.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="9" label="Kimchi">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258acaadc10001"></attvalue>
+          <attvalue for="Targetitem" value="Natto"></attvalue>
+          <attvalue for="Nextitem" value="Kimchi"></attvalue>
+          <attvalue for="nickname" value="dameng"></attvalue>
+          <attvalue for="userlevel" value="121"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2012/02/16 11:49"></attvalue>
+          <attvalue for="checkknowledge2" value="checkknowledge2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="7.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-300.0" y="100.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="10" label="Edamame">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818141c097e20141dad96cb53764"></attvalue>
+          <attvalue for="Targetitem" value="Natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818148d435b50148e8a12c5404cd"></attvalue>
+          <attvalue for="Nextitem" value="Edamame"></attvalue>
+          <attvalue for="Nextitemid" value="ff80818148d435b50148eaf1529005a4"></attvalue>
+          <attvalue for="KnowledgeRanking" value="12"></attvalue>
+          <attvalue for="Knowledgenumber" value="125"></attvalue>
+          <attvalue for="nickname" value="Cherry "></attvalue>
+          <attvalue for="userlevel" value="34"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/10/07 12:22"></attvalue>
+          <attvalue for="place" value="九州大学 伊都キャンパス"></attvalue>
+          <attvalue for="checkknowledge2" value="checkknowledge2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-300.0" y="0.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="11" label="Green soybean">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="Tofu"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181461e070501461f59078e003f"></attvalue>
+          <attvalue for="Nextitem" value="Green soybean"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181461e070501461f5955a5004d"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/05/22 00:14"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="400.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="12" label="bean sprout">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258c36d91e0002"></attvalue>
+          <attvalue for="Targetitem" value="Tofu"></attvalue>
+          <attvalue for="Targetitemid" value="ff8080812c0c64a4012c10df361a06dc"></attvalue>
+          <attvalue for="Nextitem" value="bean sprout"></attvalue>
+          <attvalue for="Nextitemid" value="ff8080812c0c6631012c10e16cf20738"></attvalue>
+          <attvalue for="nickname" value="Bin Hou"></attvalue>
+          <attvalue for="userlevel" value="24"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2010/11/03 17:34"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="300.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="13" label="Beef">
+        <attvalues>
+          <attvalue for="Authorid" value="ff8081813e59e383013ea680a1c909a3"></attvalue>
+          <attvalue for="Targetitem" value="Tofu"></attvalue>
+          <attvalue for="Targetitemid" value="ff8081813e59e383013eab4022480be3"></attvalue>
+          <attvalue for="Nextitem" value="Beef"></attvalue>
+          <attvalue for="KnowledgeRanking" value="28"></attvalue>
+          <attvalue for="Knowledgenumber" value="75"></attvalue>
+          <attvalue for="nickname" value="dragon_wlei"></attvalue>
+          <attvalue for="userlevel" value="25"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2013/05/16 11:51"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="200.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="14" label="Kettle">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818145ac8c730145db60c2d04a8d"></attvalue>
+          <attvalue for="Targetitem" value="Tofu"></attvalue>
+          <attvalue for="Nextitem" value="Kettle"></attvalue>
+          <attvalue for="KnowledgeRanking" value="53"></attvalue>
+          <attvalue for="Knowledgenumber" value="33"></attvalue>
+          <attvalue for="nickname" value="宁儿"></attvalue>
+          <attvalue for="userlevel" value="13"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/05/08 19:53"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="100.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="15" label="Thailand">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="coffee"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181468f3e9b01468f46576b0012"></attvalue>
+          <attvalue for="Nextitem" value="Thailand"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181468f3e9b01468f66d83b001b"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/06/12 17:51"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="0.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="16" label="smudge">
+        <attvalues>
+          <attvalue for="Authorid" value="ff808181257c178801257c20bf580005"></attvalue>
+          <attvalue for="Targetitem" value="coffee"></attvalue>
+          <attvalue for="Targetitemid" value="16bb94322fafd5dc012fd39e00d111db"></attvalue>
+          <attvalue for="Nextitem" value="smudge"></attvalue>
+          <attvalue for="Nextitemid" value="16bb9432304f709e01305e7c22660e6e"></attvalue>
+          <attvalue for="KnowledgeRanking" value="6"></attvalue>
+          <attvalue for="Knowledgenumber" value="247"></attvalue>
+          <attvalue for="nickname" value="n.uosaki"></attvalue>
+          <attvalue for="userlevel" value="111"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2011/05/09 16:17"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="-100.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="17" label="Singapore Sling">
+        <attvalues>
+          <attvalue for="Authorid" value="ff808181257c178801257c20bf580005"></attvalue>
+          <attvalue for="Targetitem" value="router"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818146ce2fe20146d2772cfd395d"></attvalue>
+          <attvalue for="Nextitem" value="Singapore Sling"></attvalue>
+          <attvalue for="KnowledgeRanking" value="6"></attvalue>
+          <attvalue for="Knowledgenumber" value="247"></attvalue>
+          <attvalue for="nickname" value="n.uosaki"></attvalue>
+          <attvalue for="userlevel" value="111"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/06/25 18:59"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="-200.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="18" label="Ginger">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258c36d91e0002"></attvalue>
+          <attvalue for="Targetitem" value="router"></attvalue>
+          <attvalue for="Targetitemid" value="ff8080812c14d7a3012c1c1eda25077d"></attvalue>
+          <attvalue for="Nextitem" value="Ginger"></attvalue>
+          <attvalue for="Nextitemid" value="ff8080812c14d7a3012c1c1fc61d079e"></attvalue>
+          <attvalue for="nickname" value="Bin Hou"></attvalue>
+          <attvalue for="userlevel" value="24"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2010/11/05 21:59"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="-300.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="19" label="passive">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258acaadc10001"></attvalue>
+          <attvalue for="Targetitem" value="Kimchi"></attvalue>
+          <attvalue for="Nextitem" value="passive"></attvalue>
+          <attvalue for="Nextitemid" value="402880d8359a975b01359a989c100004"></attvalue>
+          <attvalue for="nickname" value="dameng"></attvalue>
+          <attvalue for="userlevel" value="121"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2012/02/16 11:55"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="-400.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="20" label="Mung bean cake">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818141c097e20141dad96cb53764"></attvalue>
+          <attvalue for="Targetitem" value="Edamame"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818148d435b50148eaf1529005a4"></attvalue>
+          <attvalue for="Nextitem" value="Mung bean cake"></attvalue>
+          <attvalue for="Nextitemid" value="ff80818148d435b50148eaf3558005ab"></attvalue>
+          <attvalue for="KnowledgeRanking" value="12"></attvalue>
+          <attvalue for="Knowledgenumber" value="125"></attvalue>
+          <attvalue for="nickname" value="Cherry "></attvalue>
+          <attvalue for="userlevel" value="34"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/10/07 23:09"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="-500.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="21" label="Mouri Kousuke">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181461e070501461f50d37b0031"></attvalue>
+          <attvalue for="Nextitem" value="Tofu"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181461e070501461f59078e003f"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/05/22 00:05"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.8"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="-600.0" y="600.0"></viz:position>
+        <viz:color r="0" g="255" b="0"></viz:color>
+      </node>
+      <node id="22" label="Mouri Kousuke">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181468f3e9b01468f44d81d0007"></attvalue>
+          <attvalue for="Nextitem" value="coffee"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181468f3e9b01468f46576b0012"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/06/12 17:49"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.6666666666666667"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="-600.0" y="700.0"></viz:position>
+        <viz:color r="0" g="255" b="0"></viz:color>
+      </node>
+      <node id="23" label="n.uosaki">
+        <attvalues>
+          <attvalue for="Authorid" value="ff808181257c178801257c20bf580005"></attvalue>
+          <attvalue for="Targetitem" value="natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818146ce2fe20146d1ef4e31390f"></attvalue>
+          <attvalue for="Nextitem" value="router"></attvalue>
+          <attvalue for="Nextitemid" value="ff80818146ce2fe20146d2772cfd395d"></attvalue>
+          <attvalue for="KnowledgeRanking" value="6"></attvalue>
+          <attvalue for="Knowledgenumber" value="247"></attvalue>
+          <attvalue for="nickname" value="n.uosaki"></attvalue>
+          <attvalue for="userlevel" value="111"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/06/25 16:30"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.6666666666666667"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-600.0" y="800.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="24" label="dameng">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258acaadc10001"></attvalue>
+          <attvalue for="Targetitem" value="Natto"></attvalue>
+          <attvalue for="Targetitemid" value="null"></attvalue>
+          <attvalue for="Nextitem" value="Kimchi"></attvalue>
+          <attvalue for="Nextitemid" value="null"></attvalue>
+          <attvalue for="KnowledgeRanking" value="null"></attvalue>
+          <attvalue for="Knowledgenumber" value="null"></attvalue>
+          <attvalue for="nickname" value="dameng"></attvalue>
+          <attvalue for="userlevel" value="121"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2012/02/16 11:49"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.5"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-600.0" y="900.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="25" label="Cherry ">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818141c097e20141dad96cb53764"></attvalue>
+          <attvalue for="Targetitem" value="Natto"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818148d435b50148e8a12c5404cd"></attvalue>
+          <attvalue for="Nextitem" value="Edamame"></attvalue>
+          <attvalue for="Nextitemid" value="ff80818148d435b50148eaf1529005a4"></attvalue>
+          <attvalue for="KnowledgeRanking" value="12"></attvalue>
+          <attvalue for="Knowledgenumber" value="125"></attvalue>
+          <attvalue for="nickname" value="Cherry "></attvalue>
+          <attvalue for="userlevel" value="34"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/10/07 12:22"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-600.0" y="1000.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="26" label="Bin Hou">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258c36d91e0002"></attvalue>
+          <attvalue for="Targetitem" value="Tofu"></attvalue>
+          <attvalue for="Targetitemid" value="ff8080812c0c64a4012c10df361a06dc"></attvalue>
+          <attvalue for="Nextitem" value="bean sprout"></attvalue>
+          <attvalue for="Nextitemid" value="ff8080812c0c6631012c10e16cf20738"></attvalue>
+          <attvalue for="KnowledgeRanking" value="null"></attvalue>
+          <attvalue for="Knowledgenumber" value="null"></attvalue>
+          <attvalue for="nickname" value="Bin Hou"></attvalue>
+          <attvalue for="userlevel" value="24"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2010/11/03 17:34"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="600.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="27" label="dragon_wlei">
+        <attvalues>
+          <attvalue for="Authorid" value="ff8081813e59e383013ea680a1c909a3"></attvalue>
+          <attvalue for="Targetitem" value="Tofu"></attvalue>
+          <attvalue for="Targetitemid" value="ff8081813e59e383013eab4022480be3"></attvalue>
+          <attvalue for="Nextitem" value="Beef"></attvalue>
+          <attvalue for="Nextitemid" value="null"></attvalue>
+          <attvalue for="KnowledgeRanking" value="28"></attvalue>
+          <attvalue for="Knowledgenumber" value="75"></attvalue>
+          <attvalue for="nickname" value="dragon_wlei"></attvalue>
+          <attvalue for="userlevel" value="25"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2013/05/16 11:51"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="700.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="28" label="宁儿">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818145ac8c730145db60c2d04a8d"></attvalue>
+          <attvalue for="Targetitem" value="Tofu"></attvalue>
+          <attvalue for="Targetitemid" value="null"></attvalue>
+          <attvalue for="Nextitem" value="Kettle"></attvalue>
+          <attvalue for="Nextitemid" value="null"></attvalue>
+          <attvalue for="KnowledgeRanking" value="53"></attvalue>
+          <attvalue for="Knowledgenumber" value="33"></attvalue>
+          <attvalue for="nickname" value="宁儿"></attvalue>
+          <attvalue for="userlevel" value="13"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/05/08 19:53"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="800.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="29" label="Mouri Kousuke">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="coffee"></attvalue>
+          <attvalue for="Targetitemid" value="ff808181468f3e9b01468f46576b0012"></attvalue>
+          <attvalue for="Nextitem" value="Thailand"></attvalue>
+          <attvalue for="Nextitemid" value="ff808181468f3e9b01468f66d83b001b"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="510"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/06/12 17:51"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="-900.0" y="900.0"></viz:position>
+        <viz:color r="0" g="255" b="0"></viz:color>
+      </node>
+      <node id="30" label="n.uosaki">
+        <attvalues>
+          <attvalue for="Authorid" value="ff808181257c178801257c20bf580005"></attvalue>
+          <attvalue for="Targetitem" value="coffee"></attvalue>
+          <attvalue for="Targetitemid" value="16bb94322fafd5dc012fd39e00d111db"></attvalue>
+          <attvalue for="Nextitem" value="smudge"></attvalue>
+          <attvalue for="Nextitemid" value="16bb9432304f709e01305e7c22660e6e"></attvalue>
+          <attvalue for="KnowledgeRanking" value="6"></attvalue>
+          <attvalue for="Knowledgenumber" value="247"></attvalue>
+          <attvalue for="nickname" value="n.uosaki"></attvalue>
+          <attvalue for="userlevel" value="111"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2011/05/09 16:17"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="1000.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="31" label="n.uosaki">
+        <attvalues>
+          <attvalue for="Authorid" value="ff808181257c178801257c20bf580005"></attvalue>
+          <attvalue for="Targetitem" value="router"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818146ce2fe20146d2772cfd395d"></attvalue>
+          <attvalue for="Nextitem" value="Singapore Sling"></attvalue>
+          <attvalue for="Nextitemid" value="null"></attvalue>
+          <attvalue for="KnowledgeRanking" value="6"></attvalue>
+          <attvalue for="Knowledgenumber" value="247"></attvalue>
+          <attvalue for="nickname" value="n.uosaki"></attvalue>
+          <attvalue for="userlevel" value="111"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/06/25 18:59"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="1100.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="32" label="Bin Hou">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258c36d91e0002"></attvalue>
+          <attvalue for="Targetitem" value="router"></attvalue>
+          <attvalue for="Targetitemid" value="ff8080812c14d7a3012c1c1eda25077d"></attvalue>
+          <attvalue for="Nextitem" value="Ginger"></attvalue>
+          <attvalue for="Nextitemid" value="ff8080812c14d7a3012c1c1fc61d079e"></attvalue>
+          <attvalue for="KnowledgeRanking" value="null"></attvalue>
+          <attvalue for="Knowledgenumber" value="null"></attvalue>
+          <attvalue for="nickname" value="Bin Hou"></attvalue>
+          <attvalue for="userlevel" value="24"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2010/11/05 21:59"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="1200.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="33" label="dameng">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818125899fb501258acaadc10001"></attvalue>
+          <attvalue for="Targetitem" value="Kimchi"></attvalue>
+          <attvalue for="Targetitemid" value="null"></attvalue>
+          <attvalue for="Nextitem" value="passive"></attvalue>
+          <attvalue for="Nextitemid" value="402880d8359a975b01359a989c100004"></attvalue>
+          <attvalue for="KnowledgeRanking" value="null"></attvalue>
+          <attvalue for="Knowledgenumber" value="null"></attvalue>
+          <attvalue for="nickname" value="dameng"></attvalue>
+          <attvalue for="userlevel" value="121"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2012/02/16 11:55"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="1300.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="34" label="Cherry ">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818141c097e20141dad96cb53764"></attvalue>
+          <attvalue for="Targetitem" value="Edamame"></attvalue>
+          <attvalue for="Targetitemid" value="ff80818148d435b50148eaf1529005a4"></attvalue>
+          <attvalue for="Nextitem" value="Mung bean cake"></attvalue>
+          <attvalue for="Nextitemid" value="ff80818148d435b50148eaf3558005ab"></attvalue>
+          <attvalue for="KnowledgeRanking" value="12"></attvalue>
+          <attvalue for="Knowledgenumber" value="125"></attvalue>
+          <attvalue for="nickname" value="Cherry "></attvalue>
+          <attvalue for="userlevel" value="34"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/10/07 23:09"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="1400.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="e8197ad7974a463488771be4e4a5131c" source="0" target="5">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="2d3800bfa9114f73859975ef20314201" source="1" target="5">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="80a2b30ad31545dc8565b05de5873241" source="2" target="5">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="126ee33cdf6f445a96eeab26962f523c" source="3" target="5">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="642d016d285c4f2099c02fba91814a4e" source="4" target="5">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="d2c682af89bd48aba785f88d7daab6c3" source="5" target="3500">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="7ade7bd3dae44c94902c2f65b20d4f67" source="5" target="3503">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="7ce55f364eac467ea46db725c369f2d0" source="5" target="3506">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="dab7d72933c444da8f194d34ed115e6f" source="5" target="3509">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="5ac0f7fa32e343d99cc5d972e7429daa" source="5" target="3512">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="6f623d74587a49acbd67832269d96020" source="5" target="1000">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="9d0ff189ad00426eae88d5421c279815" source="5" target="1001">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="e101d6d3ebef4f389a9fe422aeb169a6" source="5" target="1002">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="210637ffd1104302bfa33b50abdeebf8" source="5" target="1003">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="40763c70e00a4a9288f71232d6298df1" source="5" target="6">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="0b404bdd387145a197232f2bcf677792" source="5" target="7">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="08accab56f084358ad71f6035b8c0759" source="5" target="8">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="965d9eb18200447c905da1b288f9b9a2" source="5" target="9">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="21561a22f72b4d7a93654630b1ee938c" source="5" target="10">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="d2f0e292964f4b91bd45ad148a19f13f" source="3500" target="3501">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="e0f2c24eb9a14988b91aca35bb9ce19d" source="3500" target="3502">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="c1211f42bbfd4ad8bd2043dc4a0523b4" source="3503" target="3504">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="377eecd1442b4609bc12576d0eb1e701" source="3503" target="3505">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="696646c41a704bde9e789c360a1e1a69" source="3506" target="3507">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="a8a80396e4a44036b997fe58d9b0ec70" source="3506" target="3508">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="fcee4b5c677e4d58a95699fea7b83b90" source="3509" target="3510">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="31cabbe1b8dd41b5a0ddcedd4082fe49" source="3509" target="3511">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="3efdde69e8404366834e2a42cde5e965" source="3512" target="3513">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="ab90fcd801874296a9e86300f4676487" source="3512" target="3514">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="d20c8565f69d4cd98002a5858b422f9e" source="1000" target="2000">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="717aa8b977c0466996da39f844925e8f" source="1500" target="1000">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="d351b01117504759b3cba04d7b89423b" source="1501" target="1000">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="d5f01ad591584aabb18abbe747c607e7" source="1502" target="1000">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="21f19e23f3e2426fa4375015e3bdf2d0" source="2000" target="2500">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="69d1d701207c4a2d95930404ad919b38" source="2000" target="2501">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="6158b3e95a1f4fc895240c041e321eca" source="1001" target="2001">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="b52271c9b4dc4cd78dbdd2ee097e9fcb" source="1503" target="1001">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="d9a91e1066804ba2bf0df9e25eb0928b" source="1504" target="1001">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="6b96495afd1b49648fa5b555afdc4721" source="1505" target="1001">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="e2ae03080c834627948db9609990f493" source="1506" target="1001">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="cdc232431a8c4242b008b2aedfc5b268" source="1507" target="1001">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="f408f55b0d284efd9ece7c5ce4d2bacd" source="2001" target="2502">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="450791b4a8c14f36b129c838f8fc414b" source="2001" target="2503">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="06e2eda57ab149be8e7b22050f288839" source="2001" target="2504">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="8ae37a834f18471b85b4503f5903b5a5" source="2001" target="2505">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="b0f09ca368954ab7a94fe620e3deea69" source="2001" target="2506">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="3e5555ddb0874dc386f489692048a23b" source="1002" target="2002">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="1e05a61a8bde4d76bd0869079c9d2ae6" source="1002" target="2003">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="6b66247acf9b4c058a3a8e7770ad2b38" source="1002" target="2004">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="67f646f4155745caba661af704974fc7" source="1508" target="1002">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="749787a7752947f19c1f78acd29f5988" source="1509" target="1002">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="3bbc23526d0c408c8c55093c3827b105" source="1510" target="1002">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="30a2b4c815b84f1a80ade6353f4d6a17" source="2002" target="2507">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="84bbdd0bc3aa4407b10bb6126b5b81bc" source="2002" target="2508">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="a388f79e994b40459db7bed3edc35d90" source="2003" target="2509">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="06baea33c8ee4fb29e1247d4d1e21a74" source="2003" target="2510">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="49e50f8ade7b47bca0077badf31c05eb" source="2003" target="2511">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="6743cd30d0e84564bf910bc1b4be402e" source="2003" target="2512">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="9067d63cdb4a4bbeae5013d602ac4073" source="2003" target="2513">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="56cb9d09f7904ddbbfc2dd762092bab2" source="2004" target="2514">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="7a4b5a624a714b208013d46c0f8754a7" source="2004" target="2515">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="8a6bbff06aa94e1783cbe02ace4ca7ca" source="2004" target="2516">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="2712c4e282624d20a8015e442e65117c" source="2004" target="2517">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="dcd3d8ffbd6e4bc6bfec2814bb790e41" source="2004" target="2518">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="68d27450331947a08050dd1ec34d8560" source="1003" target="2005">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="42bce6cbf1ac417eb833c4db77f3ca67" source="1003" target="2006">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="90b03e9dd4de4685ad0fab4291647268" source="1003" target="2007">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="ab6254376bfb45dabd94f756fc3d8709" source="1511" target="1003">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="cb26f7a466b342deaf0a91f550139976" source="1512" target="1003">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="02c0ee2ed9f8429382174b90e090cb5b" source="2005" target="2519">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="4ccfa0862d904e4295d03484e19e7bfa" source="2005" target="2520">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="8b25f03a3d08469f90ba89f14c582668" source="2006" target="2521">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="b2e56eaccd404b74bb5baff93f2ee00c" source="2006" target="2522">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="3366ebaefad34479b9dfa6f750b9fb5a" source="2006" target="2523">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="b617d989c31b48a9a417760e6bf5a3cb" source="2006" target="2524">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="5410e05c8340424cbc10f0a907af9fdb" source="2006" target="2525">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="f2d85a53d73144198540ea20e3402ce9" source="2007" target="2526">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="ccfa8672b26349d885d7bc0304284727" source="2007" target="2527">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="db933236f9d7415784844ff996b5f473" source="2007" target="2528">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="3b17527952e04cd68406ff7aa4c1826a" source="6" target="11">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="41da606fde0c444dbbcbc11efaadd1b0" source="6" target="12">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="deb8fba87edc464997896299920d6f61" source="6" target="13">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="00552177c6c14805b08ac84ce8b74f19" source="6" target="14">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="98ce07c50c6d4b0a86cabb4f8adfd820" source="7" target="15">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="f822c874a863454a9931590b376d44bf" source="7" target="16">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="dbcb77d12ab34606b5b261e1f098a4ba" source="8" target="17">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="ca8a4a8e849a466db6bd1073cc318449" source="8" target="18">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="e411cb3e7ef34e3b95cc70f7e5029823" source="9" target="19">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="115a0885925b48dd8756f9ceaacb18d6" source="21" target="6">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="d6747833d40e4303a63cc7f6b4256aad" source="22" target="7">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="329cb1810b92495ba78a73e49a30272b" source="23" target="8">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="b69ccb309f644b0b9025787837dfd442" source="24" target="9">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="59ce1f34ba95441d892212bc98412fba" source="25" target="10">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="22f4f06c2fb1444fb210093b8b31d824" source="26" target="12">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="f3f589d9627d4dd4a50d15eeb106e2f2" source="27" target="13">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="c3d3fe57b5c04233b374e382a4ca11ad" source="28" target="14">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="924011a6a64b469fa2c29f2fca93c57b" source="29" target="15">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="a4339da0a0564c458808dd5b3a6172eb" source="30" target="16">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="d092d7bbcfc24cd09691e48e7aa776d0" source="31" target="17">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="54cac83e3f5743bf839405e30d447bf2" source="32" target="18">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="76d3c9a86b1f48f6887d3a4ce6a0e2fb" source="33" target="19">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="45f66824c25a4ca0981134f50b3ef416" source="34" target="20">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

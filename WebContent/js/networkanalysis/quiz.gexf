@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.1draft" version="1.1" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.1draft http://www.gexf.net/1.1draft/gexf.xsd">
+  <meta lastmodifieddate="2015-04-17">
+    <creator>Gephi 0.8</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="directed" timeformat="double" mode="dynamic">
+    <attributes class="node" mode="static">
+      <attribute id="Authorid" title="Authorid" type="string"></attribute>
+      <attribute id="Targetitem" title="Targetitem" type="string"></attribute>
+      <attribute id="Targetitemid" title="Targetitemid" type="string"></attribute>
+      <attribute id="Nextitem" title="Nextitem" type="string"></attribute>
+      <attribute id="Nextitemid" title="Nextitemid" type="string"></attribute>
+      <attribute id="TAname" title="TAname" type="string"></attribute>
+      <attribute id="NAname" title="NAname" type="string"></attribute>
+      <attribute id="KnowledgeRanking" title="KnowledgeRanking" type="string"></attribute>
+      <attribute id="Knowledgenumber" title="Knowledgenumber" type="string"></attribute>
+      <attribute id="nickname" title="nickname" type="string"></attribute>
+      <attribute id="userlevel" title="userlevel" type="string"></attribute>
+      <attribute id="checknumber" title="checknumber" type="string"></attribute>
+      <attribute id="createtime" title="createtime" type="string"></attribute>
+      <attribute id="item_lat" title="item_lat" type="string"></attribute>
+      <attribute id="item_lng" title="item_lng" type="string"></attribute>
+      <attribute id="author_id" title="author_id" type="string"></attribute>
+      <attribute id="place" title="place" type="string"></attribute>
+      <attribute id="placeId" title="placeId" type="string"></attribute>
+      <attribute id="place_attribute" title="place_attribute" type="string"></attribute>
+      <attribute id="checklearner1" title="checklearner1" type="string"></attribute>
+      <attribute id="checkword1" title="checkword1" type="string"></attribute>
+      <attribute id="checkplace1" title="checkplace1" type="string"></attribute>
+      <attribute id="checktime1" title="checktime1" type="string"></attribute>
+      <attribute id="checkknowledge2" title="checkknowledge2" type="string"></attribute>
+      <attribute id="eccentricity" title="Eccentricity" type="double">
+        <default>0.0</default>
+      </attribute>
+      <attribute id="closnesscentrality" title="Closeness Centrality" type="double">
+        <default>0.0</default>
+      </attribute>
+      <attribute id="betweenesscentrality" title="Betweenness Centrality" type="double">
+        <default>0.0</default>
+      </attribute>
+      <attribute id="degree" title="Degree" type="string">
+        <default>0</default>
+      </attribute>
+      <attribute id="degreein" title="Degreein" type="string">
+        <default>0</default>
+      </attribute>
+      <attribute id="degreeout" title="Degreeout" type="string">
+        <default>0</default>
+      </attribute>
+    </attributes>
+    <nodes>
+      <node id="0" label="Mouri Kousuke">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="politician"></attvalue>
+          <attvalue for="Nextitem" value="herd"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="509"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2012/08/11 12:43"></attvalue>
+          <attvalue for="checklearner1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.4"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="-300.0" y="600.0"></viz:position>
+        <viz:color r="0" g="255" b="0"></viz:color>
+      </node>
+      <node id="1" label="rosni">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818148c64d080148c69628bc0004"></attvalue>
+          <attvalue for="Targetitem" value="politician"></attvalue>
+          <attvalue for="Nextitem" value="straighten"></attvalue>
+          <attvalue for="KnowledgeRanking" value="19"></attvalue>
+          <attvalue for="Knowledgenumber" value="85"></attvalue>
+          <attvalue for="nickname" value="rosni"></attvalue>
+          <attvalue for="userlevel" value="45"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/10/15 14:25"></attvalue>
+          <attvalue for="checklearner1" value="1"></attvalue>
+          <attvalue for="eccentricity" value="3.0"></attvalue>
+          <attvalue for="closnesscentrality" value="2.4"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="18.0"></viz:size>
+        <viz:position x="-300.0" y="700.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="2" label="politician">
+        <attvalues>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.5555555555555556"></attvalue>
+          <attvalue for="betweenesscentrality" value="18.0"></attvalue>
+          <attvalue for="degree" value="6"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="4"></attvalue>
+        </attvalues>
+        <viz:size value="130.0"></viz:size>
+        <viz:position x="0.0" y="500.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="3500" label="2012/08/11 12:43">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="6.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="35.0"></viz:size>
+        <viz:position x="300.0" y="600.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3501" label="Summer">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="600.0" y="700.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3502" label="Day">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="900.0" y="1100.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3503" label="2014/10/15 14:25">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="6.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="35.0"></viz:size>
+        <viz:position x="300.0" y="700.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3504" label="Fall">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="600.0" y="800.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3505" label="Day">
+        <attvalues>
+          <attvalue for="checknumber" value="2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="900.0" y="1100.0"></viz:position>
+        <viz:color r="179" g="128" b="77"></viz:color>
+      </node>
+      <node id="3" label="herd">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="politician"></attvalue>
+          <attvalue for="Nextitem" value="herd"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="509"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2012/08/11 12:43"></attvalue>
+          <attvalue for="checkknowledge2" value="checkknowledge2"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="4.0"></attvalue>
+          <attvalue for="degree" value="3"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-300.0" y="400.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="4" label="straighten">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818148c64d080148c69628bc0004"></attvalue>
+          <attvalue for="Targetitem" value="politician"></attvalue>
+          <attvalue for="Nextitem" value="straighten"></attvalue>
+          <attvalue for="KnowledgeRanking" value="19"></attvalue>
+          <attvalue for="Knowledgenumber" value="85"></attvalue>
+          <attvalue for="nickname" value="rosni"></attvalue>
+          <attvalue for="userlevel" value="45"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/10/15 14:25"></attvalue>
+          <attvalue for="checkknowledge2" value="checkknowledge2"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="2"></attvalue>
+          <attvalue for="degreein" value="2"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-300.0" y="300.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="5" label="essential">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="herd"></attvalue>
+          <attvalue for="Nextitem" value="essential"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="509"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2012/08/11 12:44"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="400.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="6" label="turn">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818148c64d080148c69628bc0004"></attvalue>
+          <attvalue for="Targetitem" value="straighten"></attvalue>
+          <attvalue for="Nextitem" value="turn"></attvalue>
+          <attvalue for="KnowledgeRanking" value="19"></attvalue>
+          <attvalue for="Knowledgenumber" value="85"></attvalue>
+          <attvalue for="nickname" value="rosni"></attvalue>
+          <attvalue for="userlevel" value="45"></attvalue>
+          <attvalue for="checknumber" value="knowledge"></attvalue>
+          <attvalue for="createtime" value="2014/10/15 14:32"></attvalue>
+          <attvalue for="eccentricity" value="0.0"></attvalue>
+          <attvalue for="closnesscentrality" value="0.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="1"></attvalue>
+          <attvalue for="degreeout" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="30.0"></viz:size>
+        <viz:position x="-600.0" y="300.0"></viz:position>
+        <viz:color r="255" g="255" b="0"></viz:color>
+      </node>
+      <node id="7" label="Mouri Kousuke">
+        <attvalues>
+          <attvalue for="Authorid" value="16bb94322ec4005b012edca218230033"></attvalue>
+          <attvalue for="Targetitem" value="politician"></attvalue>
+          <attvalue for="Targetitemid" value="null"></attvalue>
+          <attvalue for="Nextitem" value="herd"></attvalue>
+          <attvalue for="Nextitemid" value="null"></attvalue>
+          <attvalue for="KnowledgeRanking" value="1"></attvalue>
+          <attvalue for="Knowledgenumber" value="509"></attvalue>
+          <attvalue for="nickname" value="Mouri Kousuke"></attvalue>
+          <attvalue for="userlevel" value="287"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2012/08/11 12:43"></attvalue>
+          <attvalue for="eccentricity" value="2.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.5"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="25.0"></viz:size>
+        <viz:position x="-600.0" y="600.0"></viz:position>
+        <viz:color r="0" g="255" b="0"></viz:color>
+      </node>
+      <node id="8" label="rosni">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818148c64d080148c69628bc0004"></attvalue>
+          <attvalue for="Targetitem" value="politician"></attvalue>
+          <attvalue for="Targetitemid" value="null"></attvalue>
+          <attvalue for="Nextitem" value="straighten"></attvalue>
+          <attvalue for="Nextitemid" value="null"></attvalue>
+          <attvalue for="KnowledgeRanking" value="19"></attvalue>
+          <attvalue for="Knowledgenumber" value="85"></attvalue>
+          <attvalue for="nickname" value="rosni"></attvalue>
+          <attvalue for="userlevel" value="45"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/10/15 14:25"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-600.0" y="700.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+      <node id="9" label="rosni">
+        <attvalues>
+          <attvalue for="Authorid" value="ff80818148c64d080148c69628bc0004"></attvalue>
+          <attvalue for="Targetitem" value="straighten"></attvalue>
+          <attvalue for="Targetitemid" value="null"></attvalue>
+          <attvalue for="Nextitem" value="turn"></attvalue>
+          <attvalue for="Nextitemid" value="null"></attvalue>
+          <attvalue for="KnowledgeRanking" value="19"></attvalue>
+          <attvalue for="Knowledgenumber" value="85"></attvalue>
+          <attvalue for="nickname" value="rosni"></attvalue>
+          <attvalue for="userlevel" value="45"></attvalue>
+          <attvalue for="checknumber" value="1"></attvalue>
+          <attvalue for="createtime" value="2014/10/15 14:32"></attvalue>
+          <attvalue for="eccentricity" value="1.0"></attvalue>
+          <attvalue for="closnesscentrality" value="1.0"></attvalue>
+          <attvalue for="betweenesscentrality" value="0.0"></attvalue>
+          <attvalue for="degree" value="1"></attvalue>
+          <attvalue for="degreein" value="0"></attvalue>
+          <attvalue for="degreeout" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="17.0"></viz:size>
+        <viz:position x="-900.0" y="600.0"></viz:position>
+        <viz:color r="0" g="0" b="255"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="17c5bf0ad2fe4256b15b227d8dd46430" source="0" target="2">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="0cb571b74a5843b99fb6c9197f7920cc" source="1" target="2">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="c87c0199b3a841679d8186ae2815c683" source="2" target="3500">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="5eb742e975d24e708d6cc1f295ee1d9a" source="2" target="3503">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="e741069bcd8b4326abbbced154848d21" source="2" target="3">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="a957edac06464a31b76caac88c0ea384" source="2" target="4">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="f028c99f7bfd453b90e7b936efa30a91" source="3500" target="3501">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="317a5ef194aa412ebc134df5822edb20" source="3500" target="3502">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="da12825aa54646e5a49bf977599d12e8" source="3503" target="3504">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="a4213694620f4939bc1b338170584177" source="3503" target="3505">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="57f7c6d17a764c3c9a760a566d530764" source="3" target="5">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="9bfaa16ed6524b23be17d3319f84e33f" source="7" target="3">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="a3a2ca20862440c8860ed7054ff4165c" source="8" target="4">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="a9af7389de294c76ab295d81a4c52d1c" source="9" target="6">
+        <attvalues>
+          <attvalue for="weight" value="1.0"></attvalue>
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

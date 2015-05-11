@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="ehcache.xsd" 
+    updateCheck="true" monitoring="autodetect">
+
+    <diskStore path="java.io.tmpdir/hibernate/learninglog" />
+
+    <!-- DefaultCache setting. -->
+    <defaultCache
+        maxElementsInMemory="10000"
+        memoryStoreEvictionPolicy="LRU"
+        eternal="false"
+        diskPersistent="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+    />
+
+    <cache
+        name="jp.ac.tokushima_u.is.ll.entity.FileBin"
+        maxElementsInMemory="1"
+        eternal="false"
+        diskPersistent="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="86400"
+        timeToLiveSeconds="86400"
+    />
+</ehcache>

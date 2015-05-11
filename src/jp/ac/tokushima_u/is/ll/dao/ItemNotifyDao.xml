@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemNotifyDao">
+	<select id="findByAuthor" parameterType="string" resultType="ItemNotify">
+		select
+			n.alarm_type as alarmType,
+			n.author_id as authorId,
+			n.create_time as createTime,
+			n.feedback,
+			n.id,
+			n.notify_mode as notifyMode,
+			n.quizid
+		from 
+			t_itemnotify n
+		where
+			n.author_id = #{authorId}
+		order by
+			n.create_time desc
+	</select>
+	
+	<select id="findById" parameterType="string" resultType="ItemNotify">
+		select
+			n.alarm_type as alarmType,
+			n.author_id as authorId,
+			n.create_time as createTime,
+			n.feedback,
+			n.id,
+			n.notify_mode as notifyMode,
+			n.quizid
+		from 
+			t_itemnotify n
+		where
+			n.id = #{id}
+	</select>
+	
+	<update id="update" parameterType="ItemNotify">
+		update t_itemnotify
+		set
+			alarm_type = #{alarmType},
+			author_id = #{authorId},
+			create_time = #{createTime},
+			feedback = #{feedback},
+			notify_mode = #{notifyMode},
+			quizid = #{quizid}
+		where
+			id = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="ItemNotify">
+		insert into t_itemnotify(
+			id,
+			alarm_type,
+			create_time,
+			feedback,
+			notify_mode,
+			quizid
+		) values (
+			#{id},
+			#{alarmType},
+			#{createTime},
+			#{feedback},
+			#{notify_mode},
+			#{quizid}
+		)
+	</insert>
+	
+	<insert id="insertNofityItems" parameterType="map">
+		insert into t_itemnotify_items (
+			items,
+			t_itemnotify
+		) values (
+			#{itemId},
+			#{notifyId}
+		)
+	</insert>
+</mapper>

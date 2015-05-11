@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.mapper.pacall.PtypeMapper">
+	
+	<select id="selectById" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.Ptype">
+		select
+			id,
+			name
+		from
+			pacall_ptype
+		where
+			id = #{id}
+	</select>
+	
+	<select id="selectByName" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.pacall.Ptype">
+		select
+			id,
+			name
+		from
+			pacall_ptype
+		where
+			name = #{name}
+	</select>
+</mapper>

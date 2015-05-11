@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.LogUserReadItemDao">
+
+	<sql id="allColumns">
+			log.id,
+			log.create_time as createTime,
+			log.item_id as itemId,
+			log.latitude,
+			log.longitude,
+			log.relog_item as relogItem,
+			log.speed,
+			log.user_id as userId
+	</sql>
+	
+	<select id="findListByUserId" parameterType="map" resultType="LogUserReadItem">
+		select 
+			<include refid="allColumns"/>
+		from
+			l_user_read_item log
+		where
+			log.user_id = #{userId}
+	</select>
+	
+	<select id="findListByUserAndItem" parameterType="map" resultType="LogUserReadItem">
+		select 
+			<include refid="allColumns"/>
+		from
+			l_user_read_item log
+		where
+			log.user_id = #{userId}
+			and log.item_id = #{itemId}
+	</select>
+	
+	<select id="countReadItemsOnDayByAuthors" parameterType="date" resultType="map">
+		select 
+			count(item.id) as itemNum, 
+			item.author_id as author
+		from l_user_read_item item
+		where 
+			year(item.create_time)=year(#{date})
+			and month(item.create_time)=month(#{date}) 
+			and day(item.create_time)=day(#{date})
+		group by 
+			item.author_id
+	</select>
+	
+	<select id="countReadItemsInWeekByAuthors" parameterType="map" resultType="map">
+		select 
+			count(item.id) as itemNum, 
+			item.author_id as author
+		from l_user_read_item item
+		where 
+		<![CDATA[
+			item.create_time >= #{start}
+			and item.create_time <=#{end}
+		]]>
+		group by 
+			item.author_id
+	</select>
+	
+	<insert id="insert" parameterType="LogUserReadItem">
+		insert into l_user_read_item(
+			id,
+			create_time,
+			item_id,
+			latitude,
+			longitude,
+			relog_item,
+			speed,
+			user_id
+		)values(
+			#{id},
+			#{createTime},
+			#{itemId},
+			#{latitude},
+			#{longitude},
+			#{relogItem},
+			#{speed},
+			#{userId}
+		)
+	</insert>
+	
+	<select id="findListByUserIdSelfRead" parameterType="string" resultType="LogUserReadItem">
+		select 
+			<include refid="allColumns"/>
+		from
+			l_user_read_item log
+				left join i
+					on log.item_id = i.id
+		where
+			log.user_id = #{userId}
+			and i.author_id = #{userId}
+	</select>
+	
+	<select id="findListByUserAndCreatedAfter" parameterType="map" resultType="LogUserReadItem">
+		select
+			<include refid="allColumns"/>
+		from
+			l_user_read_item log
+		where
+			log.user_id = #{userId}
+			<if test="lastDate!=null"><![CDATA[ and create_time>#{lastDate}]]></if>
+	</select>
+	
+	<select id="countByItemId" parameterType="string" resultType="long">
+		select
+			count(*)
+		from l_user_read_item log 
+		where log.item_id = #{itemId}
+	</select>
+	
+	<select id="countAll" resultType="long">
+		select
+			count(*)
+		from
+			l_user_read_item
+	</select>
+	
+	<select id="countByUserId" parameterType="string" resultType="long">
+		select
+			count(*)
+		from l_user_read_item log 
+		where log.user_id = #{userId}
+	</select>
+</mapper>

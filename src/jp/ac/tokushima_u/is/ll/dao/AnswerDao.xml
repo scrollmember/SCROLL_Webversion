@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.AnswerDao">
+
+	<insert id="insert" parameterType="Answer">
+		insert into t_answer(
+			id,
+			answer,
+			question_id,
+			author_id,
+			create_date
+		) values (
+			#{id},
+			#{answer},
+			#{questionId},
+			#{authorId},
+			#{createDate}
+		)
+	</insert>
+
+	<select id="countByUserId" parameterType="string" resultType="long">
+		select
+			count(*)
+		from
+			t_answer
+		where
+			author_id = #{userId}
+	</select>
+	
+	<select id="findListByQuestionId" parameterType="string" resultType="Answer">
+		select
+			id,
+			answer,
+			question_id as questionId,
+			author_id as authorId,
+			create_date as createDate
+		from
+			t_answer
+		where
+			question_id = #{questionId}
+		order by
+			create_date desc
+	</select>
+</mapper>

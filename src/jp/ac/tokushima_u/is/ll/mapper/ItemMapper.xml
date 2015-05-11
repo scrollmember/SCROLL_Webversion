@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.mapper.ItemMapper">
+	
+	<select id="selectItemWhereHasFile" parameterType="string" resultType="hashmap">
+		select
+			i.id as item_id,
+			f.id as file_id,
+			f.orig_name as file_name
+		from
+			t_item i
+				inner join t_file_data f
+					on i.image = f.id
+		where
+			i.disabled = 0
+			and i.relog_item is null
+	</select>
+	
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.PacallPhotoCompItemDao">
+	<delete id="deleteAllByPhotoId" parameterType="string">
+		delete
+		from
+			pacall_photo_comp_item
+		where
+			photo_id = #{photoId}
+	</delete>
+	
+	<insert id="insert" parameterType="PacallPhotoCompItem">
+		insert into pacall_photo_comp_item(
+			id,
+			photo_id,
+			item_id,
+			score
+		)values(
+			#{id},
+			#{photoId},
+			#{itemId},
+			#{score}
+		)
+	</insert>
+	
+	<select id="findListByPhotoId" parameterType="string" resultType="PacallPhotoCompItem">
+		select
+			id as id,
+			photo_id as photoId,
+			item_id as itemId,
+			score
+		from
+			pacall_photo_comp_item
+		where
+			photo_id = #{photoId}
+	</select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.mapper.pacall.SensedataMapper">
+
+	<insert id="insert" parameterType="jp.ac.tokushima_u.is.ll.entity.pacall.SenseData">
+		insert into `pacall_sensedata`(
+			`id`,
+			`folder_id`,
+			`index`,
+			`key`,
+			`date`,
+			`v1`,
+			`v2`,
+			`v3`,
+			`v4`
+		)values(
+			#{id},
+			#{folderId},
+			#{index},
+			#{key},
+			#{date},
+			#{v1},
+			#{v2},
+			#{v3},
+			#{v4}
+		);
+	</insert>
+	
+	<select id="findFirstDataByFolder" parameterType="string" resultType="date" >
+	   select
+	       date
+	   from
+	       pacall_sensedata
+	   where
+	       folder_id = #{folderId}
+	   order by
+	       date asc
+	   limit 1
+	</select>
+	<select id="findLastDataByFolder" parameterType="string" resultType="date">
+       select
+           date
+       from
+           pacall_sensedata
+       where
+           folder_id = #{folderId}
+       order by
+           date desc
+       limit 1
+	</select>
+</mapper>

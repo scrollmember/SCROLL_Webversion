@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.StatusDao">
+
+<select id="getUserJPWordlistByAuthorId" parameterType="string" resultType="StatusWord">
+	select t_item.id , t_item_title.content , t_japanesewordlist.level from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kanji=t_item_title.content and
+		t_item_title.content in (select kanji from t_japanesewordlist)
+	
+	union
+	
+	select t_item.id , t_item_title.content , t_japanesewordlist.level from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kana=t_item_title.content and
+		t_item_title.content in (select kana from t_japanesewordlist) order by level asc
+</select>
+
+<select id="getUserJPlevelcountByAuthorId" parameterType="string" resultType="hashmap">
+	select count(level) times, t_japanesewordlist.level , t_item.create_time from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kanji=t_item_title.content and
+		t_item_title.content in (select kanji from t_japanesewordlist)
+		group by level
+	
+	union
+	
+	select count(level) times, t_japanesewordlist.level , t_item.create_time from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kana=t_item_title.content and
+		t_item_title.content in (select kana from t_japanesewordlist)
+		group by level
+</select>
+
+<select id="getUserJPCreatetimeByAuthorId" parameterType="string" resultType="string">
+	select t_item.create_time from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kanji=t_item_title.content and
+		t_item_title.content in (select kanji from t_japanesewordlist)
+	
+	union
+	
+	select t_item.create_time from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kana=t_item_title.content and
+		t_item_title.content in (select kana from t_japanesewordlist)
+</select>
+
+<select id="getUserJPWordlistByAuthorIdDate" parameterType="map" resultType="StatusWord">
+select t_item.id , t_item_title.content , t_japanesewordlist.level from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kanji=t_item_title.content and
+		t_item_title.content in (select kanji from t_japanesewordlist) and
+		t_item.create_time between #{startdate} and #{enddate}
+	
+	union
+	
+	select t_item.id , t_item_title.content , t_japanesewordlist.level from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kana=t_item_title.content and
+		t_item_title.content in (select kana from t_japanesewordlist) and
+		t_item.create_time between #{startdate} and #{enddate} order by level asc
+</select>
+
+<select id="getUserJPCreatetimeByAuthorIdDate" parameterType="map" resultType="string">
+	select t_item.create_time from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kanji=t_item_title.content and
+		t_item_title.content in (select kanji from t_japanesewordlist) and
+		t_item.create_time between #{startdate} and #{enddate}
+	
+	union
+	
+	select t_item.create_time from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kana=t_item_title.content and
+		t_item_title.content in (select kana from t_japanesewordlist) and
+		t_item.create_time between #{startdate} and #{enddate}
+</select>
+
+<select id="getUserJPlevelcountByAuthorIdDate" parameterType="map" resultType="hashmap">
+	select count(level) times, t_japanesewordlist.level , t_item.create_time from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kanji=t_item_title.content and
+		t_item_title.content in (select kanji from t_japanesewordlist) and
+		t_item.create_time between #{startdate} and #{enddate}
+		group by level
+	
+	union
+	
+	select count(level) times, t_japanesewordlist.level , t_item.create_time from t_users , t_item , t_item_title , d_language ,t_japanesewordlist
+		where t_item.author_id=t_users.id and
+		t_item.id=t_item_title.item and
+		t_item_title.language=d_language.id and
+		d_language.id=(select id from d_language where name='Japanese') and
+		t_item.author_id=#{id} and
+		t_japanesewordlist.kana=t_item_title.content and
+		t_item_title.content in (select kana from t_japanesewordlist) and
+		t_item.create_time between #{startdate} and #{enddate}
+		group by level
+</select>
+
+</mapper>

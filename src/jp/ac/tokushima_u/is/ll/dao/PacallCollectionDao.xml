@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.PacallCollectionDao">
+	<select id="findListDTOByUserId" parameterType="map" resultType="jp.ac.tokushima_u.is.ll.dto.PacallCollectionDTO">
+		select
+			c.id, 
+			c.user_id as userId,
+			c.name, 
+			c.create_time as createTime,
+			count(p.id) as total,
+			min(p.photodate) as startDate,
+			max(p.photodate) as endDate
+		from
+			pacall_collection c
+				left join pacall_photo p
+					on c.id = p.collection_id
+		where
+			c.user_id = #{userId}
+		group by c.id
+		order by
+		<foreach collection="page.sort" item="order" separator=",">
+			${order.property} ${order.direction}
+		</foreach>
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="countByUserId" parameterType="string" resultType="long">
+		select
+			count(c.id)
+		from
+			pacall_collection c
+		where
+			c.user_id = #{userId}
+	</select>
+	
+	<insert id="insert" parameterType="PacallCollection">
+		insert into pacall_collection(
+			id, 
+			user_id,
+			name, 
+			create_time
+		)values(
+			#{id},
+			#{userId},
+			#{name},
+			#{createTime}
+		)
+	</insert>
+	
+	<select id="findById" parameterType="string" resultType="PacallCollection">
+		select
+			id, 
+			user_id as userId,
+			name,
+			create_time as createTime
+		from
+			pacall_collection
+		where
+			id = #{id}
+	</select>
+	
+	<delete id="delete" parameterType="string">
+		delete from pacall_collection
+		where
+			id = #{id}
+	</delete>
+</mapper>

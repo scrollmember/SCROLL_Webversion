@@ -1,0 +1,150 @@
+#WORDMAP {
+	position: relative;
+	margin: 0;
+	padding: 40px 0 0 0;
+	width: 100%;
+	min-width: 900px;
+	height: 440px;
+	background: #FFF;
+	overflow: hidden;
+	z-index: 100;
+	font-size: 12px;
+}
+
+#WORDMAP #wm_root_word,
+#WORDMAP #wm_root_id,
+#WORDMAP #wm_system_url,
+#WORDMAP #wm_image_path {
+	display: none;
+}
+
+#WORDMAP #wm_loading {
+	text-decoration: blink;
+	display: none;
+	font-size: 150%;
+	text-align: center;
+	line-height: 400px;
+	color: #FFF;
+	opacity: 0.7;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	position: absolute;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	z-index: 110;
+}
+
+#WORDMAP #wm_topbar {
+	width: 100%;
+	background: #AC7;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 5px;
+	text-align: center;
+	border-bottom: 1px solid #000;
+	z-index: 101;
+}
+
+#WORDMAP #wm_topbar a {
+	margin-right: 5px;
+}
+
+#WORDMAP #wm_topbar a.wm_unselected {
+	opacity: 0.5 !important;
+}
+
+#WORDMAP #wm_topbar a.wm_selected {
+	font-weight: bold;
+	border-color: #000 !important;
+}
+
+#WORDMAP #wm_info {
+	width: 15%;
+	height: 100%;
+	background: #AC7;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 10px 5px 0 5px;
+	text-align: center;
+	border-left: 1px solid #000;
+	z-index: 102;
+}
+
+
+#WORDMAP #wordarea {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	width: 85%;
+	height: 100%;
+	background: #FFF;
+	position: relative;
+	overflow: hidden;
+}
+
+#WORDMAP a.node {
+	text-align: center;
+	line-height: 2em;
+	padding: 0px 5px;
+	background: #88F;
+	border: 3px solid #FFF;
+	height: 2em !important;
+	min-width: 3em;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 10px;
+	box-shadow: 1px 1px 1px #000;
+	opacity: 1.0 !important;
+	font-size: 100%;
+	z-index: 101;
+	color: #FFF;
+	text-decoration: none;
+}
+
+
+#WORDMAP a.node.activeparent {
+	border-color: #666 !important;
+	padding: 0px 5px !important;
+	border-width: 3px !important;
+	background: #F44 !important;
+	font-size: 130% !important;
+	z-index: 102 !important;
+}
+
+#WORDMAP a.node.active {
+	padding: 0px 5px !important;
+	border-width: 3px !important;
+	background: #69C !important;
+	font-size: 150% !important;
+	z-index: 103 !important;
+}
+
+
+
+#WORDMAP a.node.wm_learned {
+	border-color: #000 !important;
+}
+
+#WORDMAP a.node.wm_syno,
+#WORDMAP a.node.wm_word {
+	background: #8A2;
+}
+
+#WORDMAP a.node.wm_hype,
+#WORDMAP a.node.wm_img {
+	background: #D66;
+}
+
+#WORDMAP a.node.wm_hypo,
+#WORDMAP a.node.wm_pos {
+	background: #F84;
+}
+
+#WORDMAP a.node.wm_time {
+	background: #48F;
+}

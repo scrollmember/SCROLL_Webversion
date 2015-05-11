@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.FileDataDao">
+	<select id="findById" parameterType="string" resultType="FileData">
+		select
+			id,
+			orig_name as origName,
+			file_type as fileType,
+			create_at as createAt,
+			mail_id as mailId,
+			md5,
+			file_id as fileId
+		from
+			t_file_data
+		where
+			id = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="FileData">
+		insert into t_file_data(
+			id,
+			orig_name,
+			file_type,
+			create_at,
+			mail_id,
+			md5,
+			file_id
+		)values(
+			#{id},
+			#{origName},
+			#{fileType},
+			#{createAt},
+			#{mailId},
+			#{md5},
+			#{fileId}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="string">
+		delete from 
+			t_file_data
+		where
+			id = #{id}
+	</delete>
+	
+	<select id="findListAll" resultType="FileData">
+		select
+			id,
+			orig_name as origName,
+			file_type as fileType,
+			create_at as createAt,
+			mail_id as mailId,
+			md5,
+			file_id as fileId
+		from
+			t_file_data
+	</select>
+	
+	<update id="updateFileId" parameterType="FileData">
+		update
+			t_file_data
+		set
+			file_id = #{fileId}
+		where
+			id = #{id}
+	</update>
+</mapper>

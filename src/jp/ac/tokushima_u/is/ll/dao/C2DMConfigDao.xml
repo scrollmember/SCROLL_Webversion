@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.C2DMConfigDao">
+
+	<select id="findById" resultType="C2DMConfig" parameterType="int">
+		select
+			c.auth_token as authToken,
+			c.id,
+			c.update_time as updateTime
+		from
+			t_c2dm_config c
+		where
+			c.id = #{id}
+	</select>
+	
+	<update id="update" parameterType="C2DMConfig">
+		update
+			t_c2dm_config
+		set
+			auth_token = #{authToken},
+			update_time = #{updateTime}
+		where
+			id = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="C2DMConfig" useGeneratedKeys="true" keyProperty="id">
+		insert into t_c2dm_config(
+			auth_token,
+			update_time
+		) values (
+			#{authToken},
+			#{updateTime}
+		)
+	</insert>
+</mapper>

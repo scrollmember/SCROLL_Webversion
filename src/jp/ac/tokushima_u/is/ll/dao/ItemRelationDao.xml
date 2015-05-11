@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemRelationDao">
+	<resultMap type="Item" id="itemResultMap">
+		<id column="id" property="id"/>
+		<result column="note" property="note"/>
+		<result column="barcode" property="barcode"/>
+		<result column="qrcode" property="qrcode"/>
+		<result column="rfid" property="rfid"/>
+		<result column="image" property="image"/>
+		<result column="place" property="place"/>
+		<result column="item_lat" property="itemLat"/>
+		<result column="item_lng" property="itemLng"/>
+		<result column="speed" property="speed"/>
+		<result column="item_zoom" property="itemZoom"/>
+		<result column="disabled" property="disabled"/>
+		<result column="location_based" property="locationBased"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="author_id" property="authorId"/>
+		<result column="share_level" property="shareLevel"/>
+		<result column="rating" property="rating"/>
+		<result column="teacher_confirm" property="teacherConfirm"/>
+		<result column="wrongtimes" property="wrongtimes"/>
+		<result column="righttimes" property="righttimes"/>
+		<result column="pass" property="pass"/>
+		<result column="relog_item" property="relogItem"/>
+		<result column="category" property="category"/>
+		<result column="question_id" property="questionId"/>
+		<result column="question_resolved" property="questionResolved"/>
+	</resultMap>
+	
+	<resultMap type="map" id="findListRelatedItemRAWResultMap">
+		<id column="id" property="id"/>
+		<result column="synset" property="synset"/>
+		<result column="synset0" property="synset0"/>
+		<result column="dist" property="dist"/>
+		<association property="item" javaType="Item" resultMap="itemResultMap" />
+	</resultMap>
+	
+	<select id="findListRelatedItemRAW" parameterType="map" resultMap="findListRelatedItemRAWResultMap" statementType="CALLABLE">
+		call get_word_dist_list(#{name}, #{page}, #{perpage}, #{deep}, #{mode}, #{id})
+	</select>
+	
+	<resultMap type="map" id="findListSimilarTimeRAWResultMap">
+		<id column="id" property="id"/>
+		<result column="dist" property="dist"/>
+		<association property="item" javaType="Item" resultMap="itemResultMap" />
+	</resultMap>
+	
+	<select id="findListSimilarTimeRAW" parameterType="map" resultMap="findListSimilarTimeRAWResultMap">
+		SELECT
+			I.*, abs(unix_timestamp(concat('1970-01-01 ',substr(I.create_time,12,8)))-T.mtime) as dist 
+			FROM (
+				SELECT
+					id, unix_timestamp(concat('1970-01-01 ',substr(create_time,12,8))) AS mtime,
+					(substr(create_time,12,2)+23)%24 AS h1,(substr(create_time,12,2)) AS h2,(substr(create_time,12,2)+1 )%24 AS h3
+					FROM t_item WHERE id = #{id}
+				) AS T
+				INNER JOIN t_item AS I ON (substr(I.create_time,12,2) IN (T.h1, T.h2, T.h3) )
+				AND T.id != I.id 
+				ORDER BY dist ASC
+		LIMIT #{pageRequest.pageSize} OFFSET #{pageRequest.offset}
+	</select>
+	
+	<resultMap type="map" id="findListSimilarImageByItersecRAWMap">
+		<id column="id" property="id"/>
+		<result column="sum" property="sum"/>
+		<association property="item" javaType="Item" resultMap="itemResultMap" />
+	</resultMap>
+	
+	<select id="findListSimilarImageByItersecRAW" parameterType="map" resultMap="findListSimilarImageByItersecRAWMap">
+		SELECT IT.*, ID.sum
+			FROM (
+				SELECT
+					IH2.id, 
+					SUM(CASE WHEN IH1.data>IH2.data THEN IH2.data ELSE IH1.data END) AS sum 
+				FROM 		t_image_histogram AS IH1 
+				INNER JOIN 	t_image_histogram AS IH2 
+					ON (IH2.hist = IH1.hist AND IH2.hist != -1) 
+				WHERE IH1.id = #{id} AND IH2.id != IH1.id 
+				GROUP BY IH2.id 
+				ORDER BY sum DESC 
+				LIMIT #{pageRequest.pageSize} OFFSET #{pageRequest.offset}
+			) AS ID
+			LEFT JOIN t_item AS IT ON (IT.id = ID.id)
+	</select>
+	
+	<select id="findListNotRegisterredItems" resultMap="itemResultMap">
+		SELECT DISTINCT
+			I.*
+		FROM t_item AS I
+			LEFT JOIN t_image_histogram AS IH ON I.id = IH.id
+		WHERE I.image is NOT NULL AND IH.id is NULL
+		ORDER BY I.create_time DESC
+		LIMIT 10
+	</select>
+</mapper>

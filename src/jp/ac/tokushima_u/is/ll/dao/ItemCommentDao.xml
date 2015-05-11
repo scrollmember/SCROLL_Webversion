@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemCommentDao">
+
+	<insert id="insert" parameterType="ItemComment">
+		insert into t_item_comment(
+			id,
+			comment,
+			create_time,
+			update_time,
+			item_id,
+			user_id
+		)values(
+			#{id},
+			#{comment},
+			#{createTime},
+			#{updateTime},
+			#{itemId},
+			#{userId}
+		)
+	</insert>
+
+	<select id="findListByItemId" parameterType="string" resultType="ItemComment">
+		select
+			id,
+			comment,
+			create_time as createTime,
+			update_time as updateTime,
+			item_id as itemId,
+			user_id as userId
+		from
+			t_item_comment
+		where
+			item_id = #{itemId}
+	</select>
+</mapper>

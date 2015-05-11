@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.StudyAreaDao">
+	
+	<select id="findListByArea" parameterType="map" resultType="StudyArea">
+	<![CDATA[
+		select
+			sa.author_id as authorId,
+			sa.create_date as createDate,
+			sa.disabled,
+			sa.id,
+			sa.maxlat,
+			sa.maxlng,
+			sa.minlat,
+			sa.minlng
+		from
+			t_studyarea sa
+		where
+			sa.author_id = #{authorId}
+			and sa.maxlat > #{lat}
+			and sa.minlat < #{lat}
+			and sa.maxlng > #{lng}
+			and sa.minlng < #{lng}
+			and sa.disabled = 0
+	]]>
+	</select>
+	
+	<select id="findListByAuthor" parameterType="string" resultType="StudyArea">
+		select
+			sa.author_id as authorId,
+			sa.create_date as createDate,
+			sa.disabled,
+			sa.id,
+			sa.maxlat,
+			sa.maxlng,
+			sa.minlat,
+			sa.minlng
+		from
+			t_studyarea sa
+		where
+			sa.author_id = #{authorId}
+			and sa.disabled = 0
+	</select>
+	
+	<select id="findListByExample" parameterType="StudyArea" resultType="StudyArea">
+		select
+			sa.author_id as authorId,
+			sa.create_date as createDate,
+			sa.disabled,
+			sa.id,
+			sa.maxlat,
+			sa.maxlng,
+			sa.minlat,
+			sa.minlng
+		from
+			t_studyarea sa
+		<where>
+			<if test="authorId!=null">and sa.author_id = #{authorId}</if>
+			<if test="createDate!=null">and sa.create_date = #{createDate}</if>	
+			<if test="disabled!=null">and sa.disabled = #{disabled}</if>
+			<if test="id!=null">and sa.id = #{id}</if>
+			<if test="maxlat!=null">and sa.maxlat = #{maxlat}</if>
+			<if test="maxlng!=null">and sa.maxlng = #{maxlng}</if>
+			<if test="minlat!=null">and sa.minlat = #{minlat}</if>
+			<if test="minlng!=null">and sa.minlng = #{minlng}</if>
+		</where>
+	</select>
+	
+	<update id="updateSetDisabledByAuthorId" parameterType="map">
+		update
+			t_studyarea
+		set
+			disabled = #{disabled}
+		where
+			author_id = #{authorId}
+	</update>
+	
+	<insert id="insert" parameterType="StudyArea">
+		insert into t_studyarea(
+			id,
+			create_date,
+			disabled,
+			maxlat,
+			maxlng,
+			minlat,
+			minlng,
+			author_id
+		)values(
+			#{id},
+			#{createDate},
+			#{disabled},
+			#{maxlat},
+			#{maxlng},
+			#{minlat},
+			#{minlng},
+			#{authorId}
+		)
+	</insert>
+	
+	<select id="findListByAuthorAndCreateAfter" parameterType="map" resultType="StudyArea">
+		select
+			sa.author_id as authorId,
+			sa.create_date as createDate,
+			sa.disabled,
+			sa.id,
+			sa.maxlat,
+			sa.maxlng,
+			sa.minlat,
+			sa.minlng
+		from
+			t_studyarea sa
+		where
+			sa.author_id = #{authorId}
+			and sa.disabled = 0
+			<if test="form!=null"><![CDATA[ and sa.create_date > #{from} ]]></if>
+	</select>
+	
+</mapper>

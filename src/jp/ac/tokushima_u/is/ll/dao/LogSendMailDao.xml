@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.LogSendMailDao">
+	
+	<insert id="insert" parameterType="LogSendMail">
+		insert into l_send_mail(
+			id,
+			address,
+			send_id as sendId,
+			send_time as sendTime
+		) values (
+			#{id},
+			#{address},
+			#{sendId},
+			#{sendTime}
+		)
+	</insert>
+	
+	<select id="findListByPeriod" parameterType="map" resultType="LogSendMail">
+		select 
+			id,
+			address,
+			send_id as sendId,
+			send_time as sendTime
+		from
+			l_send_mail
+		where
+			address = #{address}
+			and send_id = #{sendId}
+			<![CDATA[
+			and send_time <= #{end}
+			and send_time >= #{start}
+			]]>
+	</select>
+</mapper>

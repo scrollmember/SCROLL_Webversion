@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.CycleTimeDao">
+	<delete id="delteByAuthorAndBeforeCheckday" parameterType="map">
+	<![CDATA[ 
+		delete from t_cycletime 
+		where 
+			author_id = #{authorId} 
+			and checkday < #{checkday}
+	]]>
+	</delete>
+	
+	<insert id="insert" parameterType="CycleTime" useGeneratedKeys="true" keyProperty="id">
+		insert into t_cycletime(
+			author_id,
+			checkday,
+			checktime
+		) values (
+			#{authorId},
+			#{checkday},
+			#{checktime}
+		)
+	</insert>
+	
+	<select id="findByAuthorAndCheckday" parameterType="map" resultType="CycleTime" >
+		select
+			c.author_id as authorId,
+			c.checkday as checkday,
+			c.checktime as checktime,
+			c.id as id
+		from
+			t_cycletime c
+		order by c.checktime desc
+	</select>
+</mapper>

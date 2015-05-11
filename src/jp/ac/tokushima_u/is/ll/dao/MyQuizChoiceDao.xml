@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.MyQuizChoiceDao">
+
+	<select id="findListByMyQuizId" parameterType="string" resultType="MyQuizChoice">
+		select
+			mqc.id,
+			mqc.content,
+			mqc.note,
+			mqc.number,
+			mqc.item_id as itemId,
+			mqc.myquiz_id as myquizId
+		from
+			t_myquiz_choice mqc
+		where
+			mqc.myquiz_id = #{myQuizId}
+	</select>
+	
+	<insert id="insert" parameterType="MyQuizChoice">
+		insert into	t_myquiz_choice(
+			id,
+			content,
+			note,
+			number,
+			item_id,
+			myquiz_id
+		)values(
+			#{id},
+			#{content},
+			#{note},
+			#{number},
+			#{itemId},
+			#{myquizId}
+		)
+	</insert>
+	
+	<select id="getQuizanalysiswronghistory" parameterType="string" resultType="Quizanalysis">
+	select t1.id,t1.answerstate,t1.create_date,t1.latitude,t1.longitude,t1.author_id,t1.item_id,t2.content,t2.language,t3.image from t_myquiz as t1,t_item_title as t2,t_item as t3 where 
+	t1.author_id=#{authorid} and t1.answerstate="0" and t2.item=t1.item_id and t1.item_id=t3.id and t2.language="ff808181257c178801257c186ab80002" order by create_date desc
+	</select>
+	
+	<select id="getalluserquizdata" resultType="Quizanalysis">
+	   select t1.answerstate,t2.nickname,count(t1.answerstate) as total from t_myquiz as t1, t_users as t2 where t1.author_id=t2.id and not t1.answerstate="-1" group by t2.nickname,t1.answerstate order by t2.nickname desc
+	    
+	</select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.FutureDao" >
+
+    <insert
+        id="insert"
+        parameterType="Future_data" >insert into t_learning_futuredata(
+			id,
+			action,
+			aite,
+			image,
+			important,
+			ninzu,
+			nitizi,
+			old,
+			opinion,
+			place,
+			user_name,
+			nitizi_end,
+			groupshow,
+			interaction,
+			comentary
+			)values(
+			#{id},
+			#{action},
+			#{aite},
+			#{image},
+			#{important},
+			#{ninzu},
+			#{nitizi},
+			#{old},
+			#{opinion},
+			#{place},
+			#{user_name},
+			#{nitizi_end},
+			#{groupshow},
+			#{interaction},
+			#{comentary}
+			)
+</insert>
+
+</mapper>

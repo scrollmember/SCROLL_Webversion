@@ -1,0 +1,18 @@
+﻿@type Database Change Log
+@author Dameng
+@Date 2011/4/25
+
+Table: t_item
+sql:
+update t_item
+set wrongtimes = 0
+where wrongtimes is null;
+
+update t_item
+set righttimes = 0
+where righttimes is null;
+
+update t_item
+set pass = 0
+where pass is null;
+

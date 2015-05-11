@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.PacallSimilarDao">
+	<select id="findByUnique" parameterType="map" resultType="PacallSimilar">
+		select
+			id,
+			photo_id as photoId,
+			item_id as itemId,
+			reason,
+			extra
+		from
+			pacall_similar
+		where
+			photo_id = #{photoId}
+			and item_id = #{itemId}
+		limit 1
+	</select>
+	
+	<insert id="insert" parameterType="PacallSimilar">
+		insert into pacall_similar(
+			id,
+			photo_id,
+			item_id,
+			reason,
+			extra
+		) values (
+			#{id},
+			#{photoId},
+			#{itemId},
+			#{reason},
+			#{extra}
+		)
+	</insert>
+	
+	<resultMap id="pacallSimilarMap" type="PacallSimilar">
+		<id property="id" column="id" />
+		<result property="photoId" column="photoId"/>
+		<result property="itemId" column="itemId"/>
+		<result property="reason" column="reason"/>
+		<result property="extra" column="extra"/>
+		<association property="item" javaType="jp.ac.tokushima_u.is.ll.dto.ItemTitleDTO" column="itemId" select="jp.ac.tokushima_u.is.ll.dao.ItemDao.findDTOById" />
+	</resultMap>
+	
+	<select id="findListByPhotoIdByUser" parameterType="map" resultMap="pacallSimilarMap">
+		select
+			s.id,
+			s.photo_id as photoId,
+			s.item_id as itemId,
+			s.reason,
+			s.extra
+		from
+			pacall_similar s
+				left join t_item i
+					on s.item_id = i.id
+		where
+			s.photo_id = #{photoId}
+			and i.author_id = #{userId}
+		order by i.create_time desc
+	</select>
+	
+	<select id="findListByPhotoIdByOthers" parameterType="map" resultMap="pacallSimilarMap">
+		select
+			s.id,
+			s.photo_id as photoId,
+			s.item_id as itemId,
+			s.reason,
+			s.extra
+		from
+			pacall_similar s
+				left join t_item i
+					on s.item_id = i.id
+		where
+			s.photo_id = #{photoId}
+			and i.author_id != #{userId}
+		order by i.create_time desc
+	</select>
+	
+	<delete id="deleteByPhotoId" parameterType="string">
+		delete
+		from
+			pacall_similar
+		where
+			photo_id=#{photoId}
+	</delete>
+</mapper>

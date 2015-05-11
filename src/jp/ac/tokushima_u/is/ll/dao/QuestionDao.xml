@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.QuestionDao">
+	<select id="findListNotAnsweredForNativeSpeaker" parameterType="map" resultType="Question">
+		select
+			q1.id,
+			q1.content,
+			q1.language_id as languageId
+		from(
+				select
+					q.*, i.create_time
+				from
+					t_question q
+						left join t_answer a
+							on q.id = a.question_id
+						left join t_item i
+							on i.question_id = q.id
+				 group by q.id
+				 having count(a.id)=0
+			) as q1
+		where
+			q1.language_id
+			in (
+				select 
+					mylangs.my_langs
+				from
+					t_users_my_langs mylangs
+				where
+					mylangs.t_users = #{userId}
+			)
+		order by
+			q1.create_time desc
+		limit #{pageRequest.pageSize} offset #{pageRequest.offset}
+	</select>
+	
+	<select id="findListAnsweredForLearner" parameterType="map" resultType="Question">
+	<![CDATA[
+		select
+			q1.id,
+			q1.content,
+			q1.language_id as languageId
+		from(
+				select
+					q.*, i.create_time
+				from
+					t_question q
+						left join t_answer a
+							on q.id = a.question_id
+						left join t_item i
+							on i.question_id = q.id
+				 group by q.id
+				 having count(a.id)>0
+			) as q1
+		where
+			q1.language_id
+			in (
+				select 
+					studylangs.study_langs
+				from
+					t_users_study_langs studylangs
+				where
+					studylangs.t_users = #{userId}
+			)
+		order by
+			q1.create_time desc
+		limit #{pageRequest.pageSize} offset #{pageRequest.offset}
+	]]>
+	</select>
+	
+	<select id="findListAnsweredForAuthor" parameterType="map" resultType="Question">
+	<![CDATA[
+		select
+			q.id,
+			q.content,
+			q.language_id as languageId
+		from
+			t_question q
+				left join t_answer a
+					on q.id = a.question_id
+				left join t_item i
+					on i.question_id = q.id
+		where
+			i.author_id = #{userId}
+		group by q.id
+		having count(a.id)>0
+		order by
+			i.create_time desc
+		limit #{pageRequest.pageSize} offset #{pageRequest.offset}
+	]]>
+	</select>
+	
+	<select id="findListAllToAnswer" parameterType="string" resultType="Question">
+		select
+			q1.id,
+			q1.content,
+			q1.language_id as languageId
+		from(
+				select
+					q.*, i.create_time
+				from
+					t_question q
+						left join t_item i
+							on i.question_id = q.id
+			) as q1
+		where
+			q1.language_id
+			in (
+				select 
+					mylangs.my_langs
+				from
+					t_users_my_langs mylangs
+				where
+					mylangs.t_users = #{userId}
+			)
+		order by
+			q1.create_time desc
+	</select>
+	
+	<insert id="insert" parameterType="Question">
+		insert into t_question(
+			id,
+			content,
+			language_id
+		) values (
+			#{id},
+			#{content},
+			#{languageId}
+		)
+	</insert>
+	
+	<delete id="deleteById" parameterType="string">
+		delete from 
+			t_question
+		where
+			id = #{id}
+	</delete>
+	
+	<select id="findById" parameterType="string" resultType="Question">
+		select
+			id,
+			content,
+			language_id as languageId
+		from
+			t_question
+		where
+			id = #{id}
+	</select>
+	
+	<select id="findMapListForToAnswer" parameterType="map" resultType="map">
+		select
+			count(answer.id) as answeredCount, 
+			item.create_time as createTime, 
+			item.id as itemId, 
+			question.content as content, 
+			users.nickname as nickname
+		from
+			t_question question
+				inner join t_item item
+					on item.question_id = question.id
+				left join t_users users
+						on item.author_id = users.id
+				left join t_answer answer
+					on answer.question_id = question.id
+		where
+			(item.question_resolved is null 
+			or item.question_resolved = false)
+			and question.language_id in
+			<foreach collection="langs" item="lang" open="(" close=")" separator=",">
+				#{lang.id}
+			</foreach>
+		group by 
+			question.id
+		order by
+			item.create_time desc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="findMapListForToStudy" parameterType="map" resultType="map">
+		select
+			count(answer.id) as answeredCount, 
+			max(answer.create_date) as lastAnswerTime,
+			item.create_time as createTime, 
+			item.id as itemId, 
+			question.content as content, 
+			users.nickname as nickname
+		from
+			t_question question
+				inner join t_item item
+					on item.question_id = question.id
+				left join t_users users
+					on item.author_id = users.id
+				left join t_answer answer
+					on answer.question_id = question.id
+		where
+			question.language_id in
+			<foreach collection="langs" item="lang" open="(" close=")" separator=",">
+				#{lang.id}
+			</foreach>
+		group by 
+			question.id
+		having count(answer.id)>0
+		order by
+			item.create_time desc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+	
+	<select id="findMapListForLatestAnsweredForAuthor" parameterType="map" resultType="map">
+		select
+			answer.create_date as answerTime,
+			item.create_time as createTime, 
+			item.id as itemId, 
+			question.content as content, 
+			users.nickname as nickname
+		from
+			t_question question
+				left join t_item item
+					left join t_users users
+						on item.author_id = users.id
+					on item.question_id = question.id
+				inner join t_answer answer
+					on answer.question_id = question.id
+		where
+			item.author_id = #{userId}
+		order by
+			answer.create_date desc
+		limit #{page.pageSize} offset #{page.offset}
+	</select>
+</mapper>

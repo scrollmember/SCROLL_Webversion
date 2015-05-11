@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.StudyTimeDao">
+	
+	<select id="findListByArea" parameterType="map" resultType="StudyTime">
+	<![CDATA[
+		select
+			st.author_id as authorId,
+			st.create_date as createDate,
+			st.disabled,
+			st.id,
+			st.starttime,
+			st.endtime
+		from
+			t_studytime st
+		where
+			st.author_id = #{authorId}
+			and st.endtime > #{time}
+			and st.starttime < #{time}
+			and st.disabled = 0
+	]]>
+	</select>
+	
+	<select id="findListByAuthor" parameterType="map" resultType="StudyTime">
+		select
+			st.author_id as authorId,
+			st.create_date as createDate,
+			st.disabled,
+			st.id,
+			st.starttime,
+			st.endtime
+		from
+			t_studytime st
+		where
+			st.author_id = #{authorId}
+			and st.disabled = 0
+	</select>
+	
+	<select id="findListByAuthorAndCreatedAfter" parameterType="map" resultType="StudyTime">
+		select
+			st.author_id as authorId,
+			st.create_date as createDate,
+			st.disabled,
+			st.id,
+			st.starttime,
+			st.endtime
+		from
+			t_studytime st
+		where
+			st.author_id = #{authorId}
+			and st.disabled = 0
+			<if test="from!=null"><![CDATA[ and st.create_date>#{from}]]></if>
+	</select>
+	
+	<update id="updateDisabledByAuthor" parameterType="map">
+		update t_studytime
+		set
+			disabled = #{disabled}
+		where
+			author_id = #{authorId}
+	</update>
+	
+	<insert id="insert" parameterType="StudyTime">
+		insert into t_studytime(
+			author_id,
+			create_date,
+			disabled,
+			id,
+			starttime,
+			endtime
+		)values(
+			#{authorId},
+			#{createDate},
+			#{disabled},
+			#{id},
+			#{starttime},
+			#{endtime}
+		)
+	</insert>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.QuestionaryHabitDao">
+	
+	<insert id="insert" parameterType="QuestionaryHabit">
+		insert into q_learning_habit(
+			id,
+			create_time,
+			geoscore,
+			speedscore,
+			timescore,
+			user_id,
+			georecommend,
+			timerecommend
+		)values(
+			#{id},
+			#{createTime},
+			#{geoscore},
+			#{speedscore},
+			#{timescore},
+			#{userId},
+			#{georecommend},
+			#{timerecommend}
+		)
+	</insert>
+	<update id="update" parameterType="QuestionaryHabit">
+		update q_learning_habit
+		set
+			create_time = #{createTime},
+			geoscore = #{geoscore},
+			speedscore = #{speedscore},
+			timescore = #{timescore},
+			user_id = #{userId},
+			georecommend = #{georecommend},
+			timerecommend = #{timerecommend}
+		where
+			id = #{id}
+	</update>
+	
+	<select id="findListForEvaluation" parameterType="map" resultType="QuestionaryHabit">
+		select
+			id,
+			create_time as createTime,
+			geoscore,
+			speedscore,
+			timescore,
+			user_id as userId,
+			georecommend,
+			timerecommend
+		from
+			q_learning_habit
+		where
+			user_id = #{userId}
+			<![CDATA[and create_time > #{createTime}]]>
+		order by
+			create_time desc
+	</select>
+</mapper>

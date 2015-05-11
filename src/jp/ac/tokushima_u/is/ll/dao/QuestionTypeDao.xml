@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.QuestionTypeDao">
+
+	<select id="findListByItemId" parameterType="string" resultType="QuestionType">
+		select
+			qt.id,
+			qt.checked,
+			qt.info,
+			qt.orderby,
+			qt.title
+		from
+			t_item_question_type it
+				left join d_questiontype qt
+					on  it.questiontype_id = qt.id
+		where
+			it.item_id = #{itemId}
+	</select>
+	
+	<select id="findListAll" resultType="QuestionType">
+		select
+			qt.id,
+			qt.checked,
+			qt.info,
+			qt.orderby,
+			qt.title
+		from
+			d_questiontype qt
+		order by
+			qt.orderby asc
+	</select>
+	
+	<select id="findById" parameterType="long" resultType="QuestionType">
+		select
+			qt.id,
+			qt.checked,
+			qt.info,
+			qt.orderby,
+			qt.title
+		from
+			d_questiontype qt
+		where
+			qt.id =#{id}
+	</select>
+</mapper>

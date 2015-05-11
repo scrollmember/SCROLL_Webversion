@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.CategoryDao">
+
+	<sql id="allColumns">
+		c.id,
+		c.name,
+		c.note,
+		c.parent 
+	</sql>
+	
+	<resultMap type="jp.ac.tokushima_u.is.ll.dto.CategoryDTO" id="resultCategoryDTO">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="note" property="note"/>
+		<result column="parent" property="parent"/>
+		<collection property="children" ofType="jp.ac.tokushima_u.is.ll.dto.CategoryDTO" column="id" select="findListDTOByParent"></collection>
+	</resultMap>
+
+	<insert id="insert" parameterType="Category">
+		insert into t_category(
+			id,
+			name,
+			note,
+			parent
+		) values (
+			#{id},
+			#{name},
+			#{note},
+			#{parent}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="string">
+		delete from t_category
+		where
+			id = #{id}
+	</delete>
+	
+	<select id="findCountItemsInCategory" parameterType="string"></select>
+	
+	<select id="findById" parameterType="string" resultType="Category">
+		select 
+			<include refid="allColumns"/>
+		from
+			t_category c
+		where
+			c.id = #{id}
+	</select>
+	
+	<select id="findAllRoots" resultMap="resultCategoryDTO">
+		select
+			<include refid="allColumns"/>
+		from 
+			t_category c
+		where
+			c.parent is null
+	</select>
+	
+	<select id="findListByNameAndParent" parameterType="map" resultType="Category">
+		select
+			<include refid="allColumns"/>
+		from
+			t_category c
+		where
+			c.name = #{name}
+			<if test="parentId!=null">
+			and c.parent = #{parentId}
+			</if>
+	</select>
+	
+	<select id="findListByUserId" parameterType="string" resultType="Category">
+		select
+			<include refid="allColumns"/>
+		from
+			t_users_my_category_list uc
+				left join t_category c
+					on uc.my_category_list = c.id
+		where
+			uc.t_users = #{userId}
+	</select>
+	
+	<select id="findListDTOByParent" parameterType="string" resultMap="resultCategoryDTO">
+		select
+			<include refid="allColumns"/>
+		from
+			t_category c
+		where
+			c.parent = #{id}
+	</select>
+	
+	<select id="findListDTOByUserId" parameterType="string" resultMap="resultCategoryDTO">
+		select
+			<include refid="allColumns"/>
+		from
+			t_users_my_category_list uc
+				left join t_category c
+					on uc.my_category_list = c.id
+		where
+			uc.t_users = #{userId}
+	</select>
+	
+	<select id="findDTOById" parameterType="string" resultMap="resultCategoryDTO">
+		select
+			<include refid="allColumns"/>
+		from
+			t_category c
+		where
+			c.id = #{id}
+	</select>
+	
+	<insert id="insertUsersMyCategoryList" parameterType="map">
+		insert into t_users_my_category_list(
+			t_users,
+			my_category_list
+		)values(
+			#{userId},
+			#{categoryId}
+		)
+	</insert>
+	
+	<delete id="deleteAllUsersMyCategoryListByUserId" parameterType="string">
+		delete from
+			t_users_my_category_list
+		where
+			t_users = #{userId}
+	</delete>
+</mapper>

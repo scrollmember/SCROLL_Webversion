@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.PacallUsageDao">
+
+	<select id="findById" parameterType="string" resultType="PacallUsage">
+		select
+			collection_id as collectionId,
+			upload_start as uploadStart,
+			upload_end as uploadEnd,
+			compose_start as composeStart,
+			compose_end as composeEnd,
+			analyze_start as analyzeStart,
+			analyze_end as analyzeEnd
+		from
+			pacall_usage
+		where
+			collection_id = #{collectionId}
+	</select>
+	
+	<insert id="insert" parameterType="PacallUsage">
+		insert into pacall_usage(
+			collection_id,
+			upload_start,
+			upload_end,
+			compose_start,
+			compose_end,
+			analyze_start,
+			analyze_end
+		)values(
+			#{collectionId},
+			#{uploadStart},
+			#{uploadEnd},
+			#{composeStart},
+			#{composeEnd},
+			#{analyzeStart},
+			#{analyzeEnd}
+		)
+	</insert>
+	
+	<update id="update" parameterType="PacallUsage">
+		update pacall_usage
+		<set>
+			<if test="uploadStart!=null">upload_start=#{uploadStart},</if>
+			<if test="uploadEnd!=null">upload_end=#{uploadEnd},</if>
+			<if test="composeStart!=null">compose_start=#{composeStart},</if>
+			<if test="composeEnd!=null">compose_end=#{composeEnd},</if>
+			<if test="analyzeStart!=null">analyze_start=#{analyzeStart},</if>
+			<if test="analyzeEnd!=null">analyze_end=#{analyzeEnd},</if>
+		</set>
+		where
+			collection_id = #{collectionId}
+	</update>
+</mapper>

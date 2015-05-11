@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.WordNetDao">
+	<select id="findListNearSynonymAndLearningFlag" parameterType="map" resultType="map">
+		SELECT 
+			DISTINCT W2.lemma, 
+			W2.pos, 
+			W2.lang
+			CASE WHEN item.author_id IS NULL THEN '0' ELSE '1' END AS learned
+		from 
+			wn_word AS W
+				LEFT JOIN wn_sense AS S USING(`wordid`)
+				LEFT JOIN wn_sense AS S2 USING(`synset`)
+				LEFT JOIN wn_word AS W2 ON W2.wordid = S2.wordid
+				LEFT JOIN (
+					SELECT
+						DISTINCT author_id,
+						en_title
+					FROM t_item 
+					WHERE author_id = #{userId}
+				) AS item 
+					ON item.en_title = W2.lemma
+		WHERE 
+			W.lemma = #{word} 
+			<![CDATA[AND S2.lexid < 10 
+			AND S2.freq < 10]]>
+			AND W2.lemma != #{word} 
+			AND W2.lang = 'eng'
+		ORDER BY 
+			W2.wordid ASC
+	</select>
+	
+	<select id="findListNearSynonym" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.Word">
+		SELECT DISTINCT
+			W2.*
+		from 
+			wn_word AS W
+				LEFT JOIN wn_sense AS S USING(`wordid`)
+				LEFT JOIN wn_sense AS S2 USING(`synset`)
+				LEFT JOIN wn_word AS W2 ON W2.wordid = S2.wordid
+		WHERE 
+			W.lemma = #{word} 
+			AND S.lang = 'eng'
+			AND W2.lemma != #{word} 
+			AND W2.lang = 'eng'
+		ORDER BY 
+			W2.wordid ASC
+	</select>
+	
+	<select id="findListNearSynonymBySynset" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.Word">
+		SELECT 
+			DISTINCT W2.*
+		from 
+			wn_sense AS S"
+				LEFT JOIN wn_word AS W2 ON W2.wordid = S.wordid
+		WHERE
+			S.synset = #{synset}
+		ORDER BY 
+			W2.wordid ASC
+	</select>
+	
+	<select id="findListSenseListByWord" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.Sense">
+		SELECT 
+			DISTINCT {S.*}
+		FROM 
+			(
+			SELECT * 
+			FROM 
+				wn_word 
+			WHERE 
+				lemma = #{word}
+			) AS W
+				INNER JOIN wn_sense AS S USING(`wordid`)
+		ORDER BY 
+			S.wordid,S.lexid,S.freq
+	</select>
+	
+	<select id="findListSynsetDefByWord" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.SynsetDef">
+		SELECT 
+			DISTINCT {SD.*}
+		FROM 
+			(
+			SELECT * 
+			FROM wn_word 
+			WHERE lemma = #{word}
+			) AS W
+				INNER JOIN wn_sense AS S USING(`wordid`)
+				INNER JOIN wn_synset_def AS SD
+					ON (S.synset = SD.synset AND binary SD.lang IN ('eng', 'jpn'))
+		ORDER BY 
+			S.wordid,S.lexid,S.freq
+	</select>
+	
+	<select id="findListSynsetDefBySynset" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.SynsetDef">
+		SELECT 
+			DISTINCT * 
+		FROM wn_synset_def
+		WHERE
+			synset = #{synset} 
+			AND binary lang IN ('eng', 'jpn')
+		ORDER BY sid
+	</select>
+	
+	<select id="findSynlinkAndWordBySynset" parameterType="string" resultType="map">
+		SELECT 
+			DISTINCT SL.*, W.*
+		from 
+			wn_synlink AS SL
+				LEFT JOIN wn_sense AS S 
+					ON SL.synset2 = S.synset
+				LEFT JOIN wn_word AS W 
+					ON S.wordid = W.wordid
+		WHERE 
+			SL.synset1 = #{synset} AND S.lang = 'eng'
+		ORDER BY 
+			SL.id,W.wordid
+	</select>
+	
+	<select id="findListSynsetByLink" parameterType="map" resultType="map">
+		SELECT 
+			DISTINCT SY.name, 
+			SY.pos, 
+			SY.src,
+			CASE WHEN item.author_id IS NULL THEN '0' ELSE '1' END AS learned
+		from 
+			wn_word AS W
+				LEFT JOIN wn_sense AS S USING(`wordid`)
+				LEFT JOIN wn_synlink AS SL ON SL.synset1 = S.synset
+				LEFT JOIN wn_synset AS SY ON SL.synset2 = SY.synset
+				LEFT JOIN (
+					SELECT DISTINCT author_id,en_title
+					FROM t_item WHERE author_id = #{userId}
+				) AS item ON item.en_title = SY.name
+		<![CDATA[WHERE W.lemma = #{word} AND S.lexid < 10 AND S.freq < 10 AND SL.link = #{link}]]>
+		ORDER BY SY.id ASC
+	</select>
+	
+	<select id="findSynsetByLink" parameterType="map" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.Synset">
+		SELECT DISTINCT
+			SY.*
+		from wn_word AS W
+			LEFT JOIN wn_sense AS S USING(`wordid`)
+			LEFT JOIN wn_synlink AS SL ON SL.synset1 = S.synset
+			LEFT JOIN wn_synset AS SY ON SL.synset2 = SY.synset
+		<![CDATA[WHERE W.lemma = #{word} AND S.lexid < 10 AND S.freq < 10 AND SL.link = #{link}]]>
+		ORDER BY SY.id ASC
+	</select>
+	
+	<select id="findListXlinkSUMOByWord" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.Xlink">
+		SELECT DISTINCT
+			X.*
+		from wn_word AS W
+			LEFT JOIN wn_sense AS S USING(`wordid`)
+			LEFT JOIN wn_xlink AS X USING(`synset`)
+		WHERE W.lemma = #{word} AND W.lang = 'eng'
+		ORDER BY S.synset ASC
+	</select>
+	
+	<select id="findListSynlinkHypernymBySynset" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.Synlink">
+		SELECT DISTINCT * 
+		from wn_synlink
+		WHERE
+			synset1 = #{synset}
+			AND link IN ('hype','hmem','holo','hprt','hsub')
+		ORDER BY 
+			synset1 ASC
+		LIMIT 2
+	</select>
+	
+	<select id="findListSynlinkNounSynsetByWord" parameterType="string" resultType="jp.ac.tokushima_u.is.ll.entity.wordnet.Synlink">
+		SELECT 
+			DISTINCT SL.*
+		from 
+			wn_word AS w
+				LEFT JOIN wn_sense AS s USING(`wordid`)
+				LEFT JOIN wn_sense AS s2 USING(`synset`)
+				LEFT JOIN wn_synlink AS SL ON s2.synset = SL.synset1
+		WHERE 
+			w.lemma = #{word}
+			AND s.synset LIKE '%n'
+			AND SL.link IN ('hype','hmem','holo','hprt','hsub')
+		GROUP BY s2.synset,SL.synset2
+		ORDER BY s2.id,s2.lexid ASC
+		LIMIT 5
+	</select>
+	
+	<select id="findListRelatedItemRAWInWordMode" parameterType="map" resultType="map" statementType="CALLABLE">
+		CALL get_word_dist_list(#{name}, #{page}, #{perpage}, #{deep}, 'word', #{itemId})
+	</select>
+</mapper>

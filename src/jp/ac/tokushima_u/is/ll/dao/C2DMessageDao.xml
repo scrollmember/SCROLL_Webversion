@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.C2DMessageDao">
+	<select id="findListAll" resultType="C2DMessage">
+		select
+			m.author_id as authorId,
+			m.collapse,
+			m.content,
+			m.create_time as createTime,
+			m.disabled,
+			m.id,
+			m.is_delay_idle as isDelayIdle,
+			m.msg_type as msgType,
+			m.params,
+			m.register_id as registerId,
+			m.typ,
+			m.update_time as updateTime
+		from 
+			t_message m
+		where
+			m.disabled=0
+	</select>
+	
+	<update id="update" parameterType="C2DMessage">
+		update
+			t_message
+		set
+			author_id = #{authorId},
+			collapse = #{collapse},
+			content = #{content},
+			create_time = #{createTime},
+			disabled = #{disabled},
+			is_delay_idle = #{isDelayIdle},
+			msg_type = #{msgType},
+			params = #{params},
+			register_id = #{registerId},
+			typ = #{typ},
+			update_time = #{updateTime}
+		where
+			id = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="C2DMessage">
+		insert into t_message(
+			id,
+			author_id,
+			collapse,
+			content,
+			create_time,
+			disabled,
+			is_delay_idle,
+			msg_type,
+			params,
+			register_id,
+			typ,
+			update_time
+		) values (
+			#{id},
+			#{authorId},
+			#{collapse},
+			#{content},
+			#{createTime},
+			#{disabled},
+			#{isDelayIdle},
+			#{msgType},
+			#{params},
+			#{registerId},
+			#{typ},
+			#{updateTime}
+		)
+	</insert>
+</mapper>

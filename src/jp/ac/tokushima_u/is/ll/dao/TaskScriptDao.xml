@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.TaskScriptDao" >
+
+    <sql id="allColumns" >
+  		ts.id,
+		ts.script,
+		ts.num,
+		ts.zoom,
+		ts.lat,
+		ts.lng,
+		ts.image,
+		ts.task_id,
+		ts.location_based,
+		ts.image_name
+    </sql>
+
+    <select
+        id="findid"
+        parameterType="TaskScript"
+        resultType="TaskScript" >
+     select distinct task_id from t_task_script where image_name like '%${related}%'
+    </select>
+
+    <select
+        id="findTaskScriptByTaskId"
+        parameterType="map"
+        resultType="TaskScript" >
+       	select
+
+        <include refid="allColumns" />
+		from
+			t_task_script ts
+		where
+			ts.id = #{taskId}
+
+        <if test="isAscending" >
+			    order by num
+        </if>
+
+        <if test="isAscending" >
+			    order by num desc
+        </if>
+    </select>
+
+    <select
+        id="findTaskscriptALL"
+        parameterType="TaskScript"
+        resultType="TaskScript" >
+        select 
+
+        <include refid="allColumns" />
+         from t_task_script ts
+    </select>
+
+    <select
+        id="findTaskscriptselect"
+        parameterType="map"
+        resultType="TaskScript" >
+        select 
+
+        <include refid="allColumns" />
+         from t_task_script ts
+         
+         where ts.task_id =#{taskId} order by ts.num asc
+    </select>
+    
+     <select
+        id="findTaskscriptcollaborateselect"
+        parameterType="string"
+        resultType="TaskScript" >
+        select 
+        *
+         from t_task_collaborativescript ts
+         
+         where ts.task_id =#{taskId} order by ts.num asc
+
+
+    </select>
+    
+
+    <select
+        id="findTaskscriptcount"
+        parameterType="String"
+        resultType="String" >
+       select count(task_id) as c from t_task_script where task_id=#{taskId};
+    </select>
+
+    <select
+        id="findtask"
+        parameterType="String"
+        resultType="TaskScript" >
+    select * ,task_count/alltask_count as related_task from
+(select * from t_task as task,
+(select task_id,count(task_id) as alltask_count from t_task_script group by task_id) as script where task.id=script.task_id)
+as t,
+(select task_id,count(task_id) as task_count from
+(select distinct * from t_item_title as item_title where  item in
+(select id from t_item where disabled="0" AND author_id 
+in(select id from t_users where pc_email=#{usermail})))  
+as item,t_task_script as script where item.content=script.image_name group by task_id)
+as y
+where t.task_id=y.task_id order by related_task desc
+    </select>
+
+    <select
+        id="findtaskimageitems"
+        parameterType="String"
+        resultType="TaskScript" >
+        select * from t_task_script where task_id=#{taskid} and not num
+in
+(select num from
+(select distinct *,id as system from t_item_title as item_title where  item in
+(select id from t_item where disabled="0" AND author_id 
+in(select id from t_users where pc_email=#{usermail})))  
+as item,t_task_script as script where item.content=script.image_name and task_id=#{taskid} order by task_id,num asc) group by image_name order by num asc
+        
+    </select>
+
+    <insert
+        id="insert"
+        parameterType="TaskScript" >
+    INSERT INTO t_task_script
+		(id,
+		lat,
+		lng,
+		num,
+		script,
+		zoom,
+		image,
+		task_id,
+		image_name)
+	VALUES
+		(#{id},
+		#{lat},
+		#{lng},
+		#{num},
+		#{script},
+		#{zoom},
+		#{image},
+		#{task_id},
+		#{image_name})
+    </insert>
+
+</mapper>

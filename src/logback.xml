@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %logger%n%-5level:%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="error">
+		<appender-ref ref="console" />
+	</root>
+	
+<!-- 
+	<logger name="org.apache.shiro" level="trace" />
+	<logger name="java.sql" level="debug" />
+	<logger name="org.apache.ibatis" level="debug" />
+	<logger name="org.hibernate" level="error" />
+	<logger name="org.hibernate.hql.ast.AST" level="debug" />
+	<logger name="org.hibernate.tool.hbm2ddl" level="debug" />
+	<logger name="org.hibernate.hql" level="debug" />
+	<logger name="org.hibernate.SQL" level="debug" />
+	<logger name="org.hibernate.type" level="debug" />
+	<logger name="org.hibernate.engine.QueryParameters" level="debug" />
+	<logger name="org.hibernate.jdbc" level="debug" />
+	<logger name="org.hibernate.cache" level="debug" />
+	<logger name="org.hibernate.transaction" level="debug" />
+	<logger name="org.springframework.web" level="error" />
+	 -->
+</configuration>

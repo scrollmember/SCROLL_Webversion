@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemTitleDao" >
+
+    <select
+        id="findListByItem"
+        parameterType="map"
+        resultType="ItemTitle" >
+		select
+			it.id,
+			it.item,
+			it.content,
+			it.language
+		from
+			t_item_title it
+		where
+			it.item = #{item}
+    </select>
+
+    <insert
+        id="insert"
+        parameterType="ItemTitle" >
+		insert into t_item_title(
+			id,
+			content,
+			item,
+			language
+		)value(
+			#{id},
+			#{content},
+			#{item},
+			#{language}
+		)
+    </insert>
+
+    <delete
+        id="deleteAllByItemId"
+        parameterType="string" >
+		delete from t_item_title
+		where
+			item = #{itemId}
+    </delete>
+
+    <select
+        id="findListByItemAndLanguage"
+        parameterType="map"
+        resultType="ItemTitle" >
+		select
+			it.id,
+			it.item,
+			it.content,
+			it.language
+		from
+			t_item_title it
+		where
+			it.item = #{item}
+			and it.language = #{language}
+    </select>
+
+    <select
+        id="findListByItemAndInLanguages"
+        parameterType="map"
+        resultType="ItemTitle" >
+		select
+			it.id,
+			it.item,
+			it.content,
+			it.language
+		from
+			t_item_title it
+		where
+			it.item = #{item}
+			and it.language in 
+
+        <foreach
+            close=")"
+            collection="langs"
+            item="lang"
+            open="("
+            separator="," >
+				#{lang.id}
+        </foreach>
+    </select>
+
+    <select
+        id="findsearchRelatedItemContent"
+        parameterType="String"
+        resultType="ItemTItle" >
+	select distinct * from t_item_title where 
+language="ff808181257c178801257c186ab80003" and
+item in
+(select distinct i.id 
+			 from t_item i, ( 
+				 SELECT MIN(it.item) as item 
+				 FROM t_item_title it 
+				 where 
+it.language = "ff808181257c178801257c186ab80003" and
+it.content like '%${querystr}%' 
+				 GROUP BY it.content) title 
+				 where i.id = title.item 
+					 and  title.item not in ( 
+							 select taskitem.item_id 
+							 from t_task_item taskitem 
+where taskitem.task_id = #{taskId}
+))
+    </select>
+
+    <select
+        id="findContentItem"
+        parameterType="String"
+        resultType="ItemTItle" >
+        select * from t_item_title a where a.language="ff808181257c178801257c186ab80003" AND a.item IN 
+(select t.id from t_item t
+where t.id
+IN
+(select
+        item_id
+		from
+			t_task_item t
+		where
+			t.task_id = #{taskId}))
+    </select>
+    
+      <select
+	       id="findsecondlayer"
+        resultType="ItemTitleBatis">
+select * from t_item_title as titletable,
+(select id as itemid,item_lat,item_lng,author_id,usertable.nickname,create_time as createTime from t_item as itemtable,
+(select id as auth_id,nickname from t_users where user_level >=2) as usertable
+where itemtable.author_id = usertable.auth_id ORDER BY usertable.nickname ASC) as itemnicktable
+where itemnicktable.itemid = titletable.item and titletable.language = "ff808181257c178801257c186ab80002"  group by content
+	   </select>
+	   <select
+	       id="findedge"
+	       resultType="NetworkAnalysis">
+select * from t_item_title as titletable,
+(select id as itemid,item_lat,item_lng,author_id,usertable.nickname,create_time as createTime from t_item as itemtable,
+(select id as auth_id,nickname from t_users where user_level >=2) as usertable
+where itemtable.author_id = usertable.auth_id ORDER BY usertable.nickname ASC) as itemnicktable
+where itemnicktable.itemid = titletable.item and titletable.language = "ff808181257c178801257c186ab80002"
+</select>
+</mapper>

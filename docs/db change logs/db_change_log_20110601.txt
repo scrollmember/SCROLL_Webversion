@@ -1,0 +1,17 @@
+﻿@type Database Change Log
+@author houbin
+@Date 2011/6/1
+
+Table: T_USER_MESSAGE
+sql:
+
+CREATE TABLE `t_user_message` (
+  `id` varchar(32) NOT NULL,
+  `content` varchar(1024) default NULL,
+  `create_time` datetime default NULL,
+  `read_flag` bit(1) NOT NULL,
+  `read_time` datetime default NULL,
+  `send_from` varchar(32) default NULL,
+  `send_to` varchar(32) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

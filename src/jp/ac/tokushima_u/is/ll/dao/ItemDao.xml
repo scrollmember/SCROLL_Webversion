@@ -1,0 +1,2101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.ItemDao" >
+
+    <sql id="allColumns" >
+		i.author_id as authorId,
+		i.barcode,
+		i.category,
+		i.create_time as createTime,
+		i.disabled,
+		i.id,
+		i.image,
+		i.item_lat as itemLat,
+		i.item_lng as itemLng,
+		i.item_zoom as itemZoom,
+		i.locationbased,
+		i.note,
+		i.pass,
+		i.place,
+		i.qrcode,
+		i.question_id as questionId,
+		i.question_resolved as questionResolved,
+		i.rating,
+		i.relog_item as relogItem,
+		i.rfid,
+		i.righttimes,
+		i.share_level as shareLevel,
+		i.speed,
+		i.teacher_confirm as teacherConfirm,
+		i.update_time as updateTime,
+		i.wrongtimes    
+    </sql>
+
+    <resultMap
+        id="resultItemDTO"
+        type="jp.ac.tokushima_u.is.ll.dto.ItemDTO" >
+
+        <id
+            column="id"
+            property="id" />
+
+        <result
+            column="authorId"
+            property="authorId" />
+
+        <result
+            column="barcode"
+            property="barcode" />
+
+        <result
+            column="category"
+            property="category" />
+
+        <result
+            column="createTime"
+            property="createTime" />
+
+        <result
+            column="disabled"
+            property="disabled" />
+
+        <result
+            column="image"
+            property="image" />
+
+        <result
+            column="itemLat"
+            property="itemLat" />
+
+        <result
+            column="itemLng"
+            property="itemLng" />
+
+        <result
+            column="itemZoom"
+            property="itemZoom" />
+
+        <result
+            column="locationbased"
+            property="locationbased" />
+
+        <result
+            column="note"
+            property="note" />
+
+        <result
+            column="pass"
+            property="pass" />
+
+        <result
+            column="place"
+            property="place" />
+
+        <result
+            column="qrcode"
+            property="qrcode" />
+
+        <result
+            column="questionId"
+            property="questionId" />
+
+        <result
+            column="questionResolved"
+            property="questionResolved" />
+
+        <result
+            column="rating"
+            property="rating" />
+
+        <result
+            column="relogItem"
+            property="relogItem" />
+
+        <result
+            column="rfid"
+            property="rfid" />
+
+        <result
+            column="righttimes"
+            property="righttimes" />
+
+        <result
+            column="shareLevel"
+            property="shareLevel" />
+
+        <result
+            column="speed"
+            property="speed" />
+
+        <result
+            column="teacherConfirm"
+            property="teacherConfirm" />
+
+        <result
+            column="updateTime"
+            property="updateTime" />
+
+        <result
+            column="wrongtimes"
+            property="wrongtimes" />
+
+        <association
+            javaType="Users"
+            property="author" >
+
+            <id
+                column="author_id"
+                property="id" />
+
+            <result
+                column="author_nickname"
+                property="nickname" />
+
+            <result
+                column="author_avatar"
+                property="avatar" />
+        </association>
+
+        <association
+            column="relogItem"
+            javaType="jp.ac.tokushima_u.is.ll.dto.ItemTitleDTO"
+            property="relog"
+            select="findDTOById" />
+
+        <collection
+            column="id"
+            ofType="jp.ac.tokushima_u.is.ll.dto.ItemTitleDTO"
+            property="titles"
+            select="selectItemTitleDTO" >
+        </collection>
+
+        <collection
+            column="id"
+            ofType="jp.ac.tokushima_u.is.ll.entity.ItemTag"
+            property="tags"
+            select="selectTagsByItemId" >
+        </collection>
+
+        <collection
+            ofType="jp.ac.tokushima_u.is.ll.dto.ItemCommentDTO"
+            property="comments" >
+
+            <id
+                column="comment_id"
+                property="id" />
+
+            <result
+                column="comment_comment"
+                property="comment" />
+
+            <result
+                column="comment_user_id"
+                property="userId" />
+
+            <result
+                column="comment_create_time"
+                property="createTime" />
+
+            <result
+                column="comment_update_time"
+                property="updateTime" />
+
+            <association
+                javaType="Users"
+                property="user" >
+
+                <id
+                    column="comment_user_id"
+                    property="id" />
+
+                <result
+                    column="comment_user_nickname"
+                    property="nickname" />
+
+                <result
+                    column="comment_user_avatar"
+                    property="avatar" />
+            </association>
+        </collection>
+
+        <collection
+            ofType="QuestionType"
+            property="questionTypes" >
+
+            <id
+                column="question_type_id"
+                property="id" />
+
+            <result
+                column="question_type_title"
+                property="title" />
+
+            <result
+                column="question_type_orderby"
+                property="orderby" />
+        </collection>
+    </resultMap>
+
+    <select
+        id="selectItemTitleDTO"
+        parameterType="string"
+        resultType="jp.ac.tokushima_u.is.ll.dto.ItemTitleDTO" >
+		select 
+			t.id,
+			t.content,
+			t.item,
+			t.language,
+			l.code as langCode,
+			l.name as langName
+		from
+			t_item_title t
+				left join d_language l
+				on t.language = l.id
+		where
+			t.item = #{itemId}
+		order by
+			l.name asc
+    </select>
+
+    <select
+        id="selectTagsByItemId"
+        parameterType="string"
+        resultType="jp.ac.tokushima_u.is.ll.entity.ItemTag" >
+		select
+			t.id,
+			t.tag,
+			t.create_time as createTime,
+			t.update_time as updateTime
+		from
+			t_item_item_tags it
+				left join t_item_tag t
+					on it.item_tags=t.id
+		where
+			it.items=#{itemId}
+		order by t.tag
+    </select>
+
+    <select
+        id="selectItemWhereHasFile"
+        parameterType="string"
+        resultType="hashmap" >
+		select
+			i.id as item_id as itemId,
+			f.id as file_id as fileId,
+			f.orig_name as file_name as fileName
+		from
+			t_item i
+				inner join t_file_data f
+					on i.image = f.id
+		where
+			i.disabled = 0
+			and i.relog_item is null
+    </select>
+
+    <select
+        id="countCreatedItemsOnDayByAuthors"
+        parameterType="date"
+        resultType="map" >
+		select 
+			count(item.id) as itemNum, 
+			item.author_id as author
+		from t_item item
+		where 
+			year(item.create_time)=year(#{date})
+			and month(item.create_time)=month(#{date}) 
+			and day(item.create_time)=day(#{date})
+			and item.disabled = 0
+		group by 
+			item.author_id
+    </select>
+
+    <select
+        id="countCreatedItemsInWeekByAuthors"
+        parameterType="map"
+        resultType="map" >
+		select 
+			count(item.id) as itemNum, 
+			item.author_id as author
+		from t_item item
+		where 
+
+<![CDATA[
+			item.create_time >= #{start}
+			and item.create_time <= #{end}
+			and item.disabled = 0
+		]]>
+		group by 
+			item.author_id
+    </select>
+
+    <select
+        id="findMinCreatedTime"
+        resultType="date" >
+		select
+			min(item.create_time)
+		from
+			t_item item
+		where
+			item.disabled = 0
+    </select>
+
+    <select
+        id="findById"
+        parameterType="string"
+        resultType="Item" >
+		select        
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.id = #{id}
+			and disabled = 0    
+    </select>
+
+    <select
+        id="findByIdIgnoreDisableFlg"
+        parameterType="string"
+        resultType="Item" >
+		select        
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.id = #{id}
+    </select>
+
+    <select
+        id="findDTOById"
+        parameterType="string"
+        resultMap="resultItemDTO" >
+		select
+
+        <include refid="allColumns" />
+,
+			users.id as author_id,
+			users.nickname as author_nickname,
+			users.avatar as author_avatar,
+			title.id as title_id,
+			title.content as title_content,
+			title.language as title_language,
+			title.item as title_item,
+			lang.code as title_lang_code,
+			lang.name as title_lang_name,
+			tag.id as tag_id,
+			tag.tag as tag_tag,
+			comment.id as comment_id,
+			comment.comment as comment_comment,
+			comment.user_id as comment_user_id,
+			comment.create_time as comment_create_time,
+			comment.update_time as comment_update_time,
+			comment_user.nickname as comment_user_nickname,
+			comment_user.avatar as comment_user_avatar,
+			question_type.id as question_type_id,
+			question_type.orderby as question_type_orderby,
+			question_type.title as question_type_title
+		from
+			t_item i
+				left join t_item_title title
+					left join d_language lang
+						on title.language = lang.id
+					on i.id = title.item
+				left join t_users users
+					on i.author_id = users.id
+				left join t_item_item_tags itemtag
+					left join t_item_tag tag
+						on itemtag.item_tags = tag.id
+					on i.id = itemtag.items
+				left join t_question question
+					left join d_language questionlang
+						on question.language_id = questionlang.id
+					left join t_answer answer
+						left join t_users answeruser
+							on answer.author_id = answeruser.id
+						on question.id = answer.question_id
+					on i.question_id = question.id
+				left join t_category category
+					on i.category = category.id
+				left join t_item_comment comment
+					left join t_users comment_user
+						on comment.user_id = comment_user.id
+					on i.id = comment.item_id
+				left join t_item_question_type item_question_type
+					left join d_questiontype question_type
+						on item_question_type.questiontype_id = question_type.id
+					on i.id = item_question_type.item_id
+		where
+			i.id = #{id}
+			and disabled = 0
+		order by lang.name
+    </select>
+
+    <select
+        id="findListForMotherLangRecommend"
+        parameterType="map"
+        resultType="Item" >
+		select 
+
+        <include refid="allColumns" />
+		from t_item i
+		where
+			i.disabled!=1 
+			and i.author_id in (
+				select id  
+				from t_users u
+				where 
+					exists (
+						select *
+						from 
+							t_users_study_langs lan_study 
+						where 
+							lan_study.t_users = u.id
+							and lan_study.study_langs in (
+								select 
+									study_langs
+								from
+									t_users_study_langs
+								where 
+									t_users = #{userId}
+							)
+					)
+					and 
+						exists (
+							select * 
+							from t_users_my_langs lan_my
+							where 
+								lan_my.t_users = u.id 
+								and lan_my.my_langs in (
+									select 
+										my_langs
+									from 
+										t_users_my_langs
+									where t_users = #{userId}
+								)
+							)
+						)
+					and 
+						i.id not in (
+							select distinct(item_id) 
+							from t_itemqueue  
+							where
+								author_id = #{userId}
+						)
+					and
+						exists (
+							select * 
+							from t_item_question_type 
+							where
+								language_id in 
+
+        <foreach
+            close=")"
+            collection="studyLangs"
+            item="lang"
+            open="("
+            separator="," >
+									#{lang.id}
+        </foreach>
+								and item_id = i.id 
+						)
+					and 
+						exists (
+							select * 
+							from t_item_title 
+							where
+								language in
+
+        <foreach
+            close=")"
+            collection="myLangs"
+            item="lang"
+            open="("
+            separator="," >
+									#{lang.id}
+        </foreach>
+								and item = i.id
+						) 
+					and
+<![CDATA[i.pass<3]]>		order by i.pass
+		limit 0, 30
+    </select>
+
+    <select
+        id="findListForPopularItems"
+        parameterType="map"
+        resultType="Item" >
+		select 
+
+        <include refid="allColumns" />
+		from t_item i,
+			(
+				select
+					count(*) as c, 
+					h.item_id
+				from l_user_read_item h 
+				group by h.item_id
+			) as y
+		where
+			i.id = y.item_id 
+			and i.disabled!=1 
+			and i.id not in
+				select distinct(item_id)
+				from t_itemqueue
+				where 
+					author_id = #{userId}
+					and 
+						exists (
+							select *  
+							from t_item_question_type 
+							where
+								language_id in
+
+        <foreach
+            close=")"
+            collection="studyLangs"
+            item="lang"
+            open="("
+            separator="," >
+									#{lang.id}
+        </foreach>
+								and item_id = i.id
+						)
+					and
+						exists (
+							select * 
+							from t_item_title 
+							where
+								language in
+
+        <foreach
+            close=")"
+            collection="myLangs"
+            item="lang"
+            open="("
+            separator="," >
+									#{lang.id}
+        </foreach>
+								and item = i.id
+						)
+		order by 
+			i.pass, 
+			c desc 
+		limit 0, #{limit}
+    </select>
+
+    <update
+        id="updateRatingAvg"
+        parameterType="map" >
+		update
+			t_item
+		set
+			rating = #{avg}
+		where
+			id = #{itemId}
+    </update>
+
+    <insert
+        id="insert"
+        parameterType="Item" >
+		insert into t_item(
+			author_id,
+			barcode,
+			category,
+			create_time,
+			disabled,
+			id,
+			image,
+			item_lat,
+			item_lng,
+			item_zoom,
+			locationbased,
+			note,
+			pass,
+			place,
+			qrcode,
+			question_id,
+			question_resolved,
+			rating,
+			relog_item,
+			rfid,
+			righttimes,
+			share_level,
+			speed,
+			teacher_confirm,
+			update_time,
+			wrongtimes
+		)values(
+			#{authorId},
+			#{barcode},
+			#{category},
+			#{createTime},
+			#{disabled},
+			#{id},
+			#{image},
+			#{itemLat},
+			#{itemLng},
+			#{itemZoom},
+			#{locationbased},
+			#{note},
+			#{pass},
+			#{place},
+			#{qrcode},
+			#{questionId},
+			#{questionResolved},
+			#{rating},
+			#{relogItem},
+			#{rfid},
+			#{righttimes},
+			#{shareLevel},
+			#{speed},
+			#{teacherConfirm},
+			#{updateTime},
+			#{wrongtimes}
+		)
+    </insert>
+
+    <update
+        id="update"
+        parameterType="Item" >
+		update t_item
+		set
+			author_id = #{authorId},
+			barcode = #{barcode},
+			category = #{category},
+			disabled = #{disabled},
+			image = #{image},
+			item_lat = #{itemLat},
+			item_lng = #{itemLng},
+			item_zoom = #{itemZoom},
+			locationbased = #{locationbased},
+			note = #{note},
+			pass = #{pass},
+			place = #{place},
+			qrcode = #{qrcode},
+			question_id = #{questionId},
+			question_resolved = #{questionResolved},
+			rating = #{rating},
+			relog_item = #{relogItem},
+			rfid = #{rfid},
+			righttimes = #{righttimes},
+			share_level = #{shareLevel},
+			speed = #{speed},
+			teacher_confirm = #{teacherConfirm},
+			update_time = #{updateTime},
+			wrongtimes = #{wrongtimes}
+		where
+			id=#{id}
+    </update>
+
+    <select
+        id="findListWaitItemsThroughItemQueue"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_itemqueue iq
+				left join t_item i
+					on iq.item_id = i.id
+		where
+			iq.author_id = #{userId}
+			and iq.disabled = 0
+<![CDATA[and iq.start_time<#{startTime}]]>		order by
+			i.rating desc,
+			iq.weight asc,
+			iq.start_time asc
+    </select>
+
+    <select
+        id="findListNearestItems"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			(
+				select 
+					it.*, 
+					get_distance(#{lat},#{lng}, it.item_lat, it.item_lng) as distance 
+				from t_item it,
+					(
+						select
+							itq.item_id, 
+							max(itq.author_id) 
+						from
+							t_itemqueue itq
+						where
+							itq.author_id = #{userId}
+						group by 
+							itq.item_id
+					) as iq
+				where
+					it.disabled!=1
+					and it.item_lat is not null 
+					and it.item_lng is not null 
+					and it.relog_item is null 
+					and (
+						it.locationbased is null 
+						or it.locationbased =1
+					) 
+					and it.id = iq.item_id
+					and it.id not in 
+						(
+							select 
+								distinct ia.item
+							from
+								t_itemalarm ia
+							where
+								ia.author_id = #{userId}
+								and it.id = ia.item 
+								and ia.alarm_type = 1
+						)
+				order by 
+					distance asc
+			) as i
+		where 
+<![CDATA[i.distance<=#{distance}]]>		limit #{pageRequest.pageSize} offset #{pageRequest.offset}
+    </select>
+
+    <select
+        id="findListByAuthorNotRelog"
+        parameterType="string"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.author_id = #{userId}
+			and i.disabled = 0
+			and i.relog_item is null
+    </select>
+
+    <select
+        id="findListByAuthorOnlyRelog"
+        parameterType="string"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.author_id = #{userId}
+			and i.disabled = 0
+			and i.relog_item is not null
+    </select>
+
+    <select
+        id="findListByAuthorAndCreatedFromNotRelog"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.author_id = #{userId}
+			and i.disabled = 0
+
+        <if test="lastDate!=null" >
+<![CDATA[and i.create_time>#{lastDate}]]></if>
+    </select>
+
+    <select
+        id="findListByAuthorInPeriod"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.author_id = #{authorId}
+			and i.disabled = 0
+
+<![CDATA[and i.create_time >= #{start}
+			and i.create_time < #{end}]]>
+    </select>
+
+    <select
+        id="findListByAuthor"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.author_id = #{authorId}
+			and i.disabled = 0
+		order by
+
+        <foreach
+            collection="sort"
+            item="order"
+            separator="," >
+				i.${order.property} ${order.direction}
+        </foreach>
+    </select>
+
+    <sql id="condWhereFragment" >
+
+        <where>
+			i.disabled = 0            
+
+            <if test="cond.title!=null and cond.title!=&apos;&apos;" >
+            	and exists (
+            		select title.content from t_item_title title where title.item=i.id and title.content like '%${cond.title}%'
+            	)            
+            </if>
+
+            <if test="cond.lang!=null and cond.lang!=&apos;&apos;" >
+				and lang.code = #{cond.lang}            
+            </if>
+
+            <if test="cond.username!=null and cond.username!=&apos;&apos;" >
+				and users.nickname = #{cond.username}            
+            </if>
+
+            <if test="cond.nickname!=null and cond.nickname!=&apos;&apos;" >
+				and users.nickname like '%${cond.nickname}%'            
+            </if>
+
+            <if test="cond.userId!=null and cond.userId!=&apos;&apos;" >
+				and i.author_id = #{cond.userId}            
+            </if>
+
+            <if test="cond.notuserId!=null and cond.notuserId!=&apos;&apos;" >
+				and i.author_id != #{cond.notuserId}            
+            </if>
+
+            <if test="cond.mapenabled and cond.x1!=null and cond.x2!=null and cond.y1!=null and cond.y2!=null" >
+
+                <choose>
+
+                    <when test="cond.y1>cond.y2" >
+
+<![CDATA[
+						and i.item_lat>=#{cond.x2} 
+						and i.item_lat<=#{cond.x1}
+						and i.item_lng>=#{cond.y2}
+						and i.item_lng<=#{cond.y1}
+					]]>
+                    </when>
+
+                    <otherwise>
+
+<![CDATA[
+						and ((
+							i.item_lat>=#{cond.x2}
+							and i.item_lat<=#{cond.x1}
+							and i.item_lng>=#{cond.y2}
+							and i.item_lng<=180
+							) or (
+							i.item_lat>=#{cond.x2}
+							and i.item_lat<=#{cond.x1}
+							and i.item_lng>=-180
+							and i.item_lng<=#{cond.y1}
+							))
+					]]>
+                    </otherwise>
+                </choose>
+            </if>
+
+            <if test="cond.dateFrom!=null" >
+<![CDATA[and i.create_time>=#{cond.dateFrom}]]></if>
+
+            <if test="cond.dateTo!=null" >
+<![CDATA[and i.create_time<=#{cond.dateTo}]]></if>
+
+            <if test="cond.updateDate!=null" >
+<![CDATA[and i.update_time>=#{cond.updateDate}]]></if>
+
+            <if test="cond.tag!=null and cond.tag!=&apos;&apos;" >
+				and exists (
+					select tag.id 
+					from t_item_item_tags itemtag
+						left join t_item_tag tag
+							on itemtag.item_tags = tag.id
+					where
+						itemtag.items=i.id and tag.tag = #{cond.tag}
+				)            
+            </if>
+
+            <if test="cond.answeruserId!=null and cond.answeruserId!=&apos;&apos;" >
+				and answer.author_id = #{cond.answeruserId}            
+            </if>
+
+            <if test="cond.answeruser!=null and cond.answeruser!=&apos;&apos;" >
+				and answeruser.nickname = #{cond.answeruser}            
+            </if>
+
+            <if test="cond.questionStatus!=null and cond.questionStatus!=&apos;&apos;" >
+
+                <choose>
+
+                    <when test="cond.questionStatus==&apos;inquestion&apos;" >
+						and i.question_id !=null
+						and i.question_resolved != true                    
+                    </when>
+
+                    <otherwise>
+						and (
+							i.question_id == null
+							or i.question_resolved = true
+						)
+                    </otherwise>
+                </choose>
+            </if>
+
+            <if test="cond.teacherConfirm!=null and cond.teacherConfirm!=&apos;&apos;" >
+
+                <choose>
+
+                    <when test="cond.teacherConfirm==&apos;confirmed&apos;" >
+						and i.teacher_confirm = true
+                    </when>
+
+                    <when test="cond.teacherConfirm==&apos;needfixing&apos;" >
+						and i.teacher_confirm = false
+                    </when>
+                </choose>
+            </if>
+
+            <if test="cond.toAnswerQuesLangs!=null" >
+
+                <trim prefix="and question.language_id in" >
+
+                    <foreach
+                        close=")"
+                        collection="cond.toAnswerQuesLangs"
+                        item="lang"
+                        open="("
+                        separator="," >
+					#{lang.id}
+                    </foreach>
+                </trim>
+            </if>
+
+            <if test="cond.toAnswerQuesLangsCode!=null" >
+
+                <trim prefix="and questionlang.code in" >
+
+                    <foreach
+                        close=")"
+                        collection="cond.toAnswerQuesLangsCode"
+                        item="code"
+                        open="("
+                        separator="," >
+					#{code}
+                    </foreach>
+                </trim>
+            </if>
+
+            <if test="cond.toStudyQuesLangs!=null" >
+
+                <trim prefix="and question.language_id in" >
+
+                    <foreach
+                        close=")"
+                        collection="cond.toStudyQuesLangs"
+                        item="lang"
+                        open="("
+                        separator="," >
+					#{lang.id}
+                    </foreach>
+                </trim>
+            </if>
+
+            <if test="cond.toStudyQuesLangsCode!=null" >
+
+                <trim prefix="and questionlang.code in" >
+
+                    <foreach
+                        close=")"
+                        collection="cond.toStudyQuesLangsCode"
+                        item="code"
+                        open="("
+                        separator="," >
+					#{code}
+                    </foreach>
+                </trim>
+            </if>
+
+            <if test="cond.categorySet!=null" >
+
+                <trim prefix="and i.category in" >
+
+                    <foreach
+                        close=")"
+                        collection="cond.categorySet"
+                        item="cat"
+                        open="("
+                        separator="," >
+					#{cat.id}
+                    </foreach>
+                </trim>
+            </if>
+
+            <if test="cond.hasAnswers!=null and cond.hasAnswers!=&apos;&apos;" >
+            </if>
+
+            <if test="!cond.includeRelog" >
+				and i.relog_item is null
+            </if>
+
+            <if test="cond.qrcode!=null and cond.qrcode!=&apos;&apos;" >
+				and i.qrcode = #{cond.qrcode}
+            </if>
+        </where>
+    </sql>
+
+    <select
+        id="searchListByCond"
+        parameterType="map"
+        resultMap="resultItemDTO" >
+		select
+
+        <include refid="allColumns" />
+,
+			users.id as author_id,
+			users.nickname as author_nickname,
+			users.avatar as author_avatar
+		from
+			t_item i
+				left join t_users users
+					on i.author_id = users.id
+				left join t_question question
+					left join d_language questionlang
+						on question.language_id = questionlang.id
+					left join t_answer answer
+						left join t_users answeruser
+							on answer.author_id = answeruser.id
+						on question.id = answer.question_id
+					on i.question_id = question.id
+				left join t_category category
+					on i.category = category.id
+
+        <include refid="condWhereFragment" />
+
+        <if test="page.sort!=null" >
+
+            <trim prefix="order by" >
+
+                <foreach
+                    collection="page.sort"
+                    item="order"
+                    separator="," >
+				${order.property} ${order.direction}
+                </foreach>
+            </trim>
+        </if>
+
+        <if test="page!=null and page.pageSize!=null" >
+			limit #{page.pageSize}
+        </if>
+
+        <if test="page!=null and page.offset!=null" >
+			offset #{page.offset}
+        </if>
+    </select>
+
+    <select
+        id="countByCond"
+        parameterType="map"
+        resultType="long" >
+		select count(i.id)		from
+			t_item i
+				left join t_users users
+					on i.author_id = users.id
+				left join t_question question
+					left join d_language questionlang
+						on question.language_id = questionlang.id
+					left join t_answer answer
+						left join t_users answeruser
+							on answer.author_id = answeruser.id
+						on question.id = answer.question_id
+					on i.question_id = question.id
+				left join t_category category
+					on i.category = category.id        
+
+        <include refid="condWhereFragment" />
+    </select>
+
+    <select
+        id="findListBySyncCond"
+        parameterType="jp.ac.tokushima_u.is.ll.form.ItemSyncCondForm"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+
+        <where>
+			i.disabled = 0
+
+            <if test="userId!=null and userId!=&apos;&apos;" >
+				and i.author_id = #{userId}
+            </if>
+
+            <if test="notuserId!=null and notuserId!=&apos;&apos;" >
+				and i.author_id != #{notuserId}
+            </if>
+
+            <if test="updateDateFrom!=null" >
+<![CDATA[and i.update_time >= #{updateDateFrom}]]></if>
+
+            <if test="updateDateTo!=null" >
+<![CDATA[and i.update_time <= #{updateDateTo}]]></if>
+        </where>
+		order by
+
+        <foreach
+            collection="page.sort"
+            item="order"
+            separator="," >
+				i.${order.property} ${order.direction}
+        </foreach>
+		limit #{page.pageSize} offset #{page.offset}
+    </select>
+
+    <select
+        id="findListForNearestItems"
+        parameterType="map"
+        resultMap="resultItemDTO" >
+		select
+			i.distance,
+
+        <include refid="allColumns" />
+,
+			users.id as author_id,
+			users.nickname as author_nickname,
+			users.avatar as author_avatar,
+			title.id as title_id,
+			title.content as title_content,
+			title.language as title_language,
+			title.item as title_item,
+			lang.code as title_lang_code,
+			lang.name as title_lang_name,
+			tag.id as tag_id,
+			tag.tag as tag_tag
+		from
+			(
+			select 
+				t.*, 
+				get_distance(#{lat},#{lng}, t.item_lat, t.item_lng) as distance
+			from 
+				t_item t
+			where 
+				t.disabled = 0
+				and t.item_lat is not null 
+				and t.item_lng is not null 
+				and t.relog_item is null
+
+        <if test="userId!=null" >
+				and t.author_id=#{userId}
+        </if>
+
+        <if test="avoidItemId!=null" >
+				and t.id!=#{avoidItemId}
+        </if>
+				order by distance asc
+			) as i
+				left join t_item_title title
+					left join d_language lang
+						on title.language = lang.id
+					on i.id = title.item
+				left join t_users users
+					on i.author_id = users.id
+				left join t_item_item_tags itemtag
+					left join t_item_tag tag
+						on itemtag.item_tags = tag.id
+					on i.id = itemtag.items
+				left join t_question question
+					left join d_language questionlang
+						on question.language_id = questionlang.id
+					left join t_answer answer
+						left join t_users answeruser
+							on answer.author_id = answeruser.id
+						on question.id = answer.question_id
+					on i.question_id = question.id
+				left join t_category category
+					on i.category = category.id
+		where
+
+<![CDATA[
+			i.distance>=0 
+			and i.distance<=#{distance}
+		]]>
+		group by
+			i.id
+		limit #{page.pageSize}
+    </select>
+
+    <select
+        id="findListForNearestItemsWithoutNotified"
+        parameterType="map"
+        resultType="Item" >
+		select
+			t.distance,
+			t.*
+		from
+			(
+			select
+				i.*,
+				get_distance(lat,lng, i.item_lat, i.item_lng) as distance
+			from
+				t_item i
+			where
+				i.disabled = 0
+				and i.item_lat is not null 
+				and i.item_lng is not null 
+				and i.relog_item is null 
+				and (i.locationbased is null or i.locationbased =1)
+				and i.id not in (
+					select 
+						distinct ia.item  
+					from t_itemalarm ia
+					where
+						ia.author_id = #{userId} 
+						and i.id = ia.item 
+						and ia.alarm_type = 0
+					)
+			order by distance asc
+			) as t
+		where
+
+<![CDATA[
+			t.distance>=0 
+			and t.distance<=#{distance}
+		]]>
+		limit #{size} 
+    </select>
+
+    <select
+        id="findListForLatestItems"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.disabled = 0
+			and i.relog_item is null
+
+        <if test="userId!=null" >
+				and i.author_id = #{userId}
+        </if>
+
+        <if test="avoidItemId!=null" >
+				and i.id != #{avoidItemId}
+        </if>
+		order by
+			i.create_time desc
+		limit #{size}
+    </select>
+
+    <select
+        id="findMapListUploadRanking"
+        resultType="map" >
+		select
+			u.id as userId,
+			u.nickname as nickname,
+			count(u.id) as number
+		from
+			t_item i
+				left join t_users u
+					on i.author_id = u.id
+		where
+			i.disabled=0
+			and i.relog_item is null
+		group by
+			u.id
+		order by number desc
+    </select>
+
+    <select
+        id="findMapListAnswerRanking"
+        resultType="map" >
+		select
+			u.id as userId, 
+			u.nickname as nickname,
+			count(u.id) as number
+		from
+			t_answer a
+			left join t_users u
+				on a.author_id = u.id
+		group by u.id
+		order by number desc
+    </select>
+
+    <select
+        id="findByAuthorAndRelogItem"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.author_id = #{authorId}
+			and i.relog_item = #{itemId}
+			and i.disabled = 0
+    </select>
+
+    <select
+        id="searchItemByTitles"
+        resultMap="resultItemDTO" >
+		select
+
+        <include refid="allColumns" />
+,
+			users.id as author_id,
+			users.nickname as author_nickname,
+			users.avatar as author_avatar,
+			title.id as title_id,
+			title.content as title_content,
+			title.language as title_language,
+			title.item as title_item,
+			lang.code as title_lang_code,
+			lang.name as title_lang_name,
+			tag.id as tag_id,
+			tag.tag as tag_tag
+		from
+			t_item i
+				left join t_item_title title
+					left join d_language lang
+						on title.language = lang.id
+					on i.id = title.item
+				left join t_users users
+					on i.author_id = users.id
+				left join t_item_item_tags itemtag
+					left join t_item_tag tag
+						on itemtag.item_tags = tag.id
+					on i.id = itemtag.items
+				left join t_question question
+					left join d_language questionlang
+						on question.language_id = questionlang.id
+					left join t_answer answer
+						left join t_users answeruser
+							on answer.author_id = answeruser.id
+						on question.id = answer.question_id
+					on i.question_id = question.id
+				left join t_category category
+					on i.category = category.id
+		where
+			i.disabled = 0
+
+        <if test="avoidItemId!=null" >
+			and i.id!=#{avoidItemId}
+			and i.relog_item is null
+        </if>
+
+        <trim prefix="and " >
+
+            <foreach
+                close=")"
+                collection="titles"
+                item="title"
+                open="("
+                separator="or" >
+				title.content like '%${title}%'            
+            </foreach>
+        </trim>
+		group by i.id
+
+        <trim prefix="order by " >
+
+            <foreach
+                collection="page.sort"
+                item="order"
+                separator="," >
+				i.${order.property} ${order.direction}
+            </foreach>
+        </trim>
+		limit #{page.pageSize} offset #{page.offset}
+    </select>
+
+    <select
+        id="findByCategory"
+        parameterType="string"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.disabled = 0
+			and i.category = #{categoryId}
+    </select>
+
+    <select
+        id="countReloggedTimes"
+        parameterType="string"
+        resultType="long" >
+		select
+			count(*)
+		from
+			t_item i
+		where
+			i.relog_item = #{itemId}
+			and i.disabled = 0
+    </select>
+
+    <select
+        id="countAll"
+        resultType="long" >
+		select
+			count(*)
+		from
+			t_item i
+		where
+			i.disabled = 0
+    </select>
+
+    <select
+        id="findAllItemsBeforeMonths"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.disabled = 0
+
+        <if test="userId" >
+			i.author_id = #{userId}
+        </if>
+
+        <if test="inWeeks!=null" >
+
+<![CDATA[
+			and i.create_time >= #{start}
+			and i.create_time <= #{end}
+			]]>
+        </if>
+
+        <if test="inWeeks==null" >
+
+<![CDATA[
+			and i.create_time <= #{end}
+			]]>
+        </if>
+
+        <trim prefix="order by" >
+
+            <foreach
+                collection="page.sort"
+                item="order"
+                separator="," >
+				i.${order.property} ${order.direction}
+            </foreach>
+        </trim>
+		limit #{page.pageSize} offset #{page.offset}
+    </select>
+
+    <select
+        id="findListByLocationForMyItem"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_llquiz lq, t_myquiz mq, t_item i,
+			(
+				select l.item_id, max(m.update_date) as update_date
+				from
+					t_myquiz m, t_llquiz l
+				where 
+					m.author_id =#{userId}
+					and m.llquiz_id = l.id
+				group by l.item_id 
+			) y
+		where 
+			mq.update_date = y.update_date 
+			and mq.author_id = #{userId}
+			and mq.llquiz_id = lq.id 
+			and lq.item_id = y.item_id
+			and mq.answerstate !=1
+			and mq.answerstate !=2 
+			and i.id = lq.item_id
+
+<![CDATA[
+			and i.item_lat<=#{x1}
+			and i.item_lat>=#{x2}
+			and i.item_lng<=#{y1}
+			and i.item_lng>=#{y2}
+			]]>
+			and i.disabled = 0
+			and i.author_id = #{userId}
+			and i.id not in (
+				select inm.items
+				from t_itemnotify itn, t_itemnotify_items inm
+				where
+					itn.author_id = #{userId}
+					and itn.id = inm.t_itemnotify
+					and itn.feedback = 1
+			)
+
+        <trim prefix="and i.category in" >
+
+            <foreach
+                close=")"
+                collection="categoryIds"
+                item="categoryId"
+                open="("
+                separator="," >
+					#{categoryId}
+            </foreach>
+        </trim>
+    </select>
+
+    <select
+        id="findListByLocationNotForMyItem"
+        parameterType="map"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from t_llquiz lq, t_myquiz mq, t_item i,
+			(
+				select l.item_id, max(m.update_date) as update_date
+				from t_myquiz m, t_llquiz l
+				where
+					m.author_id = #{userId}
+					and m.llquiz_id = l.id group by l.item_id
+			)y
+		where 
+			mq.update_date = y.update_date 
+			and mq.author_id = #{userId}
+			and mq.llquiz_id = lq.id and lq.item_id = y.item_id
+			and mq.answerstate !=1 and mq.answerstate !=2 and i.id = lq.item_id
+
+<![CDATA[
+			and i.item_lat<=#{x1} and i.item_lat>=#{x2}
+			and i.item_lng<=#{y1} and i.item_lng>=#{y2} 
+			]]>
+			and i.disabled = 0
+			and i.author_id != #{userId}
+			and i.id not in (
+				select inm.items
+				from t_itemnotify itn, t_itemnotify_items inm
+				where 
+					itn.author_id = #{userId}
+					and itn.id = inm.t_itemnotify
+					and itn.feedback = 1
+				)
+
+        <trim prefix="and i.category in" >
+
+            <foreach
+                close=")"
+                collection="categoryIds"
+                item="categoryId"
+                open="("
+                separator="," >
+					#{categoryId}
+            </foreach>
+        </trim>
+    </select>
+
+    <select
+        id="findListByMD5"
+        parameterType="string"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+				left join t_filedata f
+					on i.image = f.id
+		where
+			f.md5 = #{md5}
+			and i.disabled = 0
+    </select>
+
+    <select
+        id="findListForMyTimemap"
+        parameterType="string"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.author_id = #{userId}
+			and i.disabled = 0
+			and i.item_lat is not null
+			and i.item_lng is not null
+    </select>
+
+    <select
+        id="findListByImage"
+        parameterType="string"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.image = #{image}
+			and i.disabled = 0
+    </select>
+
+    <select
+        id="findListAll"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.disabled = 0
+    </select>
+
+    <select
+        id="findListForImageQuizGenerate"
+        parameterType="map"
+        resultType="Item" >
+		select it.*	
+		from 
+			t_item it, 
+			t_file_data fd
+		where 
+			it.image = fd.id 
+			and it.id in (
+				select distinct(item_id) 
+				from t_itemqueue
+				where author_id = #{userId})
+			and it.image is not null 
+			and it.id!= #{itemId}
+			and fd.file_type=#{fileType}
+			and exists (
+				select * 
+				from t_item_question_type itq
+				where 
+					itq.item_id = it.id 
+					and itq.questiontype_id = #{questiontypeId} 
+					and itq.language_id = #{languageId}
+				)
+    </select>
+
+    <select
+        id="findListForTextQuizGenerate"
+        parameterType="map"
+        resultType="Item" >
+
+        <!--
+		select
+			it.* 
+		from
+			t_item it, 
+			t_itemqueue q
+		where
+			q.queuetype in (1, 2, 3) 
+			and q.item_id = it.id
+			and it.id!= #{itemId}
+			and exists (
+				select * 
+				from t_item_question_type itq 
+				where 
+					itq.item_id = it.id 
+					and itq.questiontype_id = 1 
+					and itq.language_id = #{languageId}
+				)
+		limit 0, 50
+        -->
+
+		SELECT
+			it.*
+		FROM
+			t_item it
+		WHERE
+			it.id != #{itemId}
+		AND EXISTS (
+			SELECT
+				*
+			FROM
+				t_itemqueue q
+			WHERE
+				q.queuetype IN (1, 2, 3)
+			AND q.item_id = it.id
+		)
+		AND EXISTS (
+			SELECT
+				*
+			FROM
+				t_item_question_type itq
+			WHERE
+				itq.item_id = it.id
+			AND itq.questiontype_id = 1
+			AND itq.language_id = #{languageId}) limit 0, 200    
+    </select>
+
+    <select
+        id="findsearchRelatedItemForTask"
+        parameterType="String"
+        resultType="Item" >
+	     select i.* 
+			 from t_item i, ( 
+				 SELECT MIN(it.item) as item 
+				 FROM t_item_title it 
+				 where 
+				 it.language="ff808181257c178801257c186ab80003" and
+				 it.content like '%${querystr}%' 
+				 GROUP BY it.content) title 
+				 where i.id = title.item 
+					 and  title.item not in ( 
+							 select taskitem.item_id 
+							 from t_task_item taskitem 
+					 where taskitem.task_id = #{taskId})
+    </select>
+
+    <select
+        id="findsearchRelatedItemForTask2"
+        parameterType="String"
+        resultType="Item" >
+        select * from t_item_title join 
+(select i.* 
+from t_item i, ( 
+				 SELECT MIN(it.item) as item 
+				 FROM t_item_title it 
+				 where it.content like '%${querystr}%' 
+				 GROUP BY it.content) title 
+				 where i.id = title.item 
+					 and  title.item not in ( 
+							 select taskitem.item_id 
+							 from t_task_item taskitem 
+					 where taskitem.task_id = #{taskid}))
+i on i.id=item;
+    </select>
+
+    <select
+        id="findItemListHasImage"
+        parameterType="string"
+        resultType="Item" >
+		select
+
+        <include refid="allColumns" />
+		from
+			t_item i
+		where
+			i.image is not null
+			and i.disabled = 0
+    </select>
+
+    <select
+        id="findcount"
+        parameterType="date"
+        resultType="string" >
+       select count(id) as learninglogs from t_item where 
+
+<![CDATA[
+       author_id=#{userid} and disabled="0" and create_time >= #{timer1} and create_time <= #{timer2}]]>
+    </select>
+
+    <select
+        id="cooccurrence"
+        parameterType="String"
+        resultType="Cooccurrence" >
+        select *,p1.id as placeId from t_item_title as title LEFT JOIN t_place as p1 on title.item=p1.itemid,(select id as itemid,create_time as itemcreate, author_id as 
+authorid from t_item where author_id=#{userid} and disabled="0" ORDER BY create_time ASC) as itemmain, t_users as u1
+where title.item=itemmain.itemid and title.language="ff808181257c178801257c186ab80002" and itemmain.authorid=u1.id 
+    </select>
+    <select id="getitemcorrence"
+        parameterType="String"
+        resultType="Cooccurrence">
+        select * from (select title.content,title.item,title.language,itemmain.authorid,itemmain.itemcreate,u1.nickname,u1.user_level,p1.id as placeId,p1.place as placename from t_item_title as title LEFT JOIN t_place as p1 on title.item=p1.itemid,(select id as itemid,create_time as itemcreate, author_id as 
+authorid from t_item where author_id=#{userid} and disabled="0" ORDER BY create_time ASC) as itemmain, t_users as u1
+where title.item=itemmain.itemid and title.language="ff808181257c178801257c186ab80002" and itemmain.authorid=u1.id) as t1 left join t_place_attribute on t1.placeId=t_place_attribute.placeid group by t1.item order by t1.itemcreate asc
+        
+    </select>
+
+    <select
+        id="placecooccurrence"
+        parameterType="String"
+        resultType="Cooccurrence" >
+         select itemmain.lat,itemmain.lng,title.content,title.item,itemmain.itemcreate,u1.nickname,p1.id as placeId,p1.place from t_item_title as title,(select id as itemid,create_time as itemcreate, author_id as 
+authorid,item_lat as lat,item_lng as lng from t_item where author_id=#{userid} and disabled="0" ORDER BY create_time ASC) as itemmain, t_users as u1,t_place as p1
+where title.item=itemmain.itemid and title.language="ff808181257c178801257c186ab80002" and itemmain.authorid=u1.id and itemmain.itemid=p1.itemid order by itemmain.itemcreate ASC       
+    </select>
+
+    <select
+        id="place_distinct_cooccurrence"
+        parameterType="String"
+        resultType="Cooccurrence" >
+          select itemmain.lat,itemmain.lng,title.content,title.item,itemmain.itemcreate,u1.nickname,p1.id as placeId, p1.place from t_item_title as title,(select id as itemid,create_time as itemcreate, author_id as 
+authorid,item_lat as lat,item_lng as lng from t_item where author_id=#{userid} and disabled="0" ORDER BY create_time ASC) as itemmain, t_users as u1,t_place as p1
+where title.item=itemmain.itemid and title.language="ff808181257c178801257c186ab80002" and itemmain.authorid=u1.id and itemmain.itemid=p1.itemid group by p1.place order by itemmain.itemcreate ASC    
+    </select>
+
+    <select
+        id="getAllTimedata"
+        resultType="Cooccurrence" >
+        select * from t_item as t1, t_users as t2 where t1.author_id=t2.id and t1.disabled="0" and not t2.pc_email="learninglogforyou@gmail.com" and t1.author_id="16bb94322ec4005b012edca218230033" order by t2.id, t1.create_time
+    </select>
+
+    <select
+        id="findlatlng"
+        resultType="Itemlatlng" >
+        select * from t_item where 
+<![CDATA[ not item_lat="null" and disabled="0" and item_lat > 1 and item_lat <70 and item_lng >1]]></select>
+
+    <insert
+        id="insertplace"
+        parameterType="String" >
+        insert into t_place(
+			id,
+			itemid,
+			place
+		)values(
+			#{id},
+			#{itemid},
+			#{place}
+		)
+    </insert>
+
+    <insert
+        id="insertplaceattribute"
+        parameterType="String" >
+        insert into t_place_attribute(
+			id,
+			placeid,
+			attribute
+		)values(
+			#{id},
+			#{placeid},
+			#{attribute}
+		)
+    </insert>
+
+    <select
+        id="findcount2"
+        parameterType="date"
+        resultType="string" >
+       select count(id) as learninglogs from t_item where 
+<![CDATA[ disabled="0" and create_time >= #{timer1} and create_time <= #{timer2}]]></select>
+
+    <select
+        id="getPersonalOneday"
+        parameterType="string"
+        resultType="Itemlatlng" >
+          select * from t_item where disabled="0" and author_id=#{author} order by create_time ASC
+    </select>
+
+    <select
+        id="getAllOneday"
+        resultType="Itemlatlng" >
+      select * from t_item where disabled="0" and not author_id="ff808181257c178801257c17ab770001" order by create_time ASC
+    </select>
+
+    <select
+        id="getAllplace"
+        resultType="Itemlatlng" >
+          select *,p1.place as learningplace, count(p1.place) as lcount from t_item as t1,t_place as p1 where t1.id=p1.itemid group by learningplace order by lcount desc
+    </select>
+
+    <select
+        id="getCategoryplace"
+        resultType="Itemlatlng" >
+          select * from t_place_attribute as p2,(select p1.id as ppid,p1.place as learningplace,count(p1.place) as cc from t_item as t1,t_place as p1 where t1.id=p1.itemid group by p1.place order by count(p1.place) desc) as p3 where p2.placeid=p3.ppid order by cc DESC
+    </select>
+
+    <select
+        id="getRecommednTime"
+        resultType="Itemlatlng" >
+         select * from t_item,t_item_title as ti1,t_users as u where disabled="0" and not author_id="ff808181257c178801257c17ab770001" and ti1.item = t_item.id and ti1.language="ff808181257c178801257c186ab80002" 
+and u.id=t_item.author_id order by t_item.create_time DESC
+    </select>
+
+    <select
+        id="getPlace_attribute"
+        resultType="PlaceAnalysis" >
+          select * from t_place_attribute as p1 where p1.placeid=#{placeid}
+    </select>
+
+    <select
+        id="p_collocation"
+        resultType="PlaceCollocation" >
+          select t5.content,t6.* from t_item_title as t5 inner join 
+(select t4.nickname,t3.* from t_users as t4 inner join 
+(select t1.id,t1.itemid,t1.place,t2.author_id,t2.create_time,t2.item_lat,t2.item_lng,t2.image from (select * from t_place where place=#{place}) 
+as t1 inner join t_item as t2 on t1.itemid=t2.id) as t3 on t3.author_id=t4.id) as t6 on t5.item=t6.itemid where t5.language="ff808181257c178801257c186ab80002" GROUP BY t6.itemid order by t6.create_time desc
+    </select>
+
+    <select
+        id="p_content"
+        resultType="PlaceCollocation" >
+           select * from t_place where itemid=#{itemid}
+    </select>
+
+    <select
+        id="getyesquizitems"
+        resultType="yesquizitemget" >
+          select * from t_item as t1, t_item_title as t2,t_users as t3 where t1.id=t2.item and t1.id=#{itemid} and t3.id=t1.author_id
+    </select>
+
+    <select
+        id="findtdasecondlayer"
+        resultType="TDAsecondlayer" >
+            select t2.itemid,t1.create_time,t1.item_lat,t1.item_lng,t1.author_id,t1.image,t2.content,t2.synset,t2.pos,t2.src from t_item as t1,pos_items as t2 where t1.id=t2.itemid and t1.disabled="0" order by t2.pos desc
+    </select>
+
+    <select
+        id="findthirdlayer"
+        resultType="TDAthirdlayer" >
+        select t1.id as itemid,t1.create_time as create_time,t1.item_lat as lat, t1.item_lng as lng, t1.author_id as authorid, t2.content,t3.place,t4.attribute from t_item as t1, t_item_title as t2, t_place as t3, t_place_attribute as t4 where t1.id = t2.item and t3.itemid=t1.id and t3.id =t4.placeid and t1.disabled="0" and not t4.attribute ="establishment" and not t4.attribute = "locality"
+ and not t4.attribute= "local_government_office" and not t4.attribute="political" and t2.language ="ff808181257c178801257c186ab80002" group by t1.id
+    </select>
+
+    <select
+        id="getquizdata"
+        parameterType="String"
+        resultType="MqQuiz" >
+select * from
+(select t1.id,t1.author_id,t1.image,t1.title_id,t1.content,t1.language,t1.item_lat,t1.item_lng,t2.t_users,t2.study_langs,t2.code,t2.name from (select t1.id,t1.create_time,t1.update_time,t1.author_id,t1.image,t1.item_lat,t1.item_lng,t2.id as title_id,t2.content,t2.language from t_item as t1,t_item_title as t2 where t1.author_id=#{authorid} and t1.disabled="0" and t1.id=t2.item)
+as t1,(select t1.t_users,t1.study_langs,t2.code,t2.name from t_users_study_langs as t1, d_language as t2 where t1.study_langs =t2.id and t1.t_users=#{authorid} and t1.lang_order="0") as t2
+where t1.language=t2.study_langs) as t1 where id not in (select itemid from t_mq)
+    </select>
+
+    <insert
+        id="insertmqquiz"
+        parameterType="Mqquiz" >
+		insert into t_mq(
+			id,
+			answer,
+			answerstate,
+			create_date,
+			author_id,
+			update_date,
+			myanswer,
+			itemid,
+			language_id,
+			lan_code,
+			content,
+			image,
+			item_lat,
+			item_lng
+		)values(
+			#{gid},
+			"null",
+			"null",
+			#{create_date},
+			#{author_id},
+			#{create_date},
+			"null",
+			#{id},
+			#{study_langs},
+			#{code},
+			#{content},
+			#{image},
+			#{item_lat},
+			#{item_lng}
+		)
+    </insert>
+
+    <select
+        id="getgquiz"
+        resultType="MqQuiz" >
+    select * from t_mq where author_id=#{authorid} and (answerstate="null" or answerstate="-1")
+    </select>
+
+    <select
+        id="getimagequiz"
+        resultType="MqQuiz" >
+         select * from t_mq where author_id=#{id} and (answerstate="null" or answerstate="-1") and not image
+    </select>
+
+    <insert
+        id="insertmqc"
+        parameterType="Mychoice" >
+        insert into t_mq_choice(
+        id,
+        content,
+        number,
+        itemid,
+        t_mqid,
+        c_id
+        )values(
+        #{id},
+        #{content},
+        #{number},
+        #{itemid},
+        #{t_mqid},
+        #{c_id})
+    </insert>
+
+    <update
+        id="updatemqquiz"
+        parameterType="Quizstore" >
+		update
+			t_mq
+		set
+			answerstate = "1", update_date =#{time}
+		where
+			id = #{id}
+    </update>
+
+    <update
+        id="updatequizdate"
+        parameterType="Date" >
+        update t_mq set answerstate="null", update_date=#{cdate} where 
+<![CDATA[ update_date<=#{cdate} ]]></update>
+
+    <update
+        id="updatecommonid"
+        parameterType="String" >
+        update t_mq set common_id=#{commonid} where id=#{id}
+    </update>
+
+    <select
+        id="questions"
+        parameterType="String"
+        resultType="Results" >
+        select content,item as itemid from 
+(select t1.content,t1.item from t_item_title as t1,
+(select t1.my_langs from t_users_my_langs as t1 where t1.lang_order="0" and t1.t_users=#{id}) as t2,
+t_mq_choice as t3 where t1.item=t3.itemid and t1.language=t2.my_langs) as t1 where t1.item=#{itemid}
+    </select>
+
+    
+    <select id="findernationalitycount" resultType="TDAsecondlayer">
+        select name,username,count(name) as total from d_language as t1,t_users_my_langs as t2,
+(select id as u_id,nickname as username from t_users GROUP BY nickname) as t3 where t1.id=t2.my_langs and t2.t_users=t3.u_id 
+GROUP BY t1.name order by t1.name asc
+        
+        
+    </select>
+    
+    <select id="finderposcount" resultType="TDAsecondlayer">
+        select pos as name,count(pos) as total from pos_items group by pos
+        
+    </select>
+    
+    <select id="getwordnet" resultType="WordNet">
+        
+select * from wn_word as t1,wn_sense as t2,wn_synset_ex as t3 where t1.lemma=#{content} and t1.wordid=t2.wordid and t2.synset=t3.synset
+        
+    </select>
+    
+</mapper>

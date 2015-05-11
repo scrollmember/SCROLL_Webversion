@@ -1,0 +1,13 @@
+--@type Database Change Log
+--@author houbin
+--@Date 2011/6/1
+
+--Table: T_FILE_DATA
+--sql:
+
+alter table t_file_data
+	add column 
+	`md5` varchar(32);
+alter table t_file_data
+	add index
+	index_file_data_md5(md5);

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.MyQuizDao">
+	
+	<sql id="allColumns">
+			q.alarmtype,
+			q.answer,
+			q.answerstate,
+			q.author_id as authorId,
+			q.content,
+			q.create_date as createDate,
+			q.id,
+			q.item_id as itemId,
+			q.language_id as languageId,
+			q.latitude,
+			q.llquiz_id as llquizId,
+			q.longitude,
+			q.myanswer,
+			q.questiontypeid,
+			q.quiz_content as quizContent,
+			q.speed,
+			q.update_date as updateDate
+	</sql>
+	
+	<resultMap type="jp.ac.tokushima_u.is.ll.dto.MyQuizDTO" id="resultMyQuizDTO">
+		<id column="id" property="id"/>
+		<result column="alarmtype" property="alarmtype"/>
+		<result column="answer" property="answer"/>
+		<result column="answerstate" property="answerstate"/>
+		<result column="authorId" property="authorId"/>
+		<result column="content" property="content"/>
+		<result column="createDate" property="createDate"/>
+		<result column="itemId" property="itemId"/>
+		<result column="languageId" property="languageId"/>
+		<result column="latitude" property="latitude"/>
+		<result column="llquizId" property="llquizId"/>
+		<result column="longitude" property="longitude"/>
+		<result column="myanswer" property="myanswer"/>
+		<result column="questiontypeid" property="questiontypeid"/>
+		<result column="quizContent" property="quizContent"/>
+		<result column="speed" property="speed"/>
+		<result column="updateDate" property="updateDate"/>
+		<association property="item" javaType="jp.ac.tokushima_u.is.ll.dto.ItemDTO" resultMap="jp.ac.tokushima_u.is.ll.dao.ItemDao.resultItemDTO" columnPrefix="item_" />
+		<collection property="quizChoices" ofType="MyQuizChoice">
+			<id column="choice_id" property="id"/>
+			<result column="choice_content" property="content"/>
+			<result column="choice_number" property="number"/>
+			<result column="choice_note" property="note"/>
+			<result column="id" property="myquizId"/>
+			<result column="choice_item_id" property="itemId"/>
+		</collection>
+	</resultMap>
+	
+	<select id="findListByAuthor" parameterType="string" resultMap="resultMyQuizDTO">
+		select
+			<include refid="allColumns"/>,
+			item.id as item_id,
+			item.image as item_image,
+			item.item_lat as item_item_lat,
+			item.item_lng as item_item_lng,
+			item.item_zoom as item_item_zoom,
+			item.place as item_place,
+			title.id as item_title_id,
+			title.content as item_title_content,
+			title.language as item_title_language,
+			title.item as item_title_item,
+			lang.code as item_title_lang_code,
+			lang.name as item_title_lang_name,
+			tag.id as item_tag_id,
+			tag.tag as item_tag_tag,
+			choice.content as choice_content,
+			choice.number as choice_number,
+			choice.note as choice_note,
+			choice.item_id as choice_item_id
+		from
+			t_myquiz q
+				left join t_item item
+					left join t_item_title title
+						left join d_language lang
+							on title.language = lang.id
+						on item.id = title.item
+					left join t_item_item_tags itemtag
+						left join t_item_tag tag
+							on itemtag.item_tags = tag.id
+						on item.id = itemtag.items
+					on q.item_id = item.id
+				left join t_myquiz_choice choice
+					on q.id = choice.myquiz_id
+		where
+			q.author_id = #{authorId}
+	</select>
+	
+	<select id="findListByAnswerstatus" parameterType="map" resultMap="resultMyQuizDTO">
+		select
+			<include refid="allColumns"/>,
+			item.id as item_id,
+			item.image as item_image,
+			item.item_lat as item_item_lat,
+			item.item_lng as item_item_lng,
+			item.item_zoom as item_item_zoom,
+			item.place as item_place,
+			title.id as item_title_id,
+			title.content as item_title_content,
+			title.language as item_title_language,
+			title.item as item_title_item,
+			lang.code as item_title_lang_code,
+			lang.name as item_title_lang_name,
+			tag.id as item_tag_id,
+			tag.tag as item_tag_tag,
+			choice.content as choice_content,
+			choice.number as choice_number,
+			choice.note as choice_note,
+			choice.item_id as choice_item_id
+		from
+			t_myquiz q
+				left join t_item item
+					left join t_item_title title
+						left join d_language lang
+							on title.language = lang.id
+						on item.id = title.item
+					left join t_item_item_tags itemtag
+						left join t_item_tag tag
+							on itemtag.item_tags = tag.id
+						on item.id = itemtag.items
+					on q.item_id = item.id
+				left join t_myquiz_choice choice
+					on q.id = choice.myquiz_id
+		where
+			q.author_id = #{authorId}
+			and q.answer_status = #{answerstatus}
+	</select>
+	
+	<select id="countAnswerQuizzesOnDayByAuthors" parameterType="date" resultType="map">
+		select 
+			count(item.id) as itemNum, 
+			item.author_id as author
+		from t_myquiz item
+		where 
+			year(item.create_date)=year(#{date})
+			and month(item.create_date)=month(#{date}) 
+			and day(item.create_date)=day(#{date})
+			and item.answerstate!=-1
+		group by 
+			item.author_id
+	</select>
+	
+	<select id="countAnswerQuizzesInWeekByAuthors" parameterType="map" resultType="map">
+		select 
+			count(item.id) as itemNum, 
+			item.author_id as author
+		from t_myquiz item
+		where 
+		<![CDATA[
+			item.create_date >=#{start}
+			and item.create_date <=#{end}
+			and item.answerstate!=-1
+		]]>
+		group by 
+			item.author_id
+	</select>
+	
+	<select id="findById" parameterType="string"  resultMap="resultMyQuizDTO">
+		select
+			<include refid="allColumns"/>,
+			item.id as item_id,
+			item.image as item_image,
+			item.item_lat as item_item_lat,
+			item.item_lng as item_item_lng,
+			item.item_zoom as item_item_zoom,
+			item.place as item_place,
+			title.id as item_title_id,
+			title.content as item_title_content,
+			title.language as item_title_language,
+			title.item as item_title_item,
+			lang.code as item_title_lang_code,
+			lang.name as item_title_lang_name,
+			tag.id as item_tag_id,
+			tag.tag as item_tag_tag,
+			choice.content as choice_content,
+			choice.number as choice_number,
+			choice.note as choice_note,
+			choice.item_id as choice_item_id
+		from
+			t_myquiz q
+				left join t_item item
+					left join t_item_title title
+						left join d_language lang
+							on title.language = lang.id
+						on item.id = title.item
+					left join t_item_item_tags itemtag
+						left join t_item_tag tag
+							on itemtag.item_tags = tag.id
+						on item.id = itemtag.items
+					on q.item_id = item.id
+				left join t_myquiz_choice choice
+					on q.id = choice.myquiz_id
+		where
+			q.id = #{id} group by choice_content
+	</select>
+	
+	<select id="findListByExample" parameterType="MyQuiz" resultMap="resultMyQuizDTO">
+		select
+			<include refid="allColumns"/>,
+			item.id as item_id,
+			item.image as item_image,
+			item.item_lat as item_item_lat,
+			item.item_lng as item_item_lng,
+			item.item_zoom as item_item_zoom,
+			item.place as item_place,
+			title.id as item_title_id,
+			title.content as item_title_content,
+			title.language as item_title_language,
+			title.item as item_title_item,
+			lang.code as item_title_lang_code,
+			lang.name as item_title_lang_name,
+			tag.id as item_tag_id,
+			tag.tag as item_tag_tag,
+			choice.content as choice_content,
+			choice.number as choice_number,
+			choice.note as choice_note,
+			choice.item_id as choice_item_id
+		from
+			t_myquiz q
+				left join t_item item
+					left join t_item_title title
+						left join d_language lang
+							on title.language = lang.id
+						on item.id = title.item
+					left join t_item_item_tags itemtag
+						left join t_item_tag tag
+							on itemtag.item_tags = tag.id
+						on item.id = itemtag.items
+					on q.item_id = item.id
+				left join t_myquiz_choice choice
+					on q.id = choice.myquiz_id
+		<where>
+			<if test="example.itemId!=null">and q.item_id = #{example.itemId}</if>
+			<if test="example.authorId!=null">and q.author_id=#{example.authorId}</if>
+			<if test="example.questiontypeid!=null">and q.questiontypeid=#{example.questiontypeid}</if>
+			<if test="example.answerstate!=null">and q.answerstate=#{example.answerstate}</if>
+		</where>
+		<if test="sort!=null">
+		order by
+			<foreach collection="sort" item="order" separator=",">
+				q.${order.property} ${order.direction}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="findListRightQuizzes" parameterType="string" resultMap="resultMyQuizDTO">
+		select
+			<include refid="allColumns"/>,
+			item.id as item_id,
+			item.image as item_image,
+			item.item_lat as item_item_lat,
+			item.item_lng as item_item_lng,
+			item.item_zoom as item_item_zoom,
+			item.place as item_place,
+			title.id as item_title_id,
+			title.content as item_title_content,
+			title.language as item_title_language,
+			title.item as item_title_item,
+			lang.code as item_title_lang_code,
+			lang.name as item_title_lang_name,
+			tag.id as item_tag_id,
+			tag.tag as item_tag_tag,
+			choice.content as choice_content,
+			choice.number as choice_number,
+			choice.note as choice_note,
+			choice.item_id as choice_item_id
+		from
+			t_myquiz q
+				left join t_item item
+					left join t_item_title title
+						left join d_language lang
+							on title.language = lang.id
+						on item.id = title.item
+					left join t_item_item_tags itemtag
+						left join t_item_tag tag
+							on itemtag.item_tags = tag.id
+						on item.id = itemtag.items
+					on q.item_id = item.id
+				left join t_myquiz_choice choice
+					on q.id = choice.myquiz_id
+		where
+			q.author_id = #{authorId}
+			and q.answer_status = 1
+			<![CDATA[and ( wrongtimes is null or wrongtimes < 1)]]>
+	</select>
+	
+	<select id="findWrongQuizzes" parameterType="string" resultMap="resultMyQuizDTO">
+		select
+			<include refid="allColumns"/>,
+			item.id as item_id,
+			item.image as item_image,
+			item.item_lat as item_item_lat,
+			item.item_lng as item_item_lng,
+			item.item_zoom as item_item_zoom,
+			item.place as item_place,
+			title.id as item_title_id,
+			title.content as item_title_content,
+			title.language as item_title_language,
+			title.item as item_title_item,
+			lang.code as item_title_lang_code,
+			lang.name as item_title_lang_name,
+			tag.id as item_tag_id,
+			tag.tag as item_tag_tag,
+			choice.content as choice_content,
+			choice.number as choice_number,
+			choice.note as choice_note,
+			choice.item_id as choice_item_id
+		from
+			t_myquiz q
+				left join t_item item
+					left join t_item_title title
+						left join d_language lang
+							on title.language = lang.id
+						on item.id = title.item
+					left join t_item_item_tags itemtag
+						left join t_item_tag tag
+							on itemtag.item_tags = tag.id
+						on item.id = itemtag.items
+					on q.item_id = item.id
+				left join t_myquiz_choice choice
+					on q.id = choice.myquiz_id
+		where
+			q.author_id = #{authorId}
+			and q.answer_status = 1
+			<![CDATA[and ( answerstate = 0 or wrongtimes > 0)]]>
+	</select>
+	
+	<select id="findMapListAnswerStatesByAuthorId" parameterType="string" resultType="map">
+		select 
+			answerstate, 
+			count(*) as num 
+		from 
+			t_myquiz 
+		where 
+			author_id = #{userId}
+		group
+			by answerstate
+	</select>
+	
+	<select id="findMapListAnswerStatesByAuthorIdAndUpdateDate" parameterType="map" resultType="map">
+		select
+			answerstate, 
+			count(*) as num 
+		from 
+			t_myquiz 
+		where 
+			author_id = #{userId} 
+			<![CDATA[and update_date > #{from} 
+			and update_date< #{to}]]>
+		group by answerstate
+	</select>
+	
+	<select id="findMapListQuizScoreRanking" resultType="map">
+	<![CDATA[
+		SELECT 
+			user.*, SUM(CASE SC.answerstate WHEN 1 THEN SC.cnt*5 ELSE SC.cnt*2 END) AS score
+		FROM t_users AS user
+			INNER JOIN (
+				SELECT
+					quiz.author_id, 
+					answerstate, 
+					count(quiz.answerstate) AS cnt
+				FROM t_myquiz AS quiz
+				WHERE quiz.answerstate >= 0 AND quiz.answerstate <= 2
+				GROUP BY quiz.author_id,quiz.answerstate
+				) as SC ON(SC.author_id = user.id
+			)
+		GROUP BY SC.author_id
+		ORDER BY score DESC
+	]]>
+	</select>
+	
+	<select id="findListByAuthorAndAnsweredAfter" parameterType="map" resultMap="resultMyQuizDTO">
+		select
+			<include refid="allColumns"/>,
+			item.id as item_id,
+			item.image as item_image,
+			item.item_lat as item_item_lat,
+			item.item_lng as item_item_lng,
+			item.item_zoom as item_item_zoom,
+			item.place as item_place,
+			title.id as item_title_id,
+			title.content as item_title_content,
+			title.language as item_title_language,
+			title.item as item_title_item,
+			lang.code as item_title_lang_code,
+			lang.name as item_title_lang_name,
+			tag.id as item_tag_id,
+			tag.tag as item_tag_tag,
+			choice.content as choice_content,
+			choice.number as choice_number,
+			choice.note as choice_note,
+			choice.item_id as choice_item_id
+		from
+			t_myquiz q
+				left join t_item i
+					left join t_item_title title
+						left join d_language lang
+							on title.language = lang.id
+						on item.id = title.item
+					left join t_item_item_tags itemtag
+						left join t_item_tag tag
+							on itemtag.item_tags = tag.id
+						on item.id = itemtag.items
+					on q.item_id = item.id
+				left join t_myquiz_choice choice
+					on q.id = choice.myquiz_id
+		where
+			q.author_id = #{authorId}
+			and q.answerstate != -1
+			<if test="lastDate!=null"> and q.update_date>#{lastDate}</if>
+	</select>
+	
+	<insert id="insert" parameterType="MyQuiz">
+		insert into t_myquiz(
+			alarmtype,
+			answer,
+			answerstate,
+			author_id,
+			content,
+			create_date,
+			id,
+			item_id,
+			language_id,
+			latitude,
+			llquiz_id,
+			longitude,
+			myanswer,
+			questiontypeid,
+			quiz_content,
+			speed,
+			update_date
+		)values(
+			#{alarmtype},
+			#{answer},
+			#{answerstate},
+			#{authorId},
+			#{content},
+			#{createDate},
+			#{id},
+			#{itemId},
+			#{languageId},
+			#{latitude},
+			#{llquizId},
+			#{longitude},
+			#{myanswer},
+			#{questiontypeid},
+			#{quizContent},
+			#{speed},
+			#{updateDate}
+		)
+	</insert>
+	
+	<update id="update" parameterType="MyQuiz">
+		update t_myquiz
+		set
+			alarmtype=       #{alarmtype},
+			answer=          #{answer},
+			answerstate=     #{answerstate},
+			author_id=       #{authorId},
+			content=         #{content},
+			create_date=     #{createDate},
+			id=              #{id},
+			item_id=         #{itemId},
+			language_id=     #{languageId},
+			latitude=        #{latitude},
+			llquiz_id=       #{llquizId},
+			longitude=       #{longitude},
+			myanswer=        #{myanswer},
+			questiontypeid=  #{questiontypeid},
+			quiz_content=    #{quizContent},
+			speed=           #{speed},
+			update_date=     #{updateDate}
+		where
+			id = #{id}
+	</update>
+</mapper>

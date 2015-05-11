@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.ac.tokushima_u.is.ll.dao.TaskDao" >
+
+    <sql id="allColumns" >
+    t.id,
+    t.create_time,
+    t.lat,
+    t.lng,
+    t.place,
+    t.title,
+    t.update_time,
+    t.zoom,
+    t.author_id as authorId,
+    t.language_id as languageId,
+    t.is_published as isPublished,
+    t.level,
+    t.location_based as locationBased
+    </sql>
+
+  
+    
+    <select
+        id="findTaskById"
+        parameterType="string"
+        resultType="Task" >
+       	select
+
+        <include refid="allColumns" />
+		from
+			t_task t
+		where
+			t.id = #{id}
+    </select>
+
+    <select
+        id="getsearchtask"
+        parameterType="string"
+        resultType="Task"
+        >
+         	select
+        <include refid="allColumns" />
+		from t_task t
+		<where>
+	<choose>
+	    <when test="title !='' and place !='' and level !=''">
+	        t.title like '%${title}%' and t.place like '%${place}%' and  t.level like '%${level}%'
+	    </when>
+	    <when test="title !='' and place !='' and level ==''">
+	        t.title like '%${title}%' and t.place like '%${place}%'
+	    </when>
+	    
+	     <when test="title !='' and place =='' and level !=''">
+	        t.title like '%${title}%' and t.level like '%${level}%'
+	    </when>
+	     <when test="title !='' and place =='' and level ==''">
+	        t.title like '%${title}%' 
+	    </when>
+	    
+	     
+	      <when test="title =='' and place !='' and level !=''">
+	        t.place like '%${place}%' and  t.level like '%${level}%'
+	    </when>
+	    <when test="title =='' and place !='' and level ==''">
+	        t.place like '%${place}%'
+	    </when>
+	    
+	     <when test="title =='' and place =='' and level !=''">
+	        t.level like '%${level}%'
+	    </when>
+	    
+	     
+	    
+	</choose>
+		    
+       </where>
+        
+        
+    </select>
+    
+    
+    <select
+        id="getalltask"
+        resultType="Task" >
+       select * from t_task order by update_time DESC
+    </select>
+
+    <select
+        id="findTaskALL"
+        resultType="Task" >
+        select 
+        <include refid="allColumns" />
+         from t_task t
+    </select>
+
+    
+    <select
+        id="findTaskrelated"
+        parameterType="string"
+        resultType="ItemTitle" >
+	select * from t_item_title 
+	where language = "ff808181257c178801257c186ab80003" AND t_item_title.item IN(select item.id from t_item item where item.id 
+	IN(select distinct item_id from t_task_item where task_id=#{id}));
+    </select>
+
+    <select
+        id="findrelatedimage"
+        parameterType="string"
+        resultType="Item" >
+	select  * from t_item item where item.id IN(select distinct item_id from t_task_item where task_id=#{id});
+    </select>
+
+    <insert
+        id="insert"
+        parameterType="Task" >
+        INSERT INTO t_task
+		(id ,
+		 create_time ,
+		 lat ,
+		 lng ,
+		 place ,
+		 title ,
+		 update_time ,
+		 zoom ,
+		 author_id ,
+		 language_id ,
+		 is_published ,
+		 level ,
+		 location_based )
+		VALUES
+		(
+		#{id},
+		#{create_time},
+		#{lat},
+		#{lng},
+		#{place},
+		#{title},
+		#{update_time},
+		#{zoom},
+		#{author_id},
+		#{language_id},
+		#{is_Published},
+		#{level},
+		#{locationBased})
+    </insert>
+
+    <update
+        id="updateLevelById"
+        parameterType="Tasklevel" >
+		update t_task set level=#{level} where id=#{id}
+    </update>
+
+      <update
+        id="updatetask"
+        parameterType="string" >
+		update t_task set title=#{title},place=#{place},level=#{level} where id=#{taskid}
+
+    </update>
+    
+    <update
+        id="updatetask2"
+        parameterType="string" >
+		update t_task_script set script=#{script} where task_id=#{taskid} and num=#{num}
+
+    </update>
+    
+    <delete
+        id="delete"
+        parameterType="string"
+        >
+        delete from t_task where id=#{taskid}
+    </delete>
+    
+      
+    <delete 
+        id="detelescript"
+        parameterType="string"
+        >
+        delete from t_task_script where task_id=#{taskid}
+    </delete>
+    
+    <delete id="deleteitem"
+        parameterType="string"
+        >
+        delete from t_task_item where task_id=#{taskid} 
+    </delete>
+        
+        
+     <select
+        id="searchListByCond"
+        parameterType="Task"
+        resultType="Task"
+        >
+		select
+			*
+		from
+			t_task as t,t_users as u
+			where t.author_id=u.id
+		<if test="page.sort!=null">
+			<trim prefix="order by">
+				<foreach collection="page.sort" item="order" separator=",">
+				${order.property} ${order.direction}
+				</foreach>
+			</trim>
+		</if>
+		<if test="page!=null and page.pageSize!=null">
+			limit #{page.pageSize}
+		</if>
+		<if test="page!=null and page.offset!=null">
+			offset #{page.offset}
+		</if>
+
+    </select>
+    
+  <select
+        id="countByCond"
+        parameterType="map"
+        resultType="long" >
+
+		select count(i.id)
+		from
+			t_task i
+				
+    </select>
+    
+  <select
+        id="searchListselect"
+       parameterType="Task"
+        resultType="Task"
+        >
+		select
+			*
+		from
+			t_task t
+			<where>
+		<choose>
+	    <when test="title !='' and place !='' and level !=''">
+	        t.title like '%${title}%' and t.place like '%${place}%' and  t.level like '%${level}%'
+	    </when>
+	    <when test="title !='' and place !='' and level ==''">
+	        t.title like '%${title}%' and t.place like '%${place}%'
+	    </when>
+	    
+	     <when test="title !='' and place =='' and level !=''">
+	        t.title like '%${title}%' and t.level like '%${level}%'
+	    </when>
+	     <when test="title !='' and place =='' and level ==''">
+	        t.title like '%${title}%' 
+	    </when>
+	    
+	     
+	      <when test="title =='' and place !='' and level !=''">
+	        t.place like '%${place}%' and  t.level like '%${level}%'
+	    </when>
+	    <when test="title =='' and place !='' and level ==''">
+	        t.place like '%${place}%'
+	    </when>
+	    
+	     <when test="title =='' and place =='' and level !=''">
+	        t.level like '%${level}%'
+	    </when>
+	    
+	     
+	    
+	</choose>
+	</where>
+		<if test="page.sort!=null">
+			<trim prefix="order by">
+				<foreach collection="page.sort" item="order" separator=",">
+				${order.property} ${order.direction}
+				</foreach>
+			</trim>
+		</if>
+		<if test="page!=null and page.pageSize!=null">
+			limit #{page.pageSize}
+		</if>
+		<if test="page!=null and page.offset!=null">
+			offset #{page.offset}
+		</if>
+
+    </select>
+     <select
+        id="countByCondselect"
+        parameterType="map"
+        resultType="long" >
+
+		select count(t.id)
+		from
+			t_task t
+			
+			<where>
+		<choose>
+	    <when test="title !='' and place !='' and level !=''">
+	        t.title like '%${title}%' and t.place like '%${place}%' and  t.level like '%${level}%'
+	    </when>
+	    <when test="title !='' and place !='' and level ==''">
+	        t.title like '%${title}%' and t.place like '%${place}%'
+	    </when>
+	    
+	     <when test="title !='' and place =='' and level !=''">
+	        t.title like '%${title}%' and t.level like '%${level}%'
+	    </when>
+	     <when test="title !='' and place =='' and level ==''">
+	        t.title like '%${title}%' 
+	    </when>
+	    
+	     
+	      <when test="title =='' and place !='' and level !=''">
+	        t.place like '%${place}%' and  t.level like '%${level}%'
+	    </when>
+	    <when test="title =='' and place !='' and level ==''">
+	        t.place like '%${place}%'
+	    </when>
+	    
+	     <when test="title =='' and place =='' and level !=''">
+	        t.level like '%${level}%'
+	    </when>
+	    
+	     
+	    
+	</choose>
+	</where>
+				
+    </select>
+  
+  
+  
+        
+</mapper>
